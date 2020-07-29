@@ -1,6 +1,6 @@
 <?php
 namespace Clases;
-
+include_once "../config/autoload.php";
 use Clases\ConexionDB as db;
 
 class Producto

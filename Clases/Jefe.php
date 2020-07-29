@@ -1,10 +1,7 @@
 <?php
 namespace Clases;
-
+include_once "../config/autoload.php";
 use Clases\ConexionDB as db;
-
-require_once "config/autoload.php";
-
 
 class Jefe extends Usuario
 {

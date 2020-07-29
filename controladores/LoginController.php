@@ -1,12 +1,10 @@
 <?php
-
-use Clases\Producto;
-
+namespace Clases;
 include_once "../config/autoload.php";
-session_start();
-$user=$_POST['user'];
-$pass=$_POST['pass'];
- $s= Producto::ListarProductos();
-echo $s[0]['nombre'];
 
+session_start();
+$user=$_POST['usuario'];
+$pass=$_POST['password'];
+$s= Producto::ListarProductos();
+echo $s[0]['nombre'];
 ?>

@@ -1,11 +1,6 @@
 <?php
 namespace Clases;
-
-use Clases\ConexionDB as db;
-
-require_once "config/autoload.php";
-
-
+include_once "../config/autoload.php";
 class Empleado extends Usuario
 {
     private $tipo;
@@ -54,5 +49,4 @@ class Empleado extends Usuario
     public function hacerFactura(){
         // TODO
     }
-
 }
