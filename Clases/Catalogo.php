@@ -1,8 +1,7 @@
 <?php
 namespace Clases;
-
-use Clases\ConexionDB as db;
-
+use Clases\ConexionDB as Db;
+include_once "../config/autoload.php";
 class Catalogo
 {
     private $tipo;

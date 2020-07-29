@@ -1,7 +1,7 @@
 <?php
 namespace Clases;
-
-use Clases\ConexionDB as db;
+include_once "../config/autoload.php";
+use Clases\ConexionDB as Db;
 
 class Factura
 {
