@@ -41,9 +41,29 @@ class Pedido
         return $this->fechaEntrega;
     }
 
+
     public function setFechaEntrega($fechaEntrega): void
     {
         $this->fechaEntrega = $fechaEntrega;
+    }
+
+    public  static function ListarPedidos() :array {
+        try {
+            $db = new db();
+            $conn = $db->abrirConexion();
+
+            $sql = "SELECT * from pedido";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute();
+            $matriz=$respuesta->fetchAll();
+            $db->cerrarConexion();
+            return $matriz;
+        }
+        catch (PDOException $e){
+            echo $e->getMessage();
+        }
+        
+        
     }
 
     public function registrarPedido(){
