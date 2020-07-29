@@ -5,6 +5,6 @@ include_once "../config/autoload.php";
 session_start();
 $user=$_POST['usuario'];
 $pass=$_POST['password'];
-$a = new Producto("anfetaminas", 12.00, "bueno, barato","Umbrella");
-
+$s= Producto::ListarProductos();
+echo $s[0]['nombre'];
 ?>

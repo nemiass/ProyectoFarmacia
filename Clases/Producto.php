@@ -32,8 +32,23 @@ class Producto
         // TODO
     }
 
-    public function listarProductos(){
+    public  static function ListarProductos() :array {
+        try {
+            $db = new db();
+            $conn = $db->abrirConexion();
 
+            $sql = "SELECT * from producto";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute();
+            $matriz=$respuesta->fetchAll();
+            $db->cerrarConexion();
+            return $matriz;
+        }
+        catch (PDOException $e){
+            echo $e->getMessage();
+        }
+        
+        
     }
 
     public function actualizarProductos(){

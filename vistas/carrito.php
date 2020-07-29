@@ -6,13 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="vistas/carrito.php">carrito de compras</a>
-
-    <a href="vistas/login.php">Iniciar sesion</a>
-
- ///
- 
- /*productos  mostrar con boostrap*/
-
+    mostrar los productos seleccionados por el cliente
 </body>
 </html>

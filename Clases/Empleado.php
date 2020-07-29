@@ -16,6 +16,26 @@ class Empleado extends Usuario
         return $this->tipo;
     }
 
+    public  static function ListarEmpleado() :array {
+        try {
+            $db = new db();
+            $conn = $db->abrirConexion();
+
+            $sql = "SELECT * from empleado";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute();
+            $matriz=$respuesta->fetchAll();
+            $db->cerrarConexion();
+            return $matriz;
+        }
+        catch (PDOException $e){
+            echo $e->getMessage();
+        }
+        
+        
+    }
+
+
     public function listarPedidos()
     {
        // TODO
