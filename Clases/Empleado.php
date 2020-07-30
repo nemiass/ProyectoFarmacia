@@ -1,5 +1,6 @@
 <?php
 namespace Clases;
+use Clases\ConexionDB as Db;
 include_once "../config/autoload.php";
 class Empleado extends Usuario
 {
@@ -28,7 +29,7 @@ class Empleado extends Usuario
             $db->cerrarConexion();
             return $matriz;
         }
-        catch (PDOException $e){
+        catch (\PDOException $e){
             echo $e->getMessage();
         }
         

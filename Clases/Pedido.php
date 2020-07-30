@@ -59,7 +59,7 @@ class Pedido
             $db->cerrarConexion();
             return $matriz;
         }
-        catch (PDOException $e){
+        catch (\PDOException $e){
             echo $e->getMessage();
         }
         
