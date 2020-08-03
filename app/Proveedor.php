@@ -11,8 +11,22 @@ class Proveedor
         $this->direccion = $direccion;
     }
 
-    public function getDescriptcion()
+    public static function getDescriptcion()
     {
-        return "{$this->nombre}, {$this->direccion}";
+        try {
+            $db = new ConexionDB();
+            $conn = $db->abrirConexion();
+
+            $sql = "SELECT proveedor from producto";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute();
+            $descripcion=$respuesta->fetchAll();
+            $db->cerrarConexion();
+            return $descripcion;
+        }
+        catch (\PDOException $e){
+            echo $e->getMessage();
+        }
     }
+
 }

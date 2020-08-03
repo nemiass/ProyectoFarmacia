@@ -14,7 +14,20 @@ class Empleado extends Usuario
 
     public function getTipo()
     {
-        return $this->tipo;
+        try {
+            $db = new db();
+            $conn = $db->abrirConexion();
+
+            $sql = "SELECT user_tipo from factura";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute();
+            $tipo=$respuesta->fetchAll();
+            $db->cerrarConexion();
+            return $tipo;
+        }
+        catch (\PDOException $e){
+            echo $e->getMessage();
+        }
     }
 
     public  static function ListarEmpleado() :array {
@@ -39,12 +52,38 @@ class Empleado extends Usuario
 
     public function listarPedidos()
     {
-       // TODO
+        try {
+            $db = new ConexionDB();
+            $conn = $db->abrirConexion();
+
+            $sql = "SELECT * from pedido";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute();
+            $pedido=$respuesta->fetchAll();
+            $db->cerrarConexion();
+            return $pedido;
+        }
+        catch (\PDOException $e){
+            echo $e->getMessage();
+        }
     }
 
     public function listarClientes()
     {
-        // TODO
+        try {
+            $db = new ConexionDB();
+            $conn = $db->abrirConexion();
+
+            $sql = "SELECT * from cliente";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute();
+            $cliente=$respuesta->fetchAll();
+            $db->cerrarConexion();
+            return $cliente;
+        }
+        catch (\PDOException $e){
+            echo $e->getMessage();
+        }
     }
 
     public function hacerFactura(){

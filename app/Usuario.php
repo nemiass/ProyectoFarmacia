@@ -70,7 +70,7 @@ class Usuario
         $this->pass = $pass;
     }
 
-    public  static function AllUsuario() :array {
+    public  static function listarUsuario() :array {
         try {
             $db = new ConexionDB();
             $conn = $db->abrirConexion();

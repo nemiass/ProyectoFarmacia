@@ -4,7 +4,7 @@ include_once "../config/autoload.php";
 use Clases\ConexionDB as db;
 
 class Producto
-{
+{  
     private $nombre;
     private $precio;
     private $caracteristicas;
@@ -18,9 +18,22 @@ class Producto
         $this->proveeedor = $proveeedor;
     }
 
-    public function getNombre()
+    public static function getNombre() : array
     {
-        return $this->nombre;
+        try {
+            $db = new db();
+            $conn = $db->abrirConexion();
+
+            $sql = "SELECT nombre from producto ";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute();
+            $nombre=$respuesta->fetchAll();
+            $db->cerrarConexion();
+            return $nombre;
+        }
+        catch (\PDOException $e){
+            echo $e->getMessage();
+        }
     }
 
     public function setNombre($nombre): void
@@ -28,8 +41,27 @@ class Producto
         $this->nombre = $nombre;
     }
 
-    public function registrarProducto(){
-        // TODO
+    public function registrarProducto(): void
+    {
+        $nombre=$this->nombre;
+        $precio=$this->precio;
+        $descripcion=$this->descripcion;
+        $proveedor=$this->proveedor;
+        try {
+            $db = new db();
+            $conn = $db->abrirConexion();
+
+            $sql = "INSERT INTO producto (id_producto, nombre, precio,caracteristica,proveedor)
+            VALUES ($nombre, $precio, $descripcion,$proveedor)";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute();
+           
+            $db->cerrarConexion();
+            
+        }
+        catch (\PDOException $e){
+            echo $e->getMessage();
+        }
     }
 
     public  static function ListarProductos() :array {
@@ -51,7 +83,22 @@ class Producto
         
     }
 
-    public function actualizarProductos(){
-        
+    public function actualizarProductos($id,$nombre,$precio,$caracteristicas,$proveedor): void{
+        try {
+            $db = new db();
+            $conn = $db->abrirConexion();
+
+            $sql = "UPDATE producto
+            SET nombre =$nombre, precio =$precio, caracteristicas=$caracteristicas,proveedor=$proveedor
+            WHERE id_producto=$id";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute();
+           
+            $db->cerrarConexion();
+            
+        }
+        catch (\PDOException $e){
+            echo $e->getMessage();
+        }
     }
 }

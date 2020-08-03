@@ -18,19 +18,60 @@ class Factura
         $this->fecha = $fecha;
     }
 
-    public function getNombreFarmacia()
+    public function getNombreFarmacia():array
     {
-        return $this->nombreFarmacia;
+        try {
+            $db = new db();
+            $conn = $db->abrirConexion();
+
+            $sql = "SELECT nombre_farmacia from factura";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute();
+            $farmacia=$respuesta->fetchAll();
+            $db->cerrarConexion();
+            return $farmacia;
+        }
+        catch (\PDOException $e){
+            echo $e->getMessage();
+        }
     }
 
-    public function setNombreFarmacia($nombreFarmacia): void
+    public function setNombreFarmacia($nombreFarmacia,$id): void
     {
-        $this->nombreFarmacia = $nombreFarmacia;
+        try {
+            $db = new db();
+            $conn = $db->abrirConexion();
+
+            $sql = "UPDATE factura
+            SET nombre_farmacia =$nombreFarmacia;
+            WHERE id_factura=$id";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute();
+           
+            $db->cerrarConexion();
+            
+        }
+        catch (\PDOException $e){
+            echo $e->getMessage();
+        }
     }
 
     public function getPrecioUnitario()
     {
-        return $this->precioUnitario;
+        try {
+            $db = new db();
+            $conn = $db->abrirConexion();
+
+            $sql = "SELECT precio_unitario from factura";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute();
+            $unitario=$respuesta->fetchAll();
+            $db->cerrarConexion();
+            return $unitario;
+        }
+        catch (\PDOException $e){
+            echo $e->getMessage();
+        }
     }
 
     public function setPrecioUnitario($precioUnitario): void
@@ -40,7 +81,20 @@ class Factura
 
     public function getPrecioTotal()
     {
-        return $this->precioTotal;
+        try {
+            $db = new db();
+            $conn = $db->abrirConexion();
+
+            $sql = "SELECT precio_total from factura";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute();
+            $total=$respuesta->fetchAll();
+            $db->cerrarConexion();
+            return $total;
+        }
+        catch (\PDOException $e){
+            echo $e->getMessage();
+        }
     }
 
     public function setPrecioTotal($precioTotal): void
@@ -58,8 +112,22 @@ class Factura
         $this->fecha = $fecha;
     }
 
-    public function registrarFactura(){
-        // TODO
+    public function registrarFactura():void{
+        try {
+            $db = new db();
+            $conn = $db->abrirConexion();
+
+            $sql = "INSERT INTO factura (id_factura,nombre_farmacia,precio_unitario,precio_total,fecha,id_pedido)
+            VALUES ($this->nombreFarmacia,$this->precioUnitario,$this->precioTotal,$this->fecha)";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute();
+           
+            $db->cerrarConexion();
+            
+        }
+        catch (\PDOException $e){
+            echo $e->getMessage();
+        }
     }
 
     public  static function ListarFactura() :array {
