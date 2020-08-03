@@ -28,11 +28,7 @@
     <div class="card-body login-card-body">
       <p class="login-box-msg">Inicie sessión</p>
 
-<<<<<<< HEAD
-      <form action="#" method="post">
-=======
-      <form action="../app/Controller/Logincontroller.php" method="post">
->>>>>>> 75a737d6c4930d122badc39afb3b1858d009b4cb
+      <form action="../app/controller/Logincontroller.php" method="post">
 
         <div class="input-group mb-3">
           <input type="email" class="form-control" placeholder="usuario">

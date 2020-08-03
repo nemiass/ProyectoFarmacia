@@ -1,14 +1,4 @@
 <?php
-<<<<<<< HEAD
-namespace Clases;
-include_once "../config/autoload.php";
-
-session_start();
-$user=$_POST['usuario'];
-$pass=$_POST['password'];
-$s= Producto::ListarProductos();
-echo $s[0]['nombre'];
-=======
 use Clases\Usuario;
 include "../Usuario.php";
 include "../ConexionDB.php";
@@ -64,5 +54,4 @@ if(!empty($_POST['user'])&&!empty($_POST['pass'])){
 
 
 
->>>>>>> 75a737d6c4930d122badc39afb3b1858d009b4cb
 ?>
