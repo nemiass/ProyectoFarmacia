@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-07-2020 a las 15:39:17
+-- Tiempo de generación: 02-08-2020 a las 22:13:36
 -- Versión del servidor: 10.4.13-MariaDB
 -- Versión de PHP: 7.4.7
 
@@ -126,6 +126,19 @@ CREATE TABLE `producto` (
   `proveedor` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `id_usuario` int(3) NOT NULL,
+  `usuario` varchar(10) NOT NULL,
+  `contraseña` varchar(64) NOT NULL,
+  `tipo` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 --
 -- Índices para tablas volcadas
 --
@@ -178,6 +191,12 @@ ALTER TABLE `producto`
   ADD PRIMARY KEY (`id_producto`);
 
 --
+-- Indices de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`id_usuario`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -222,6 +241,12 @@ ALTER TABLE `pedido`
 --
 ALTER TABLE `producto`
   MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `id_usuario` int(3) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
