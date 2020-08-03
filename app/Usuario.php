@@ -70,11 +70,7 @@ abstract class Usuario
         $this->pass = $pass;
     }
 
-<<<<<<< HEAD
-    public  static function AllEstudiante() :array {
-=======
     public  static function listarUsuario() :array {
->>>>>>> 75a737d6c4930d122badc39afb3b1858d009b4cb
         try {
             $db = new ConexionDB();
             $conn = $db->abrirConexion();
