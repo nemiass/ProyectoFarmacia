@@ -97,12 +97,9 @@
        
       </form>
       <div class="mt-3">
-        <a href="login.html" class="text-center">Ya tengo cuenta</a>
+        <a href="login.php" class="text-center">Ya tengo cuenta</a>
 
-      </div>
-
-
-     
+      </div>     
     </div>
     <!-- /.form-box -->
   </div><!-- /.card -->

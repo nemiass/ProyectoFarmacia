@@ -9,7 +9,7 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../public/plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" href="../public/https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Tempusdominus Bbootstrap 4 -->
   <link rel="stylesheet" href="../public/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
   <!-- iCheck -->
@@ -35,11 +35,11 @@
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-      </li>
+        <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="plantillaGeneral.html" class="nav-link">Inicio</a>
+        <a href="plantillaGeneral.php" class="nav-link">Inicio</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contáctanos</a>
@@ -64,11 +64,18 @@
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <!-- Notifications Dropdown Menu -->
-      <a href="#" class="nav-link">Iniciar sesión</a>
+      <?php
+        if(isset($_SESSION)) {
+          echo "<a href='#' class='nav-link'>Cerrar sesión</a>";
+        }
+        else{
+          echo "<a href='login.php' class='nav-link'>Iniciar sesión</a>";
+        }
+      ?>
     </ul>
   </nav>
   <!-- /.navbar -->
-
+ 
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar elevation-1 bg-white">
     <!-- Brand Logo -->
@@ -87,7 +94,7 @@
                  with font-awesome or any other icon font library -->
             
             <li class="nav-item">
-                  <a href="micuenta.html" class="nav-link">
+                  <a href="micuenta.php" class="nav-link">
                     <i class="fas  fa-user fa-lg mr-2"></i>
                     <p>
                       Mi Cuenta
@@ -96,7 +103,7 @@
             </li>
   
             <li class="nav-item">
-              <a href="carrito.html" class="nav-link">
+              <a href="carrito.php" class="nav-link">
                 <i class="fas fa-cart-plus fa-lg mr-2"></i>
                 <p>
                   Mi Carrito
@@ -116,13 +123,13 @@
               </a>
               <ul class="nav nav-treeview" style="display: none;">
                 <li class="nav-item">
-                  <a href="misPedidos.html" class="nav-link active">
+                  <a href="misPedidos.php" class="nav-link active">
                     <i class="fa fa-circle-o nav-icon"></i>
                     <p>Pedidos Actuales</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="historialPedidos.html" class="nav-link">
+                  <a href="historialPedidos.php" class="nav-link">
                     <i class="fa fa-circle-o nav-icon"></i>
                     <p>Historial Pedidos</p>
                   </a>
@@ -136,7 +143,7 @@
   
             <li class="nav-item">
               <a href="#" class="nav-link">
-                <i class="nav-icon far fa-image"></i>
+                <i class="fa fa-tags nav-icon"></i>
                 <p>
                   Cuidado Personal
                 </p>
@@ -145,7 +152,7 @@
   
             <li class="nav-item">
               <a href="#" class="nav-link">
-                <i class="nav-icon far fa-image"></i>
+                <i class="fa fa-tags nav-icon"></i>
                 <p>
                  Belleza
                 </p>
@@ -154,7 +161,7 @@
   
             <li class="nav-item">
               <a href="#" class="nav-link">
-                <i class="nav-icon far fa-image"></i>
+                <i class="fa fa-tags nav-icon"></i>
                 <p>
                   Artículos de protección
                 </p>
@@ -163,7 +170,7 @@
   
             <li class="nav-item">
               <a href="#" class="nav-link">
-                <i class="nav-icon far fa-image"></i>
+                <i class="fa fa-tags nav-icon"></i>
                 <p>
                   Etc
                 </p>
@@ -172,7 +179,7 @@
   
             <li class="nav-item">
               <a href="#" class="nav-link">
-                <i class="nav-icon far fa-image"></i>
+                <i class="fa fa-tags nav-icon"></i>
                 <p>
                   Etc
                 </p>
@@ -186,127 +193,3 @@
       </div>
     <!-- /.sidebar -->
   </aside>
-
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper"> 
-    <!-- Main content -->
-    <section class="content">
-
-        <div class="card card-solid">
-          <div class="card-body">
-              <div class="row">
-                 <div class="col-6">
-                    <h1>Historial de pedidos</h1>
-                 </div>
-                 <div class="col-6">
-                    <div class="form-group">
-                        <label>Agrupar por:</label>
-                        <select class="custom-select">
-                          <option>Todos</option>
-                          <option>Ultimo año</option>
-                          <option>Ultimo mes</option>
-                        </select>
-                      </div>
-                 </div>
-              </div>
-            <div class="row">
-              <div class="col-12">
-                  <table class="table table-striped">
-                      <thead>
-                          <tr>
-                              <th>Nro</th>
-                              <th>FechaEntregada</th>
-                              <th>Lugar Etregado</th>
-                              <th>Moto pagado</th>
-                              <th>Corresponsal</th>
-                              <th>&nbsp</th>
-                          </tr>
-                      </thead>
-  
-                      <tbody>
-                          <tr>
-                              <td>1</td>
-                              <td>12-12-2020</td>
-                              <td>Mi casa</td>
-                              <td>S/100.00</td>
-                              <td>Papo</td>
-                              <td>
-                                <a href="detallesPedidos.html"><button type="button" class="btn btn-block btn-success">Ver Detalles</button></a>
-                            </td>
-                          </tr>
-
-                          <tr>
-                            <td>2</td>
-                            <td>12-12-2020</td>
-                            <td>Mi casa</td>
-                            <td>S/100.00</td>
-                            <td>Papo</td>
-                            <td>
-                              <a href="detallesPedidos.html"><button type="button" class="btn btn-block btn-success">Ver Detalles</button></a>
-                          </td>
-                        </tr>
-                        
-                      </tbody>
-                  </table>
-              </div>
-            </div>
-          </div>
-          <!-- /.card-body -->
-        </div>
-        
-      </section>
-    <!-- /.content -->
-  
-  </div>
-  <!-- /.content-wrapper -->
-  <footer class="main-footer mt-5">
-    <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
-    All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.0.5
-    </div>
-  </footer>
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-</div>
-<!-- ./wrapper -->
-
-<!-- jQuery -->
-<script src="../public/plugins/jquery/jquery.min.js"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="../public/plugins/jquery-ui/jquery-ui.min.js"></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-  $.widget.bridge('uibutton', $.ui.button)
-</script>
-<!-- Bootstrap 4 -->
-<script src="../public/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- ChartJS -->
-<script src="../public/plugins/chart.js/Chart.min.js"></script>
-<!-- Sparkline -->
-<script src="../public/plugins/sparklines/sparkline.js"></script>
-<!-- JQVMap -->
-<script src="../public/plugins/jqvmap/jquery.vmap.min.js"></script>
-<script src="../public/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-<!-- jQuery Knob Chart -->
-<script src="../public/plugins/jquery-knob/jquery.knob.min.js"></script>
-<!-- daterangepicker -->
-<script src="../public/plugins/moment/moment.min.js"></script>
-<script src="../public/plugins/daterangepicker/daterangepicker.js"></script>
-<!-- Tempusdominus Bootstrap 4 -->
-<script src="../public/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-<!-- Summernote -->
-<script src="../public/plugins/summernote/summernote-bs4.min.js"></script>
-<!-- overlayScrollbars -->
-<script src="../public/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-<!-- AdminLTE App -->
-<script src="../public/dist/js/adminlte.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="../public/dist/js/pages/dashboard.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../public/dist/js/demo.js"></script>
-</body>
-</html>

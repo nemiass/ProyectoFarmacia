@@ -1,7 +1,7 @@
 <?php
 namespace Clases;
 
-class Usuario
+abstract class Usuario
 {
     protected $nombres;
     protected $apellidos;
@@ -70,12 +70,13 @@ class Usuario
         $this->pass = $pass;
     }
 
-    public  static function AllUsuario() :array {
+    public  static function AllEstudiante() :array {
         try {
             $db = new ConexionDB();
             $conn = $db->abrirConexion();
 
-            $sql = "SELECT * from usuarios";
+            $sql = "SELECT es.id,es.nombres,es.apellidos,p.nombre from estudiantes as es join pa as p ON
+            es.id_pa=p.id;";
             $respuesta = $conn->prepare($sql);
             $respuesta->execute();
             $matriz=$respuesta->fetchAll();
