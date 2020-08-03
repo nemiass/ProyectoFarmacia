@@ -6,7 +6,7 @@ class Carrito
 
     public function Agregar()
     {
-        // TODO
+        echo "dd";   // TODO
     }
 
     public function Eliminar()

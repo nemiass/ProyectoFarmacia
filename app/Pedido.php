@@ -7,7 +7,9 @@ class Pedido
 {
     private $cantidad;
     private $fecha;
+    private $fecha_entrega;
     private $fechaEntrega;
+    private $direccion;
 
     public function __construct($cantidad, $fecha, $fechaEntrega)
     {
@@ -16,9 +18,22 @@ class Pedido
         $this->fechaEntrega = $fechaEntrega;
     }
 
-    public function getCantidad()
+    public function getCantidad():array
     {
-        return $this->cantidad;
+        try {
+            $db = new db();
+            $conn = $db->abrirConexion();
+
+            $sql = "SELECT cantidad from pedido";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute();
+            $cantidad=$respuesta->fetchAll();
+            $db->cerrarConexion();
+            return $cantidad;
+        }
+        catch (\PDOException $e){
+            echo $e->getMessage();
+        }
     }
 
     public function setCantidad($cantidad): void
@@ -66,7 +81,32 @@ class Pedido
         
     }
 
-    public function registrarPedido(){
-        // TODO
-    }
+    public function registrarPedido(): void{
+        
+            $cantidad=$this->cantidad;
+            $fecha=$this->fecha;
+            $fecha_entrega=$this->fecha_entrega;
+            $direccion=$this->direccion;
+            $id_producto=$this->id_producto;
+            $id_cliente=$this->id_cliente;
+            try {
+                $db = new db();
+                $conn = $db->abrirConexion();
+    
+                $sql = "INSERT INTO pedido (id_pedido,cantidad, fecha,fecha_entrega,direccion,id_producto,id_cliente)
+                VALUES ( $cantidad,  $fecha,$fecha_entrega,$direccion, $id_producto, $id_cliente)";
+                $respuesta = $conn->prepare($sql);
+                $respuesta->execute();
+               
+                $db->cerrarConexion();
+                
+            }
+            catch (\PDOException $e){
+                echo $e->getMessage();
+            }
+    
+}
+
+
+
 }

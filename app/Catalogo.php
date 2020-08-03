@@ -22,12 +22,44 @@ class Catalogo
 
     public function registrarCatalogo()
     {
-        // TODO
+        $nombre=$this->nombre;
+        $apellido=$this->apellido;
+        $dni=$this->dni;
+        try {
+            $db = new db();
+            $conn = $db->abrirConexion();
+
+            $sql = "INSERT INTO catalogo(id_cliente,nombre,apellido,dni)
+            VALUES ($nombre,$apellido,$dni)";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute();
+           
+            $db->cerrarConexion();
+          
+        }
+        catch (\PDOException $e){
+            echo $e->getMessage();
+        }
     }
 
-    public function agregarProducto()
+    public function agregarProducto($nombre,$precio,$descripcion,$proveedor)
     {
-        // TODO
+        
+        try {
+            $db = new db();
+            $conn = $db->abrirConexion();
+
+            $sql = "INSERT INTO producto (id_producto, nombre, precio,caracteristica,proveedor)
+            VALUES ($nombre, $precio, $descripcion,$proveedor)";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute();
+           
+            $db->cerrarConexion();
+            
+        }
+        catch (\PDOException $e){
+            echo $e->getMessage();
+        }
     }
 
     public  static function ListarCatalogo() :array {
@@ -49,8 +81,21 @@ class Catalogo
         
     }
 
-    public function eliminarProductoDeCatalogo()
+    public function eliminarProductoDeCatalogo($id)
     {
-        // TODO
+        try {
+            $db = new db();
+            $conn = $db->abrirConexion();
+
+            $sql = "DELETE FROM catalogo WHERE id_catalogo=$id;";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute();
+           
+            $db->cerrarConexion();
+            
+        }
+        catch (\PDOException $e){
+            echo $e->getMessage();
+        }
     }
 }

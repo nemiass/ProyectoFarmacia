@@ -38,9 +38,25 @@ class Cliente
         return $this->dni;
     }
 
-    public function registrarse()
-    {
-        // TODO
+    public function registrarse():void
+    {  $nombre=$this->nombre;
+        $apellido=$this->apellido;
+        $dni=$this->dni;
+        try {
+            $db = new db();
+            $conn = $db->abrirConexion();
+
+            $sql = "INSERT INTO cliente(id_cliente,nombre,apellido,dni)
+            VALUES ($nombre,$apellido,$dni)";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute();
+           
+            $db->cerrarConexion();
+          
+        }
+        catch (\PDOException $e){
+            echo $e->getMessage();
+        }
     }
 
     public  static function ListarClientes() :array {
@@ -58,15 +74,43 @@ class Cliente
         catch (\PDOException $e){
             echo $e->getMessage();
         }
-
-    public function crearPedido()
-    {
-        // TODO
     }
 
-    public function eliminarPedido()
+    public function crearPedido($cantidad,$fecha,$fecha_entrega,$direccion,$id_producto,$id_cliente)
     {
-        // TODO
+        try {
+            $db = new db();
+            $conn = $db->abrirConexion();
+
+            $sql = "INSERT INTO pedido (id_pedido,cantidad, fecha,fecha_entrega,direccion,id_producto,id_cliente)
+            VALUES ( $cantidad,  $fecha,$fecha_entrega,$direccion, $id_producto, $id_cliente)";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute();
+           
+            $db->cerrarConexion();
+            
+        }
+        catch (\PDOException $e){
+            echo $e->getMessage();
+        }
+    }
+
+    public function eliminarPedido($id):void
+    {
+        try {
+            $db = new db();
+            $conn = $db->abrirConexion();
+
+            $sql = "DELETE FROM pedido WHERE id_pedido=$id";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute();
+           
+            $db->cerrarConexion();
+            
+        }
+        catch (\PDOException $e){
+            echo $e->getMessage();
+        }
     }
 
     public function agregarAlCarrito()
@@ -74,8 +118,21 @@ class Cliente
         // TODO
     }
 
-    public function EliminarDelCarrito()
+    public function EliminarDelCarrito($id)
     {
-        // TODO
+        try {
+            $db = new db();
+            $conn = $db->abrirConexion();
+
+            $sql = "DELETE FROM pedido WHERE id_pedido=$id";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute();
+           
+            $db->cerrarConexion();
+            
+        }
+        catch (\PDOException $e){
+            echo $e->getMessage();
+        }
     }
 }
