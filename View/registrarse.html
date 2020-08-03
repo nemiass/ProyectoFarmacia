@@ -29,8 +29,18 @@
       <p class="login-box-msg">Registrarse</p>
 
       <form action="#" method="post">
+
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="nombres">
+          <input type="text" id="dni" class="form-control" placeholder="dni" onkeyup="preRequest(this.value)">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-group mb-3">
+          <input type="text" id="nombre" class="form-control" placeholder="nombres">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -38,7 +48,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="apellidos">
+          <input type="text" id="apellido" class="form-control" placeholder="apellidos">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -46,23 +56,16 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="teléfono">
+          <input type="text" class="form-control" placeholder="teléfono">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
             </div>
           </div>
         </div>
+
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="dni">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-user"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="usuario">
+          <input type="text" class="form-control" placeholder="usuario">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -112,5 +115,7 @@
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
+
+<script src="jspropio/apiReniec.js"></script>
 </body>
 </html>
