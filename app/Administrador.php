@@ -2,7 +2,7 @@
 namespace app;
 use app\ConexionDB as db;
 
-class Jefe extends Usuario
+class Administrador extends Usuario
 {
     private $tipo;
 
