@@ -31,7 +31,7 @@
       <form action="../app/controller/Logincontroller.php" method="post">
 
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="usuario">
+          <input type="text" class="form-control" placeholder="usuario" name="user">
           <div class="input-group-append">
           <div class="input-group-append">
             <div class="input-group-text">
@@ -46,7 +46,7 @@
         </div>
 
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="contraseña">
+          <input type="password" class="form-control" placeholder="contraseña" name="pass">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>

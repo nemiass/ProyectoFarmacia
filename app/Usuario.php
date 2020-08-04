@@ -73,7 +73,7 @@ abstract class Usuario
 
     public  static function listarUsuario() :array {
         try {
-            $db = new ConexionDB();
+            $db = new db();
             $conn = $db->abrirConexion();
 
             $sql = "SELECT es.id,es.nombres,es.apellidos,p.nombre from estudiantes as es join pa as p ON
