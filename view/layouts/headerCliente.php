@@ -36,7 +36,7 @@
     <!-- Left navbar links -->
     <ul class="navbar-nav">
         <li class="nav-item">
-            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><img src="../public/img/icons/menu.png" alt="menu"  style="opacity: .8; width:30px;"></a>
         </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="plantillaGeneral.php" class="nav-link">Inicio</a>
@@ -80,9 +80,9 @@
   <aside class="main-sidebar elevation-1 bg-white">
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
-      <img src="../public/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+      <img src="../public/img/icons/farmacia.png" alt="AdminLTE Logo" class="brand-image elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">FarmaVida</span>
+      <span class="brand-text font-weight-light">Farma<b>Vida</b></span>
     </a>
 
     <!-- Sidebar -->

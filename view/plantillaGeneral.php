@@ -13,7 +13,6 @@
       <div class="container-fluid">
         <!-- Main row -->
         <div class="row">
-
           <?php
               $pcontroller = new ProductoController();
               $productos = $pcontroller->listarProductos();
