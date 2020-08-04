@@ -1,7 +1,6 @@
 <?php
-namespace Clases;
-include_once "../config/autoload.php";
-use Clases\ConexionDB as db;
+namespace app;
+use app\ConexionDB as db;
 
 class Pedido
 {

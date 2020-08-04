@@ -1,24 +1,29 @@
 <?php
-use Clases\Cliente;
-include "../Cliente.php";
-include "../ConexionDB.php";
-function editardatos(){
+namespace app\controller;
+use app\Cliente;
 
-}
+class ClienteController
+{
 
-function agregarProductoCarrito(){
+    function editardatos(){
+
+    }
     
+    function agregarProductoCarrito(){
+        
+    }
+    
+    function eliminarProductoCarrito(){
+        
+    }
+    
+    function agregarPedido(){
+        
+    }
+    
+    function eliminarPedido(){
+        
+    }
 }
 
-function eliminarProductoCarrito(){
-    
-}
-
-function agregarPedido(){
-    
-}
-
-function eliminarPedido(){
-    
-}
 ?>

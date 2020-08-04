@@ -1,7 +1,7 @@
 <?php
-use Clases\Usuario;
-include "../Usuario.php";
-include "../ConexionDB.php";
+namespace app\controller;
+use app\Usuario;
+
 $error="faltan datos";
 /*validar que las datos no esten vacios*/
 if(!empty($_POST['user'])&&!empty($_POST['pass'])){
@@ -9,7 +9,7 @@ if(!empty($_POST['user'])&&!empty($_POST['pass'])){
     $user=$_POST['user'];
     $pass= $_POST['pass'];
     
-   $matriz=Usuario::AllUsuario();
+   $matriz = Usuario::allUsuario();
   foreach($matriz as $usuario){
       /*validar usuario*/
     if($user==$usuario['usuario']){

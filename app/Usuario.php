@@ -1,5 +1,6 @@
 <?php
-namespace Clases;
+namespace app;
+use app\ConexionDB as db;
 
 abstract class Usuario
 {
@@ -86,7 +87,10 @@ abstract class Usuario
         catch (\PDOException $e){
             echo $e->getMessage();
         }
-        
-        
+    }
+
+    public static function allUsuario()
+    {
+
     }
 }

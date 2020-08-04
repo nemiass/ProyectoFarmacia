@@ -1,15 +1,21 @@
 <?php
-use Clases\Empleado;
-include "../Empleado.php";
-include "../ConexionDB.php";
-function listarPedido(){
+namespace app\controller;
+use app\Cliente;
+use app\Pedido;
 
-}
+class ClienteController
+{
 
-function editardatos(){
+    function listarPedido(){
 
-}
-function detallesPedido(){
+    }
+    
+    function editardatos(){
+    
+    }
 
+    function detallesPedido(){
+    
+    }
 }
 ?>

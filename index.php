@@ -1,7 +1,27 @@
 <?php
     if(isset($_SESSION)){
-        // TODO:   si tiene un session ya guardada, entonces lo redirigirá a la pagina
-        // aue corresponda sea admin, o empleado     
+
+        if($_SESSION["estado"] == "OK") {
+            switch($_SESSION["tipo"]){
+                case "cliente":
+                    header("location: view/plantillaGeneral.php");
+                break;
+
+                case "empleado":
+                    header("location: view/empleado.php");
+                break;
+
+                case "administrador":
+                    header("location: view/admincuenta.php");
+                break;
+
+                default:
+                    header("location: view/registrarse.php");
+            break;
+
+            }
+        }
+       
     }
     else{
         header("location: view/plantillaGeneral.php");

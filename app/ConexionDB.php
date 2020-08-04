@@ -1,5 +1,5 @@
 <?php
-namespace Clases;
+namespace app;
 
 class ConexionDB 
 {

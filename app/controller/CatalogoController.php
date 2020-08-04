@@ -1,25 +1,15 @@
 <?php
-use Clases\Catalogo;
-include "../Catalogo.php";
-include "../ConexionDB.php";
-/*gestion de catalogo*/
-switch($gestion){
-    case "agregar_c":
-       function agregarCatalogo(){
+namespace app\controller;
+use app\Catalogo;
 
-       }
-    case "eliminar_c";
-    function  eliminarCatalogo(){
+class CatalogoController
+{
+
+   function agregarCatalogo(){
 
    }
 
-   case "editar_c";
-    function  eliminarCatalogo(){
-
-   }
-
-   case "listar_c";
-    function  eliminarCatalogo(){
+   function  eliminarCatalogo(){
 
    }
 }

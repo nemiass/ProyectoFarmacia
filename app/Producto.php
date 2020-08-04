@@ -1,21 +1,20 @@
 <?php
-namespace Clases;
-include_once "../config/autoload.php";
-use Clases\ConexionDB as db;
+namespace app;
+use app\ConexionDB as db;
 
 class Producto
 {  
     private $nombre;
     private $precio;
     private $caracteristicas;
-    private $proveeedor;
+    private $id_catalogo;
 
-    public function __construct($nombre, $precio, $caracteristicas, $proveeedor)
+    public function __construct($nombre, $precio, $caracteristicas, $id_catalogo)
     {
         $this->nombre = $nombre;
         $this->precio = $precio;
         $this->caracteristicas = $caracteristicas;
-        $this->proveeedor = $proveeedor;
+        $this->id_catalogo = $id_catalogo;
     }
 
     public static function getNombre() : array
@@ -46,13 +45,13 @@ class Producto
         $nombre=$this->nombre;
         $precio=$this->precio;
         $descripcion=$this->descripcion;
-        $proveedor=$this->proveedor;
+        $id_catalogo=$this->id_catalogo;
         try {
             $db = new db();
             $conn = $db->abrirConexion();
 
-            $sql = "INSERT INTO producto (id_producto, nombre, precio,caracteristica,proveedor)
-            VALUES ($nombre, $precio, $descripcion,$proveedor)";
+            $sql = "INSERT INTO producto (id_producto, nombre, precio,caracteristica,id_catalogo)
+            VALUES ($nombre, $precio, $descripcion,$id_catalogo)";
             $respuesta = $conn->prepare($sql);
             $respuesta->execute();
            
@@ -74,8 +73,7 @@ class Producto
             $respuesta->execute();
             $matriz=$respuesta->fetchAll();
             $db->cerrarConexion();
-            return $matriz;
-        }
+            return $matriz;        }
         catch (\PDOException $e){
             echo $e->getMessage();
         }
@@ -83,13 +81,13 @@ class Producto
         
     }
 
-    public function actualizarProductos($id,$nombre,$precio,$caracteristicas,$proveedor): void{
+    public function actualizarProductos($id,$nombre,$precio,$caracteristicas,$id_catalogo): void{
         try {
             $db = new db();
             $conn = $db->abrirConexion();
 
             $sql = "UPDATE producto
-            SET nombre =$nombre, precio =$precio, caracteristicas=$caracteristicas,proveedor=$proveedor
+            SET nombre =$nombre, precio =$precio, caracteristicas=$caracteristicas,id_catalogo=$id_catalogo
             WHERE id_producto=$id";
             $respuesta = $conn->prepare($sql);
             $respuesta->execute();

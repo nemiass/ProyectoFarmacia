@@ -1,17 +1,26 @@
 <?php
-use Clases\Usuario;
-include "../Usuario.php";
-include "../ConexionDB.php";
-function listarUsuario(){
+namespace app\controller;
+use app\Usuario;
+
+class UsuarioController
+{
+
+    function listarUsuario()
+    {
     
+    }
+    function EliminarUsuario()
+    {
+        
+    }
+    function editarUsuario()
+    {
+        
+    }
+    function CrearUsuario()
+    {
+        
+    }
 }
-function EliminarUsuario(){
-    
-}
-function editarUsuario(){
-    
-}
-function CrearUsuario(){
-    
-}
+
 ?>

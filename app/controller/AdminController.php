@@ -1,67 +1,40 @@
 <?php
-use Clases\Jefe;
-include "../Jefe.php";
-include "../ConexionDB.php";
-function editardatos(){
+namespace app\controller;
+use app\Empleado;
+use app\Catalogo;
+use app\Administrador;
+use app\Producto;
+use app\Pedido;
+
+class AdminController
+{
+   public function editardatos(){
     
-}
-
-/*gestion de usuarios*/
-switch($gestion){
-     case "agregar_e":
-        function agregarEmpleado(){
-
-        }
-     case "eliminar_e";
-     function  eliminarEmpleado(){
-
-    }
-}
-/*gestion de catalogo*/
-switch($gestion){
-    case "agregar_c":
-       function agregarCatalogo(){
-
-       }
-    case "eliminar_c";
-    function  eliminarCatalogo(){
-
+   }
+  
+   public function agregarEmpleado(){
+   
+   }
+      
+   public function  eliminarEmpleado(){
+   
+       
    }
 
-   case "editar_c";
-    function  eliminarCatalogo(){
-
+   public function agregarCatalogo(){
+   
    }
-
-   case "listar_c";
-    function  eliminarCatalogo(){
-
+       
+   public function  eliminarCatalogo(){
+   
+   }
+   
+   public function agregarProducto(){
+   
+   }
+       
+   public function listarPedidos(){
+       
    }
 }
-
-/*gestion de Productos*/
-switch($gestion){
-    case "agregar_p":
-       function agregarProducto(){
-
-       }
-    case "eliminar_p";
-    function  eliminarProducto(){
-
-   }
-
-   case "editar_p";
-    function  eliminarProducto(){
-
-   }
-
-   case "listar_p";
-    function  eliminarProducto(){
-
-   }
-}
-function listarPedidos(){
-    
-}
-
 ?>

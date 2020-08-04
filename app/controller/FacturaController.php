@@ -1,9 +1,15 @@
 <?php
-use Clases\Factura;
-include "../Factura.php";
-include "../ConexionDB.php";
-function listarFacturas(){
+namespace app\controller;
+use app\Cliente;
+use app\Producto;
+use app\Pedido;
+
+class FacturaController
+{
+
+    function listarFacturas(){
+
+    }
 
 }
-
 ?>

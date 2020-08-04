@@ -1,14 +1,18 @@
 <?php
-use Clases\Pedido;
-include "../Pedido.php";
-include "../ConexionDB.php";
-function agregarPedido(){
+namespace app\controller;
+use app\Pedido;
+
+class PedidoController
+{
+
+    function agregarPedido()
+    {
     
-}
-
-function eliminarPedido(){
+    }
     
+    function eliminarPedido()
+    {
+
+    }    
 }
-
-
 ?>

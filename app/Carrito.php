@@ -1,5 +1,7 @@
 <?php
-namespace Clases;
+namespace app;
+use app\ConexionDB as db;
+
 class Carrito
 {
     private $cantidad;

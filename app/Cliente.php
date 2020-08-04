@@ -1,7 +1,7 @@
 <?php
-namespace Clases;
-use Clases\ConexionDB as Db;
-include_once "../config/autoload.php";
+namespace app;
+use app\ConexionDB as db;
+
 class Cliente
 {
     private $nombre;
