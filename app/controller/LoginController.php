@@ -54,24 +54,28 @@ class LoginController
                 $tipo=$usuario[0]['tipo'];
                    return header("location:../view/empleadoPedidosAtender.php?usuario=$usuario");
             }
-             }
+            
              if($usuario[0]['tipo']=='cliente'){
                 $usuario=$usuario[0]['usuario'];
                 $tipo=$usuario[0]['tipo'];
                     return header("location:../view/mispedidos.php?usuario=$usuario");
              }
              }else{
-            return header("location:../view/login.php?error=contraseña  incorrecta");
-             }
-          }else{
-            return header("location:../view/login.php?error=usuario  incorrecto");
-          }
-        }
-    }
-   
+                return header("location:../view/login.php?error=contraseña  incorrecta");
+                 }
+          
+        
+    }else{
+        return header("location:../view/login.php?error=usuario  incorrecta");
+         }
+   }
+ }
 
 
-    
+
+
+ 
+}
   
 
 
