@@ -1,14 +1,33 @@
 <?php
 namespace app\controller;
+
+use app\Carrito;
 use app\Producto;
 include "../../config/autoload2.php";
 
 // el javascript hace request a este archivo
 class CarritoController
 {
+    public function recibirPeticion(){
+        session_start();
+        $tipo = $_GET["tipo"];
+
+        switch($tipo){
+            case "agregar":
+                $this->getProducto();
+            break;
+            case "eliminar":
+                $this->eliminarProducto();
+            break;
+            default:
+            return false;
+        break;
+        }
+    }
+
     public function getProducto()
     {
-        session_start();
+        
         $id = $_GET["id"];
         $cantidad = $_GET["cantidad"];
         
@@ -31,12 +50,23 @@ class CarritoController
         }
         $cantidad = count($_SESSION["Productos"]);
         $_SESSION["cantidad"] = $cantidad;
-        return $cantidad;
+        echo $cantidad;
+    }
+
+    public function eliminarProducto(){
+        $id = $_GET["id"];
+        if(isset($_SESSION["Productos"])){
+            unset($_SESSION["Productos"][$id]);
+            $cantidad = count($_SESSION["Productos"]);
+            $_SESSION["cantidad"] = $cantidad;
+
+            echo $cantidad;
+        }
     }
 }
-$pcont = new CarritoController();
-$cant = $pcont->getProducto();
-echo $cant;
+$conCarrito = new CarritoController();
+$conCarrito->recibirPeticion();
+
 //session_destroy();
 //unset($_SESSION["Productos"]);
 ?>
