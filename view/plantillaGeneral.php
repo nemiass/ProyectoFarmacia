@@ -31,13 +31,15 @@ use app\controller\ProductoController;
                 <div style="height:30%;">
                   <p><b><?php echo $nombre?></b></p>
                   <p> <b>Precio:</b><?php echo $precio?></p>
-                  <button type="button" class="btn btn btn-warning" style="width:40%;">-</button>
-                  <div class="btn btn-default btn-lg btn-flat">
-                    1
+                  <div class="mb-1">
+                  <button type="button" class="btn btn btn-warning" style="width:40%;" onclick="disminuir(<?php echo $id?>)">-</button>
+                  
+                  <input class="text-center" type="text" id="<?php echo $id?>" value="1" disabled style="width:17%;">
+      
+                  <button type="button" class="btn btn btn-warning" style="width:40%;" onclick="aumentar(<?php echo $id?>)">+</button>
                   </div>
-                  <button type="button" class="btn btn btn-warning" style="width:40%;">+</button>
                   <a href=""></a><button type="button" class="btn btn-block btn-success" onclick="requestCarritoController(<?php echo $id ?>)">
-                    <i class="fas fa-cart-plus fa-lg mr-2"></i> 
+                    <i class="fas fa-cart-plus fa-lg mr-2"></i>
                     Agregar al carrito
                   </button>
                 </div>

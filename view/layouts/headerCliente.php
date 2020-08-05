@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,11 +68,12 @@
     <ul class="navbar-nav ml-auto">
       <!-- Notifications Dropdown Menu -->
       <?php
-         session_start();
-         $_SESSION['usuario']=$_GET['usuario'];
-            if(!$_SESSION){
-              header("location:login.php");
-            }
+        if($_SESSION) {
+          echo "<a href='#' class='nav-link'>Cerrar sesión</a>";
+        }
+        else{
+          echo "<a href='login.php' class='nav-link'>Iniciar sesión</a>";
+        }
       ?>
         <a href='login.php' class='nav-link' value="">Cerrar sesión</a>
     </ul>
