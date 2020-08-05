@@ -32,7 +32,7 @@
     <div class="card-body login-card-body">
       <p class="login-box-msg">Inicie sessión</p>
 
-      <form action="#" method="post">
+      <form action="<?=$_SERVER['PHP_SELF'] ?>" method="post">
 
         <div class="input-group mb-3">
           <input type="text" class="form-control" placeholder="usuario" name="user">

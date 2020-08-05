@@ -1,8 +1,15 @@
 <!-- Header -->
 <?php 
+  include "../config/autoload2.php";
+  use app\controller\AdminController;
+  ?>
+<?php 
+session_start();
+ 
     include "layouts/headerAdmin.php";
-    session_start();
-    echo $_SESSION['usuario']=$_GET['usuario'];
+ 
+    $admincontroller=new AdminController();
+    $admin=$admincontroller->getAdmin($_SESSION['dni']);
      
 ?>
 <!--/. Header -->
@@ -35,19 +42,19 @@
                               <tbody>
                                   <tr>
                                       <td>Nombre:</td>
-                                      <td><?= $_SESSION['usuario'] ?></td>
+                                      <td><?=$admin[0]['nombre']?></td>
                                   </tr>
                                   <tr>
                                       <td>Apelllido:</td>
-                                      <td>Tal</td>
+                                      <td><?=$admin[0]['apellido']?></td>
                                   </tr>
                                   <tr>
                                       <td>Dni:</td>
-                                      <td>Tal</td>
+                                      <td><?=$admin[0]['dni']?></td>
                                   </tr>
                                   <tr>
                                       <td>Telefono:</td>
-                                      <td>Tal</td>
+                                      <td><?=$admin[0]['telefono']?></td>
                                   </tr>
                                   <tr>
                                       <td colspan="2">
@@ -132,11 +139,11 @@
                             <tbody>
                                 <tr>
                                     <td>User:</td>
-                                    <td>Tal</td>
+                                    <td><?=$_SESSION['usuario']?></td>
                                 </tr>
                                 <tr>
                                     <td>Password:</td>
-                                    <td>Tal</td>
+                                    <td><?=$_SESSION['contraseña']?></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2">

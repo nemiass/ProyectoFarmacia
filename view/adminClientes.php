@@ -1,5 +1,6 @@
 <!-- Header -->
 <?php 
+session_start();
     include "layouts/headerAdmin.php";
 ?>
 <!--/. Header -->

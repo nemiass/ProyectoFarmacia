@@ -46,9 +46,7 @@
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <!-- Notifications Dropdown Menu -->
-      <?php
-    
-      ?>
+      
       <a href='login.php' class='nav-link' value="">Cerrar sesión</a>
     </ul>
   </nav>

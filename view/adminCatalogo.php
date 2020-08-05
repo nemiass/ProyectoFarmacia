@@ -1,10 +1,19 @@
-
+<?php
+session_start();
+        if(isset($_GET['dni'])){
+            $_SESSION['usuario']=$_GET['usuario']; 
+            $_SESSION['contraseña']=$_GET['contraseña']; 
+            $_SESSION['dni']=$_GET['dni']; 
+        }
+         
+        
+//echo $_SESSION['dni']=$_GET['dni']; 
+?>
 <!-- Header -->
 <?php 
     include "layouts/headerAdmin.php";
-    session_start();
-    echo $_SESSION['usuario']=$_GET['usuario'];
-     
+    
+  
 ?>
 <!--/. Header -->
 
@@ -18,6 +27,7 @@
                 <div class="row">
                     <div class="col-9">
                         <h1>Catalogo</h1>
+
                     </div>
                     <div class="col-3">
                         <button type="button" class="btn btn-block btn-success">Agregar Catálogo</button>

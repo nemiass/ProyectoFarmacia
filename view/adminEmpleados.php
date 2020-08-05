@@ -1,5 +1,9 @@
 <!-- Header -->
 <?php 
+  include "../config/autoload2.php";
+  use app\controller\AdminController;
+  ?>
+<?php 
     include "layouts/headerAdmin.php";
 ?>
 <!--/. Header -->
@@ -33,13 +37,19 @@
                                 <th>&nbsp</th>
                             </tr>
                         </thead>
-    
+                        <?php  
+                        $admincontroller=new AdminController();
+                        $empleados=$admincontroller->listarEmpleado();
+                        
+                        
+                        ?>
                         <tbody>
+                          <?php $i=1;  foreach($empleados as $empleados):   ?>
                             <tr>
-                                <td>1</td>
-                                <td>Nombre tal</td>
-                                <td>Apellido tal</td>
-                                <td>Teléfono tal</td>
+                                <td><?=$i ?></td>
+                                <td><?= $empleados['nombre']?></td>
+                                <td><?= $empleados['apellido']?></td>
+                                <td><?=$empleados['telefono'] ?></td>
                                 <td>
                                     <a href="adminDetallesEmpleados.php"><button type="button" class="btn btn-block btn-success">Ver Detalles</button></a>
                                 </td>
@@ -48,21 +58,8 @@
                                   <a href="#"><button type="button" class="btn btn-block btn-danger">Dar de baja</button></a>
                               </td>
                             </tr>
-
-                            <tr>
-                              <td>1</td>
-                              <td>Nombre tal</td>
-                              <td>Apellido tal</td>
-                              <td>Teléfono tal</td>
-                              <td>
-                                  <a href="adminDetallesEmpleados.php"><button type="button" class="btn btn-block btn-success">Ver Detalles</button></a>
-                              </td>
-
-                              <td>
-                                <a href="#"><button type="button" class="btn btn-block btn-danger">Dar de baja</button></a>
-                            </td>
-                          </tr>
-
+                          <?php $i++; endforeach;   ?>
+                     
                         </tbody>
                     </table>
                 </div>

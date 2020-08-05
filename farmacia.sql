@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-08-2020 a las 02:35:43
--- Versión del servidor: 10.4.13-MariaDB
--- Versión de PHP: 7.4.7
+-- Tiempo de generación: 05-08-2020 a las 17:25:06
+-- Versión del servidor: 10.3.16-MariaDB
+-- Versión de PHP: 7.3.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -34,6 +35,14 @@ CREATE TABLE `administrador` (
   `dni` char(8) DEFAULT NULL,
   `telefono` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `administrador`
+--
+
+INSERT INTO `administrador` (`id_usuario`, `nombre`, `apellido`, `dni`, `telefono`) VALUES
+(1, 'bill', 'morales davila', '70978397', '912456789'),
+(2, 'wos', 'canguro', '12345678', '999111444');
 
 -- --------------------------------------------------------
 
@@ -77,8 +86,17 @@ CREATE TABLE `empleado` (
   `id_empleado` int(11) NOT NULL,
   `nombre` varchar(30) DEFAULT NULL,
   `apellido` varchar(30) DEFAULT NULL,
-  `dni` char(8) DEFAULT NULL
+  `dni` char(8) DEFAULT NULL,
+  `telefono` char(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `empleado`
+--
+
+INSERT INTO `empleado` (`id_empleado`, `nombre`, `apellido`, `dni`, `telefono`) VALUES
+(1, 'jordy', 'gomez', '14785236', '91245678'),
+(2, 'daniel', 'apolinario', '14785231', '91285678');
 
 -- --------------------------------------------------------
 
@@ -170,15 +188,16 @@ CREATE TABLE `usuarios` (
   `usuario` varchar(20) DEFAULT NULL,
   `contraseña` varchar(64) DEFAULT NULL,
   `tipo` varchar(20) DEFAULT NULL,
-  `id_referencia` int(11) DEFAULT NULL
+  `dni` char(8) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id_usuario`, `usuario`, `contraseña`, `tipo`, `id_referencia`) VALUES
-(1, 'carlos', '12345678', 'admin', 1);
+INSERT INTO `usuarios` (`id_usuario`, `usuario`, `contraseña`, `tipo`, `dni`) VALUES
+(4, 'bill', 'bill', 'administrador', '70978397'),
+(5, 'wos', 'wos', 'administrador', '12345678');
 
 --
 -- Índices para tablas volcadas
@@ -259,7 +278,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `administrador`
 --
 ALTER TABLE `administrador`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `catalogo`
@@ -277,7 +296,7 @@ ALTER TABLE `cliente`
 -- AUTO_INCREMENT de la tabla `empleado`
 --
 ALTER TABLE `empleado`
-  MODIFY `id_empleado` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `empleado_pedido`
@@ -313,7 +332,7 @@ ALTER TABLE `producto`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas

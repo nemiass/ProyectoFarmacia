@@ -47,12 +47,15 @@ class LoginController
         }
         if(!empty($usuario)&&!empty($contraseña)){
           if($usuario=$this->getUsuario($usuario, $contraseña)){
-              var_dump($usuario);
+             
              if($usuario[0]['contraseña']==$contraseña){
              if($usuario[0]['tipo']=='administrador'){
-                $usuario=$usuario[0]['usuario'];
-                $tipo=$usuario[0]['tipo'];
-                    return header("location:../view/admincatalogo.php?usuario=$usuario");
+                 $tipo=$usuario[0]["tipo"];
+                 $dni=$usuario[0]["dni"];
+                 $usuario=$usuario[0]["usuario"];
+                 $contraseña=$contraseña[0]["contraseña"];
+               
+                    return  header("location:../view/admincatalogo.php?dni=$dni&usuario=$usuario&contraseña=$contraseña");
              }
              if($usuario[0]['tipo']=='empleado'){
                 $usuario=$usuario[0]['usuario'];

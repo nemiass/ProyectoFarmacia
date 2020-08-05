@@ -8,6 +8,15 @@ use app\Pedido;
 
 class AdminController
 {
+   public function getAdmin($dni):array{
+     $admin=Administrador::getAdministrador($dni);
+     return $admin;
+   }
+   public function listarEmpleado() :array{
+       $empleados=Empleado::ListarEmpleado();
+       return $empleados;
+   }
+
    public function editardatos(){
     
    }

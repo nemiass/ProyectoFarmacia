@@ -2,19 +2,36 @@
 namespace app;
 use app\ConexionDB as db;
 
-class Administrador extends Usuario
+class Administrador //extends Usuario
 {
     private $tipo;
 
-    public function  __construct($nombres, $apellidos, $telefono, $dni, $user, $pass)
-    {
-        parent::__construct($nombres, $apellidos, $telefono, $dni, $user, $pass);
-        $this->tipo = "administrador";
-    }
+   // public function  __construct($nombres, $apellidos, $telefono, $dni, $user, $pass)
+   // {
+        //parent::__construct($nombres, $apellidos, $telefono, $dni, $user, $pass);
+        //$this->tipo = "administrador";
+    //}
 
     public function getTipo()
     {
         return $this->tipo;
+    }
+
+    public static function getAdministrador($dni):array{
+        try {
+            $db = new ConexionDB();
+            $conn = $db->abrirConexion();
+
+            $sql = "SELECT * from administrador where dni=$dni ";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute();
+            $admin=$respuesta->fetchAll();
+            $db->cerrarConexion();
+            return $admin;
+        }
+        catch (\PDOException $e){
+            echo $e->getMessage();
+        }
     }
 
     public static function crearProducto($nombre,$precio,$descripcion,$proveedor)
