@@ -2,6 +2,9 @@
 <!-- Header -->
 <?php 
     include "layouts/headerAdmin.php";
+    session_start();
+    echo $_SESSION['usuario']=$_GET['usuario'];
+     
 ?>
 <!--/. Header -->
 

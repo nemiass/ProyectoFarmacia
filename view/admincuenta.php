@@ -1,6 +1,9 @@
 <!-- Header -->
 <?php 
     include "layouts/headerAdmin.php";
+    session_start();
+    echo $_SESSION['usuario']=$_GET['usuario'];
+     
 ?>
 <!--/. Header -->
 
@@ -32,7 +35,7 @@
                               <tbody>
                                   <tr>
                                       <td>Nombre:</td>
-                                      <td>Tal</td>
+                                      <td><?= $_SESSION['usuario'] ?></td>
                                   </tr>
                                   <tr>
                                       <td>Apelllido:</td>

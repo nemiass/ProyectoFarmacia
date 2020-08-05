@@ -94,7 +94,7 @@ abstract class Usuario
 
     }
 
-    public static function traerUser($user)
+    public static function traerUser($user):array
     {
         try {
             $db = new db();

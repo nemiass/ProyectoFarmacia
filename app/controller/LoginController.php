@@ -3,8 +3,9 @@ namespace app\controller;
 use app\Usuario;
 
 class LoginController
-{
-    public function getUsuario($usuario, $contraseña)
+
+{ private $error;
+    public  function getUsuario($usuario, $contraseña)
     {
         // en la base usuario = carlos
         // contraseña = 12345678
@@ -22,13 +23,61 @@ class LoginController
 
             // causa necesitamos preguntar el inge eso del autoload y como aplicar a las tres capas
             // como se hace un controller para peticiones ajax??
-            return true;
+            return $usuario;
 
         }
         else {
             return false;
         }
     }
-}
+
+    public function validarFormulario($usuario, $contraseña){
+        if(empty($usuario)&&empty($contraseña)){
+            return header("location:../view/login.php?error=rellene los campos");
+        }
+        if(empty($usuario)){
+            if(!empty($contraseña)){
+                return header("location:../view/login.php?error=ingrese el usuario");
+            }
+        }
+        if(empty($contraseña)){
+            if(!empty($usuario)){
+                return header("location:../view/login.php?error=ingrese la contraseña");
+            }
+        }
+        if(!empty($usuario)&&!empty($contraseña)){
+          if($usuario=$this->getUsuario($usuario, $contraseña)){
+              var_dump($usuario);
+             if($usuario[0]['contraseña']==$contraseña){
+             if($usuario[0]['tipo']=='administrador'){
+                $usuario=$usuario[0]['usuario'];
+                $tipo=$usuario[0]['tipo'];
+                    return header("location:../view/admincatalogo.php?usuario=$usuario");
+             }
+             if($usuario[0]['tipo']=='empleado'){
+                $usuario=$usuario[0]['usuario'];
+                $tipo=$usuario[0]['tipo'];
+                   return header("location:../view/empleadoPedidosAtender.php?usuario=$usuario");
+            }
+             }
+             if($usuario[0]['tipo']=='cliente'){
+                $usuario=$usuario[0]['usuario'];
+                $tipo=$usuario[0]['tipo'];
+                    return header("location:../view/mispedidos.php?usuario=$usuario");
+             }
+             }else{
+            return header("location:../view/login.php?error=contraseña  incorrecta");
+             }
+          }else{
+            return header("location:../view/login.php?error=usuario  incorrecto");
+          }
+        }
+    }
+   
+
+
+    
+  
+
 
 ?>

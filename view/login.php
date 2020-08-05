@@ -67,27 +67,12 @@
 
       <?php
         if(isset($_POST["send"])) {
-          $usuario = $_POST["user"];
-          $contraseña = $_POST["pass"];
+         echo  $usuario = $_POST["user"];
+          echo $contraseña = $_POST["pass"];
 
           $contuser = new LoginController();
-          $result = $contuser->getUsuario($usuario, $contraseña);
-
-          if($result == true){
-            // Se redirigirá segun tipo de usuario, osea debes validar que tipo de user
-            // es y ahcer la session, puedes usar la logica que quieras parala session
-            // si quieres creas la sesison en loginController
-            // tambien validas si los campos estan vacios o no
-            header("location: plantillaGeneral.php");
-          }
-
-          else{
-
-            echo "no vas a entrar";
-
-          }
-
-
+        $contuser->validarFormulario($usuario, $contraseña);
+     
         }
       ?>
       <p class="mt-3">

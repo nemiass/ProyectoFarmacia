@@ -47,14 +47,9 @@
     <ul class="navbar-nav ml-auto">
       <!-- Notifications Dropdown Menu -->
       <?php
-        if(isset($_SESSION)) {
-          echo "<a href='#' class='nav-link'>Cerrar sesión</a>";
-        }
-        else{
-          echo "<a href='login.php' class='nav-link'>Iniciar sesión</a>";
-        }
+    
       ?>
-      
+      <a href='login.php' class='nav-link' value="">Cerrar sesión</a>
     </ul>
   </nav>
   <!-- /.navbar -->
