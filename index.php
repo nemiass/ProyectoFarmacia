@@ -21,7 +21,6 @@
 
             }
         }
-       
     }
     else{
         header("location: view/plantillaGeneral.php");

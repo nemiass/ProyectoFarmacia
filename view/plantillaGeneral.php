@@ -1,9 +1,9 @@
- <!-- Header -->
-  <?php 
-  include "layouts/headerCliente.php";
-  include "../config/autoload.php";
-  use app\controller\ProductoController;
-  ?>
+<?php 
+namespace view;
+include "layouts/headerCliente.php";
+include "../config/autoload2.php";
+use app\controller\ProductoController;
+?>
 <!--/. Header -->
 
   <!-- Content Wrapper. Contains page content -->

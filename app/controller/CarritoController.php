@@ -1,7 +1,7 @@
 <?php
 namespace app\controller;
 use app\Producto;
-include "../../config/autoload.php";
+include "../../config/autoload2.php";
 
 //header("Access-Control-Allow-Origin: *");
 //header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found"); 
