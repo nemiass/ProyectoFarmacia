@@ -1,5 +1,5 @@
 <?php 
-  include "../config/autoload.php";
+  include "../config/autoload2.php";
   use app\controller\LoginController;
   ?>
 <!DOCTYPE html>
