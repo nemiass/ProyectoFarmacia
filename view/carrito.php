@@ -17,7 +17,7 @@
             </div>
           <div class="row">
             <div class="col-12">
-                <table class="table table-striped">
+                <table class="table table-striped" id="lista-pedidos">
                     <thead>
                         <tr>
                             <th>Producto</th>
@@ -37,12 +37,12 @@
                                     $precio = $p["precio"];
                                     $cantidad = $p["cantidad"]; 
                             ?>
-                            <tr>
+                            <tr id="<?php echo $id?>A">
                             <td><?php echo $nombre?></td>
                             <td><?php echo $precio?></td>
-                            <td><?php echo $cantidad?></td>
+                            <td><input class='text-center' id="<?php echo $id?>" disabled style='width:17%;' type="text" value="<?php echo $cantidad?>"></td>
                             <td>
-                                <button type="button" class="btn btn-block btn-danger">Eliminar</button>
+                                <button value="eliminar" type="button" class="btn btn-block btn-danger" name="eliminar" onclick="eliminar(<?php echo $id?>, this.value)" >Eliminar</button>
                             </td>
                         </tr>
                         <?php

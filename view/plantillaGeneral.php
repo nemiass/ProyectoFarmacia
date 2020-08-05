@@ -43,7 +43,7 @@ use app\controller\ProductoController;
                   ?>
                   <button type="button" class="btn btn btn-warning" style="width:40%;" onclick="aumentar(<?php echo $id?>)">+</button>
                   </div>
-                  <a href=""></a><button type="button" class="btn btn-block btn-success" onclick="requestCarritoController(<?php echo $id ?>)">
+                  <a href=""></a><button value="agregar" type="button" class="btn btn-block btn-success" onclick="requestCarritoController(<?php echo $id ?>, this.value)">
                     <i class="fas fa-cart-plus fa-lg mr-2"></i>
                     Agregar al carrito
                   </button>
