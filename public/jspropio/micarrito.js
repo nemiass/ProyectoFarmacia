@@ -38,3 +38,4 @@ function aumentar(id) {
 function cantidadPedidos(cant){
     document.getElementById("carrito").innerHTML = cant;
 }
+

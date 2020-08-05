@@ -33,9 +33,14 @@ use app\controller\ProductoController;
                   <p> <b>Precio:</b><?php echo $precio?></p>
                   <div class="mb-1">
                   <button type="button" class="btn btn btn-warning" style="width:40%;" onclick="disminuir(<?php echo $id?>)">-</button>
-                  
-                  <input class="text-center" type="text" id="<?php echo $id?>" value="1" disabled style="width:17%;">
-      
+                  <?php 
+                    if(isset($_SESSION["Productos"][$id])){
+                  echo "<input class='text-center' type='text' id='".$id."' value='".$_SESSION['Productos'][$id]['cantidad']."' disabled style='width:17%;'>";
+                 }
+                 else{
+                  echo "<input class='text-center' type='text' id='".$id."' value='1' disabled style='width:17%;'>";
+                 }
+                  ?>
                   <button type="button" class="btn btn btn-warning" style="width:40%;" onclick="aumentar(<?php echo $id?>)">+</button>
                   </div>
                   <a href=""></a><button type="button" class="btn btn-block btn-success" onclick="requestCarritoController(<?php echo $id ?>)">

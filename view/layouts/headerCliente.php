@@ -6,7 +6,7 @@ session_start();
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Dashboard</title>
+  <title>Farma Vida</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -111,7 +111,16 @@ session_start();
                 <i class="fas fa-cart-plus fa-lg mr-2"></i>
                 <p>
                   Mi Carrito
-                  <span class="right badge badge-danger" id="carrito">0</span>
+                  <span class="right badge badge-danger" id="carrito">
+                   <?php 
+                    if(isset($_SESSION["cantidad"])){
+                      echo $_SESSION["cantidad"];
+                    }
+                    else{
+                      echo "0";
+                    }
+                  ?>
+                  </span>
                 </p>
               </a>
             </li>

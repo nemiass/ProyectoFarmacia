@@ -29,8 +29,9 @@ class CarritoController
                 }
                 $_SESSION["Productos"][$id] = $item;
         }
-
-        return $cantidad = count($_SESSION["Productos"]);
+        $cantidad = count($_SESSION["Productos"]);
+        $_SESSION["cantidad"] = $cantidad;
+        return $cantidad;
     }
 }
 $pcont = new CarritoController();
