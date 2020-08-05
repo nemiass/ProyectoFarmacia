@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,7 +68,7 @@
     <ul class="navbar-nav ml-auto">
       <!-- Notifications Dropdown Menu -->
       <?php
-        if(isset($_SESSION)) {
+        if($_SESSION) {
           echo "<a href='#' class='nav-link'>Cerrar sesión</a>";
         }
         else{

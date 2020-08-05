@@ -1,5 +1,6 @@
 <!-- Header -->
 <?php 
+    //session_start();
     include "layouts/headerCliente.php";
 ?>
 <!--/. Header -->
@@ -27,38 +28,30 @@
                     </thead>
 
                     <tbody>
-                        <tr>
-                            <td>Anfetaminas</td>
-                            <td>S/.100.00</td>
-                            <td>2</td>
+                        <?php
+                            //session_start();
+                            if(!empty($_SESSION["Productos"])) {
+                                foreach($_SESSION["Productos"] as $p) {
+                                    $id = $p["id"];
+                                    $nombre = $p["nombre"];
+                                    $precio = $p["precio"];
+                                    $cantidad = $p["cantidad"]; 
+                            ?>
+                            <tr>
+                            <td><?php echo $nombre?></td>
+                            <td><?php echo $precio?></td>
+                            <td><?php echo $cantidad?></td>
                             <td>
                                 <button type="button" class="btn btn-block btn-danger">Eliminar</button>
                             </td>
                         </tr>
-                        <tr>
-                            <td>Anfetaminas</td>
-                            <td>S/.100.00</td>
-                            <td>2</td>
-                            <td>
-                                <button type="button" class="btn btn-block btn-danger">Eliminar</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Anfetaminas</td>
-                            <td>S/.100.00</td>
-                            <td>2</td>
-                            <td>
-                                <button type="button" class="btn btn-block btn-danger">Eliminar</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Anfetaminas</td>
-                            <td>S/.100.00</td>
-                            <td>2</td>
-                            <td>
-                                <button type="button" class="btn btn-block btn-danger">Eliminar</button>
-                            </td>
-                        </tr>
+                        <?php
+                                }
+                            }
+                            else {
+                               echo" <div class='alert alert-warning' role='alert'>Tu carrito está vacío!</div>";
+                            }
+                        ?>
                     </tbody>
                 </table>
             </div>
