@@ -3,23 +3,40 @@ namespace app\controller;
 use app\Producto;
 include "../../config/autoload2.php";
 
-//header("Access-Control-Allow-Origin: *");
-//header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found"); 
 // el javascript hace request a este archivo
-
-// IMPLEMETANDO CARRITO EL AJAX DA ERROR PORQUE quiereo hacer un controller que devuelva datos
 class CarritoController
 {
     public function getProducto()
     {
-        $id = 5;
-        $producto = Producto::traerProducto($id);
-        return $producto;
+        session_start();
+        $id = $_GET["id"];
+        $cantidad = $_GET["cantidad"];
+        
+        if(isset($_SESSION["Productos"][$id])) {
+                $_SESSION["Productos"][$id]["cantidad"] = $cantidad;
+        }
+        else{
+            $producto = Producto::traerProducto($id);
+
+            foreach($producto as $p){
+                $item = [
+                    "id" => $p["id_producto"],
+                    "nombre" => $p["nombre"],
+                    "precio" => $p["precio"],
+                    "caracteristicas" => $p["caracteristicas"],
+                    "cantidad" => $cantidad
+                    ];
+                }
+                $_SESSION["Productos"][$id] = $item;
+        }
+        $cantidad = count($_SESSION["Productos"]);
+        $_SESSION["cantidad"] = $cantidad;
+        return $cantidad;
     }
-   
 }
-
-$car = new CarritoController;
-var_dump ($car->getProducto());
-
+$pcont = new CarritoController();
+$cant = $pcont->getProducto();
+echo $cant;
+//session_destroy();
+//unset($_SESSION["Productos"]);
 ?>
