@@ -1,6 +1,7 @@
 <?php
 namespace app;
 use app\ConexionDB as db;
+//include "../config/autoload.php";
 
 class Producto
 {  
@@ -94,6 +95,24 @@ class Producto
            
             $db->cerrarConexion();
             
+        }
+        catch (\PDOException $e){
+            echo $e->getMessage();
+        }
+    }
+
+    public static function traerProducto($id)
+    {
+        try {
+            $db = new db();
+            $conn = $db->abrirConexion();
+
+            $sql = "SELECT * FROM producto WHERE id_producto=?";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute([$id]);
+            $producto = $respuesta->fetchAll();
+            $db->cerrarConexion();
+            return $producto;
         }
         catch (\PDOException $e){
             echo $e->getMessage();

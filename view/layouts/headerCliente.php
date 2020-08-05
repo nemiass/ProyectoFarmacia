@@ -107,7 +107,7 @@
                 <i class="fas fa-cart-plus fa-lg mr-2"></i>
                 <p>
                   Mi Carrito
-                  <span class="right badge badge-danger">2</span>
+                  <span class="right badge badge-danger" id="carrito">0</span>
                 </p>
               </a>
             </li>

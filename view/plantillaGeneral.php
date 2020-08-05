@@ -36,7 +36,7 @@
                     1
                   </div>
                   <button type="button" class="btn btn btn-warning" style="width:40%;">+</button>
-                  <button type="button" class="btn btn-block btn-success" onclick="agregarCarrito(<?php $id?>)">
+                  <a href=""></a><button type="button" class="btn btn-block btn-success" onclick="requestCarritoController(<?php echo $id ?>)">
                     <i class="fas fa-cart-plus fa-lg mr-2"></i> 
                     Agregar al carrito
                   </button>

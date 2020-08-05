@@ -1,3 +1,7 @@
+<?php 
+  include "../config/autoload.php";
+  use app\controller\LoginController;
+  ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +32,7 @@
     <div class="card-body login-card-body">
       <p class="login-box-msg">Inicie sessión</p>
 
-      <form action="../app/controller/Logincontroller.php" method="post">
+      <form action="#" method="post">
 
         <div class="input-group mb-3">
           <input type="text" class="form-control" placeholder="usuario" name="user">
@@ -54,15 +58,38 @@
           </div>
         </div>
 
-        
-         
-            <button type="submit" class="btn btn-primary btn-block">Iniciar sessión</button>
+          <button type="submit" name="send" class="btn btn-primary btn-block">Iniciar sessión</button>
           
           <!-- /.col -->
        
       </form>
       <!-- /.social-auth-links -->
 
+      <?php
+        if(isset($_POST["send"])) {
+          $usuario = $_POST["user"];
+          $contraseña = $_POST["pass"];
+
+          $contuser = new LoginController();
+          $result = $contuser->getUsuario($usuario, $contraseña);
+
+          if($result == true){
+            // Se redirigirá segun tipo de usuario, osea debes validar que tipo de user
+            // es y ahcer la session, puedes usar la logica que quieras parala session
+            // si quieres creas la sesison en loginController
+            // tambien validas si los campos estan vacios o no
+            header("location: plantillaGeneral.php");
+          }
+
+          else{
+
+            echo "no vas a entrar";
+
+          }
+
+
+        }
+      ?>
       <p class="mt-3">
         <a href="registrarse.php" class="text-center">Registrarme</a>
       </p>

@@ -93,4 +93,22 @@ abstract class Usuario
     {
 
     }
+
+    public static function traerUser($user)
+    {
+        try {
+            $db = new db();
+            $conn = $db->abrirConexion();
+            $query = "SELECT * FROM usuarios where usuario=?";
+            $respuesta = $conn->prepare($query);
+            $respuesta->execute([$user]);
+            $usuario = $respuesta->fetchAll();
+            $db->cerrarConexion();
+                return $usuario;
+        }
+
+        catch (\PDOException $e){
+            return $e->getMessage();
+        }
+    }
 }
