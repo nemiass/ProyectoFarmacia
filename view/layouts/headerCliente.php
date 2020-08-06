@@ -68,13 +68,12 @@ session_start();
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
         <!-- Notifications Dropdown Menu -->
-        <?php
-        if ($_SESSION) {
-          echo "<a href='#' class='nav-link'>Cerrar sesión</a>";
-        } else {
-          echo "<a href='login.php' class='nav-link'>Iniciar sesión</a>";
-        }
-        ?>
+        <?php if ($_SESSION) : ?>
+          <a href='#' class='nav-link'>Cerrar sesión</a>
+        <?php else : ?>
+          <a href='login.php' class='nav-link'>Iniciar sesión</a>
+        <?php endif; ?>
+
       </ul>
     </nav>
     <!-- /.navbar -->
@@ -128,7 +127,6 @@ session_start();
                 <p>
                   Mis pedidos
                   <i class="right fa fa-angle-left"></i>
-                  <span class="right badge badge-danger">1</span>
                 </p>
               </a>
               <ul class="nav nav-treeview" style="display: none;">

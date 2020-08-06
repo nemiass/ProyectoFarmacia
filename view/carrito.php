@@ -18,11 +18,11 @@ include "layouts/headerCliente.php";
           </div>
           <!--<div class="col-2 mt-3">
                       <?php
-                      if (isset($_SESSION["total"])) {
+                      /**if (isset($_SESSION["total"])) {
                         echo "<div><b>Tola: </b>" . $_SESSION["total"] . "</div>";
                       } else {
                         echo "<div><b>Tola: </b>0</div>";
-                      }
+                      }**/
                       ?>
                 </div>-->
         </div>
@@ -44,29 +44,28 @@ include "layouts/headerCliente.php";
               <tbody>
                 <?php
                 //session_start();
-                if (!empty($_SESSION["Productos"])) {
-                  foreach ($_SESSION["Productos"] as $p) {
+                if (!empty($_SESSION["Productos"])) :
+                  foreach ($_SESSION["Productos"] as $p) :
                     $id = $p["id"];
                     $nombre = $p["nombre"];
                     $precio = $p["precio"];
                     $cantidad = $p["cantidad"];
                     $subtotal = $p["subtotal"];
                 ?>
-                    <tr id="<?php echo $id ?>A">
-                      <td><?php echo $nombre ?></td>
-                      <td><?php echo $precio ?></td>
-                      <td><input class='text-center' id="<?php echo $id ?>" disabled style='width:17%;' type="text" value="<?php echo $cantidad ?>"></td>
-                      <td><?php echo $subtotal ?></td>
+                    <tr id="<?= $id ?>A">
+                      <td><?= $nombre ?></td>
+                      <td>S/<?= number_format($precio, 2, ".", ",") ?></td>
+                      <td><input class='text-center' id="<?= $id ?>" disabled style='width:17%;' type="text" value="<?= $cantidad ?>"></td>
+                      <td>S/<?= number_format($subtotal, 2, ".", ",") ?></td>
                       <td>
-                        <button value="eliminar" type="button" class="btn btn-block btn-danger" name="eliminar" onclick="eliminar(<?php echo $id ?>, this.value)">Eliminar</button>
+                        <button value="eliminar" type="button" class="btn btn-block btn-danger" name="eliminar" onclick="eliminar(<?= $id ?>, this.value)">Eliminar</button>
                       </td>
                     </tr>
-                <?php
-                  }
-                } else {
-                  echo " <div class='alert alert-warning' role='alert'>Tu carrito está vacío!</div>";
-                }
-                ?>
+                  <?php
+                  endforeach;
+                else : ?>
+                  <div class='alert alert-warning' role='alert'>Tu carrito está vacío!</div>
+                <?php endif; ?>
               </tbody>
             </table>
           </div>

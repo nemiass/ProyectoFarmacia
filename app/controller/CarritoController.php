@@ -6,7 +6,7 @@ use app\Producto;
 
 include "../../config/autoload2.php";
 
-// el javascript hace request a este archivo
+// el ajax hace request a este archivo
 class CarritoController
 {
     public function recibirPeticion()
