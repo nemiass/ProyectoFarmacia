@@ -1,5 +1,7 @@
 <?php
+
 namespace app;
+
 use app\ConexionDB as db;
 
 class Catalogo
@@ -22,9 +24,9 @@ class Catalogo
 
     public function registrarCatalogo()
     {
-        $nombre=$this->nombre;
-        $apellido=$this->apellido;
-        $dni=$this->dni;
+        $nombre = $this->nombre;
+        $apellido = $this->apellido;
+        $dni = $this->dni;
         try {
             $db = new db();
             $conn = $db->abrirConexion();
@@ -33,18 +35,16 @@ class Catalogo
             VALUES ($nombre,$apellido,$dni)";
             $respuesta = $conn->prepare($sql);
             $respuesta->execute();
-           
+
             $db->cerrarConexion();
-          
-        }
-        catch (\PDOException $e){
+        } catch (\PDOException $e) {
             echo $e->getMessage();
         }
     }
 
-    public function agregarProducto($nombre,$precio,$descripcion,$proveedor)
+    public function agregarProducto($nombre, $precio, $descripcion, $proveedor)
     {
-        
+
         try {
             $db = new db();
             $conn = $db->abrirConexion();
@@ -53,16 +53,15 @@ class Catalogo
             VALUES ($nombre, $precio, $descripcion,$proveedor)";
             $respuesta = $conn->prepare($sql);
             $respuesta->execute();
-           
+
             $db->cerrarConexion();
-            
-        }
-        catch (\PDOException $e){
+        } catch (\PDOException $e) {
             echo $e->getMessage();
         }
     }
 
-    public  static function ListarCatalogo() :array {
+    public  static function ListarCatalogo(): array
+    {
         try {
             $db = new db();
             $conn = $db->abrirConexion();
@@ -70,15 +69,12 @@ class Catalogo
             $sql = "SELECT * from catalogo";
             $respuesta = $conn->prepare($sql);
             $respuesta->execute();
-            $matriz=$respuesta->fetchAll();
+            $matriz = $respuesta->fetchAll();
             $db->cerrarConexion();
             return $matriz;
-        }
-        catch (\PDOException $e){
+        } catch (\PDOException $e) {
             echo $e->getMessage();
         }
-        
-        
     }
 
     public function eliminarProductoDeCatalogo($id)
@@ -90,11 +86,9 @@ class Catalogo
             $sql = "DELETE FROM catalogo WHERE id_catalogo=$id;";
             $respuesta = $conn->prepare($sql);
             $respuesta->execute();
-           
+
             $db->cerrarConexion();
-            
-        }
-        catch (\PDOException $e){
+        } catch (\PDOException $e) {
             echo $e->getMessage();
         }
     }

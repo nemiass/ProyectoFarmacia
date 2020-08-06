@@ -1,7 +1,8 @@
 <?php
+
 namespace app;
 
-class ConexionDB 
+class ConexionDB
 {
     private $dsn = "mysql:host=localhost;dbname=farmacia";
     private $user = "root";
@@ -14,13 +15,13 @@ class ConexionDB
         try {
             $this->conn = new \PDO($this->dsn, $this->user, $this->password, $this->option);
             return $this->conn;
-        } catch(\PDOException $e) {
+        } catch (\PDOException $e) {
             echo $e->getMessage();
         }
     }
-    
+
     public function cerrarConexion()
     {
         return $this->conn = null;
-    }    
+    }
 }

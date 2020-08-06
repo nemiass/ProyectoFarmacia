@@ -1,6 +1,9 @@
 <?php
+
 namespace app\controller;
+
 use app\Producto;
+
 class ProductoController
 {
    public function listarProductos()
@@ -9,11 +12,8 @@ class ProductoController
 
       if (!empty($productos)) {
          return $productos;
-      }
-
-      else {
+      } else {
          return false;
       }
    }
 }
-?>

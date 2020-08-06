@@ -1,10 +1,12 @@
 <?php
+
 namespace app;
+
 use app\ConexionDB as db;
 //include "../config/autoload.php";
 
 class Producto
-{  
+{
     private $nombre;
     private $precio;
     private $caracteristicas;
@@ -18,7 +20,7 @@ class Producto
         $this->id_catalogo = $id_catalogo;
     }
 
-    public static function getNombre() : array
+    public static function getNombre(): array
     {
         try {
             $db = new db();
@@ -27,11 +29,10 @@ class Producto
             $sql = "SELECT nombre from producto ";
             $respuesta = $conn->prepare($sql);
             $respuesta->execute();
-            $nombre=$respuesta->fetchAll();
+            $nombre = $respuesta->fetchAll();
             $db->cerrarConexion();
             return $nombre;
-        }
-        catch (\PDOException $e){
+        } catch (\PDOException $e) {
             echo $e->getMessage();
         }
     }
@@ -43,28 +44,27 @@ class Producto
 
     public function registrarProducto(): void
     {
-        $nombre=$this->nombre;
-        $precio=$this->precio;
-        $descripcion=$this->descripcion;
-        $id_catalogo=$this->id_catalogo;
+        $nombre = $this->nombre;
+        $precio = $this->precio;
+        $descripcion = $this->descripcion;
+        $id_catalogo = $this->id_catalogo;
         try {
             $db = new db();
             $conn = $db->abrirConexion();
 
-            $sql = "INSERT INTO producto (id_producto, nombre, precio,caracteristica,id_catalogo)
+            $sql = "INSERT INTO producto (null,nombre, precio,caracteristica,id_catalogo)
             VALUES ($nombre, $precio, $descripcion,$id_catalogo)";
             $respuesta = $conn->prepare($sql);
             $respuesta->execute();
-           
+
             $db->cerrarConexion();
-            
-        }
-        catch (\PDOException $e){
+        } catch (\PDOException $e) {
             echo $e->getMessage();
         }
     }
 
-    public  static function ListarProductos() :array {
+    public  static function ListarProductos(): array
+    {
         try {
             $db = new db();
             $conn = $db->abrirConexion();
@@ -72,17 +72,16 @@ class Producto
             $sql = "SELECT * from producto";
             $respuesta = $conn->prepare($sql);
             $respuesta->execute();
-            $matriz=$respuesta->fetchAll();
+            $matriz = $respuesta->fetchAll();
             $db->cerrarConexion();
-            return $matriz;        }
-        catch (\PDOException $e){
+            return $matriz;
+        } catch (\PDOException $e) {
             echo $e->getMessage();
         }
-        
-        
     }
 
-    public function actualizarProductos($id,$nombre,$precio,$caracteristicas,$id_catalogo): void{
+    public function actualizarProductos($id, $nombre, $precio, $caracteristicas, $id_catalogo): void
+    {
         try {
             $db = new db();
             $conn = $db->abrirConexion();
@@ -92,11 +91,9 @@ class Producto
             WHERE id_producto=$id";
             $respuesta = $conn->prepare($sql);
             $respuesta->execute();
-           
+
             $db->cerrarConexion();
-            
-        }
-        catch (\PDOException $e){
+        } catch (\PDOException $e) {
             echo $e->getMessage();
         }
     }
@@ -113,8 +110,7 @@ class Producto
             $producto = $respuesta->fetchAll();
             $db->cerrarConexion();
             return $producto;
-        }
-        catch (\PDOException $e){
+        } catch (\PDOException $e) {
             echo $e->getMessage();
         }
     }

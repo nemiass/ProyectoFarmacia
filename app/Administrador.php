@@ -1,15 +1,17 @@
 <?php
+
 namespace app;
+
 use app\ConexionDB as db;
 
 class Administrador //extends Usuario
 {
     private $tipo;
 
-   // public function  __construct($nombres, $apellidos, $telefono, $dni, $user, $pass)
-   // {
-        //parent::__construct($nombres, $apellidos, $telefono, $dni, $user, $pass);
-        //$this->tipo = "administrador";
+    // public function  __construct($nombres, $apellidos, $telefono, $dni, $user, $pass)
+    // {
+    //parent::__construct($nombres, $apellidos, $telefono, $dni, $user, $pass);
+    //$this->tipo = "administrador";
     //}
 
     public function getTipo()
@@ -17,7 +19,8 @@ class Administrador //extends Usuario
         return $this->tipo;
     }
 
-    public static function getAdministrador($dni):array{
+    public static function getAdministrador($dni): array
+    {
         try {
             $db = new ConexionDB();
             $conn = $db->abrirConexion();
@@ -25,16 +28,15 @@ class Administrador //extends Usuario
             $sql = "SELECT * from administrador where dni=$dni ";
             $respuesta = $conn->prepare($sql);
             $respuesta->execute();
-            $admin=$respuesta->fetchAll();
+            $admin = $respuesta->fetchAll();
             $db->cerrarConexion();
             return $admin;
-        }
-        catch (\PDOException $e){
+        } catch (\PDOException $e) {
             echo $e->getMessage();
         }
     }
 
-    public static function crearProducto($nombre,$precio,$descripcion,$proveedor)
+    public static function crearProducto($nombre, $precio, $descripcion, $proveedor)
     {
         try {
             $db = new db();
@@ -44,16 +46,14 @@ class Administrador //extends Usuario
             VALUES ($nombre, $precio, $descripcion,$proveedor)";
             $respuesta = $conn->prepare($sql);
             $respuesta->execute();
-           
+
             $db->cerrarConexion();
-            
-        }
-        catch (\PDOException $e){
+        } catch (\PDOException $e) {
             echo $e->getMessage();
         }
     }
 
-    public static function crearCatalogo($tipo,$id_producto):void
+    public static function crearCatalogo($tipo, $id_producto): void
     {
         try {
             $db = new db();
@@ -63,16 +63,14 @@ class Administrador //extends Usuario
             VALUES ($tipo,$id_producto)";
             $respuesta = $conn->prepare($sql);
             $respuesta->execute();
-           
+
             $db->cerrarConexion();
-            
-        }
-        catch (\PDOException $e){
+        } catch (\PDOException $e) {
             echo $e->getMessage();
         }
     }
 
-    public static function crearFactura($nombre_far,$precio_uni,$precio_total,$fecha,$id_pedido)
+    public static function crearFactura($nombre_far, $precio_uni, $precio_total, $fecha, $id_pedido)
     {
         try {
             $db = new db();
@@ -82,16 +80,14 @@ class Administrador //extends Usuario
             VALUES ($nombre_far,$precio_uni,$precio_total,$fecha,$id_pedido)";
             $respuesta = $conn->prepare($sql);
             $respuesta->execute();
-           
+
             $db->cerrarConexion();
-            
-        }
-        catch (\PDOException $e){
+        } catch (\PDOException $e) {
             echo $e->getMessage();
         }
     }
 
-    public static function editarFactura($id,$nombre_far,$precio_uni,$precio_total,$fecha):void
+    public static function editarFactura($id, $nombre_far, $precio_uni, $precio_total, $fecha): void
     {
         try {
             $db = new db();
@@ -102,16 +98,14 @@ class Administrador //extends Usuario
             WHERE id_factura=$id";
             $respuesta = $conn->prepare($sql);
             $respuesta->execute();
-           
+
             $db->cerrarConexion();
-            
-        }
-        catch (\PDOException $e){
+        } catch (\PDOException $e) {
             echo $e->getMessage();
         }
     }
 
-    public static function eliminarProducto($id):void
+    public static function eliminarProducto($id): void
     {
         try {
             $db = new db();
@@ -120,16 +114,15 @@ class Administrador //extends Usuario
             $sql = "DELETE FROM producto WHERE id_producto=$id;";
             $respuesta = $conn->prepare($sql);
             $respuesta->execute();
-           
+
             $db->cerrarConexion();
-            
-        }
-        catch (\PDOException $e){
+        } catch (\PDOException $e) {
             echo $e->getMessage();
         }
     }
 
-    public static function listarFacturas():array{
+    public static function listarFacturas(): array
+    {
         try {
             $db = new ConexionDB();
             $conn = $db->abrirConexion();
@@ -137,11 +130,10 @@ class Administrador //extends Usuario
             $sql = "SELECT * from factura";
             $respuesta = $conn->prepare($sql);
             $respuesta->execute();
-            $factura=$respuesta->fetchAll();
+            $factura = $respuesta->fetchAll();
             $db->cerrarConexion();
             return $factura;
-        }
-        catch (\PDOException $e){
+        } catch (\PDOException $e) {
             echo $e->getMessage();
         }
     }

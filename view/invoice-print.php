@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,17 +19,18 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
-<body>
-  
-<div class="wrapper">
-  <!-- Main content -->
-  <section class="content">
 
-    <div class="container-fluid">
+<body>
+
+  <div class="wrapper">
+    <!-- Main content -->
+    <section class="content">
+
+      <div class="container-fluid">
         <div class="row">
           <div class="col-12">
-            
-        <!-- Main content -->
+
+            <!-- Main content -->
             <div class="invoice p-3 mb-3 mt-2">
               <!-- title row -->
               <div class="row">
@@ -57,7 +59,7 @@
                   Destino
                   <address>
                     <strong>Tal persona</strong><br>
-                    Jr. tal numero  tal <br>
+                    Jr. tal numero tal <br>
                     Huánuco Peru<br>
                     Telefono: (555) 539-103<br>
                     DNI: 12345678
@@ -78,31 +80,31 @@
                 <div class="col-12 table-responsive">
                   <table class="table table-striped">
                     <thead>
-                    <tr>
-                      <th>Cantidad</th>
-                      <th>Producto</th>
-                      <th>Serial #</th>
-                      <th>Description</th>
-                      <th>Subtotal</th>
-                    </tr>
+                      <tr>
+                        <th>Cantidad</th>
+                        <th>Producto</th>
+                        <th>Serial #</th>
+                        <th>Description</th>
+                        <th>Subtotal</th>
+                      </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>Anfetaminas</td>
-                      <td>455-981-221</td>
-                      <td>Buenardo la receta</td>
-                      <td>S/100.00</td>
-                    </tr>
-
-                    <tr>
+                      <tr>
                         <td>1</td>
                         <td>Anfetaminas</td>
                         <td>455-981-221</td>
                         <td>Buenardo la receta</td>
                         <td>S/100.00</td>
                       </tr>
-                    
+
+                      <tr>
+                        <td>1</td>
+                        <td>Anfetaminas</td>
+                        <td>455-981-221</td>
+                        <td>Buenardo la receta</td>
+                        <td>S/100.00</td>
+                      </tr>
+
                     </tbody>
                   </table>
                 </div>
@@ -125,19 +127,21 @@
 
                   <div class="table-responsive">
                     <table class="table">
-                      <tbody><tr>
-                        <th style="width:50%">Subtotal:</th>
-                        <td>S/ 200.00</td>
-                      </tr>
-                      <tr>
-                        <th>Delivery:</th>
-                        <td>S/ 8.00</td>
-                      </tr>
-                      <tr>
-                        <th>Total:</th>
-                        <td>S/ 208.00</td>
-                      </tr>
-                    </tbody></table>
+                      <tbody>
+                        <tr>
+                          <th style="width:50%">Subtotal:</th>
+                          <td>S/ 200.00</td>
+                        </tr>
+                        <tr>
+                          <th>Delivery:</th>
+                          <td>S/ 8.00</td>
+                        </tr>
+                        <tr>
+                          <th>Total:</th>
+                          <td>S/ 208.00</td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
                 <!-- /.col -->
@@ -148,14 +152,15 @@
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div>
-    
-  </section>
-  <!-- /.content -->
-</div>
-<!-- ./wrapper -->
 
-<script type="text/javascript"> 
-  window.addEventListener("load", window.print());
-</script>
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- ./wrapper -->
+
+  <script type="text/javascript">
+    window.addEventListener("load", window.print());
+  </script>
 </body>
+
 </html>
