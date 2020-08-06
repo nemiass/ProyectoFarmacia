@@ -1,5 +1,4 @@
 
-// TODO:
 function requestCarritoController(id, tipo) {
     const ajaxrequest = new XMLHttpRequest();
     let cantidad = document.getElementById(id).value;

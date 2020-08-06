@@ -75,7 +75,6 @@ session_start();
           echo "<a href='login.php' class='nav-link'>Iniciar sesión</a>";
         }
       ?>
-        <a href='login.php' class='nav-link' value="">Cerrar sesión</a>
     </ul>
   </nav>
   <!-- /.navbar -->
