@@ -1,17 +1,13 @@
 <!-- Header -->
 <?php
-include "../config/autoload2.php";
+
+include "layouts/headerAdmin.php";
 
 use app\controller\AdminController;
 ?>
 <?php
-session_start();
-
-include "layouts/headerAdmin.php";
-
 $admincontroller = new AdminController();
 $admin = $admincontroller->getAdmin($_SESSION['dni']);
-
 ?>
 <!--/. Header -->
 

@@ -1,11 +1,8 @@
 <!-- Header -->
-<?php 
-  include "../config/autoload2.php";
-  use app\controller\AdminController;
-  ?>
-<?php 
-session_start();
+<?php
 include "layouts/headerAdmin.php";
+
+use app\controller\AdminController;
 ?>
 <!--/. Header -->
 
@@ -17,9 +14,11 @@ include "layouts/headerAdmin.php";
     <div class="card card-solid">
       <div class="card-body">
         <div class="row">
+
           <div class="col-9">
             <h1>Clientes</h1>
           </div>
+
           <div class="col-3 mt-3">
             <form class="form-inline ml-3">
               <div class="input-group input-group-sm">
@@ -29,50 +28,55 @@ include "layouts/headerAdmin.php";
                     <i class="fas fa-search"></i>
                   </button>
                 </div>
-              <div class="row">
-                <div class="col-12">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Nombre</th>
-                                <th>Apellido</th>
-                                <th>Teléfono</th>
-                                <th>&nbsp</th>
-                            </tr>
-                        </thead>
-                         <?php
-                         $admincontroller=new AdminController();
-                         $clientes=$admincontroller->listarClientes();   
-                        $hola='hola';
-                         ?>
-                        <tbody>
-                        <?php $i=1; foreach($clientes as $cliente):  ?>
-                            <tr>
-                                <td><?=$i ?></td>
-                                <td><?= $cliente['nombre']  ?></td>
-                                <td><?= $cliente['apellido']  ?></td>
-                                <td><?= $cliente['telefono']  ?></td>
-                                <td>
-                                    <a href="adminDetallesClientes.php?id_cliente=<?= $cliente['id_cliente']?>"><button type="button" class="btn btn-block btn-success">Mostrar</button></a>
-                                </td>
-                            </tr>
-                        <?php $i++; endforeach; ?>
-                           
-                        </tbody>
-                    </table>
-                </div>
               </div>
-            </div>
-            <!-- /.card-body -->
+            </form>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Nombre</th>
+                  <th>Apellido</th>
+                  <th>Teléfono</th>
+                  <th>&nbsp</th>
+                </tr>
+              </thead>
+              <?php
+              $admincontroller = new AdminController();
+              $clientes = $admincontroller->listarClientes();
+              $hola = 'hola';
+              ?>
+              <tbody>
+                <?php $i = 1;
+                foreach ($clientes as $cliente) :  ?>
+                  <tr>
+                    <td><?= $i ?></td>
+                    <td><?= $cliente['nombre']  ?></td>
+                    <td><?= $cliente['apellido']  ?></td>
+                    <td><?= $cliente['telefono']  ?></td>
+                    <td>
+                      <a href="adminDetallesClientes.php?id_cliente=<?= $cliente['id_cliente'] ?>"><button type="button" class="btn btn-block btn-success">Mostrar</button></a>
+                    </td>
+                  </tr>
+                <?php $i++;
+                endforeach; ?>
+              </tbody>
+            </table>
           </div>
         </div>
+        <!-- /.card-body -->
       </div>
-      <!-- /.card-body -->
     </div>
+</div>
+<!-- /.card-body -->
+</div>
 
-  </section>
-  <!-- /.content -->
+</section>
+<!-- /.content -->
 
 </div>
 <!-- /.content-wrapper -->

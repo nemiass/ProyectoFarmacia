@@ -79,7 +79,8 @@ class Pedido
         }
     }
 
-    public static function PedidoRealizado($id):array{
+    public static function PedidoRealizado($id): array
+    {
         try {
             $db = new db();
             $conn = $db->abrirConexion();
@@ -87,39 +88,15 @@ class Pedido
             $sql = "SELECT ped.id_pedido,ped.fecha,ped.direccion,CONCAT( emp.nombre,' ',emp.apellido )as empleado,sum(prod.precio*ped_prod.cantidad) as total from cliente as cli join pedido as ped ON cli.id_cliente=ped.id_cliente JOIN empleado_pedido as emp_ped ON emp_ped.id_pedido=ped.id_pedido JOIN empleado as emp ON emp.id_empleado=emp_ped.id_empleado JOIN pedido_producto as ped_prod on ped_prod.id_pedido=ped.id_pedido JOIN producto as prod  on prod.id_producto=ped_prod.id_producto WHERE cli.id_cliente=$id";
             $respuesta = $conn->prepare($sql);
             $respuesta->execute();
-            $matriz=$respuesta->fetchAll();
+            $matriz = $respuesta->fetchAll();
             $db->cerrarConexion();
             return $matriz;
-        }
-        catch (\PDOException $e){
+        } catch (\PDOException $e) {
             echo $e->getMessage();
         }
     }
 
-    public function registrarPedido(): void{
-        
-            $cantidad=$this->cantidad;
-            $fecha=$this->fecha;
-            $fecha_entrega=$this->fecha_entrega;
-            $direccion=$this->direccion;
-            $id_producto=$this->id_producto;
-            $id_cliente=$this->id_cliente;
-            try {
-                $db = new db();
-                $conn = $db->abrirConexion();
-    
-                $sql = "INSERT INTO pedido (id_pedido,cantidad, fecha,fecha_entrega,direccion,id_producto,id_cliente)
-                VALUES ( $cantidad,  $fecha,$fecha_entrega,$direccion, $id_producto, $id_cliente)";
-                $respuesta = $conn->prepare($sql);
-                $respuesta->execute();
-               
-                $db->cerrarConexion();
-                
-            }
-            catch (\PDOException $e){
-                echo $e->getMessage();
-            }
-    
-}
+    public function registrarPedido(): void
+    {
 
 }

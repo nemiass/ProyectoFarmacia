@@ -7,11 +7,22 @@ use app\Catalogo;
 class CatalogoController
 {
 
-   function agregarCatalogo()
+   public function listarCatalogos()
+   {
+      $catalogos = Catalogo::ListarCatalogo();
+
+      if (!empty($catalogos)) {
+         return $catalogos;
+      } else {
+         return false;
+      }
+   }
+
+   public function agregarCatalogo()
    {
    }
 
-   function  eliminarCatalogo()
+   public function  eliminarCatalogo()
    {
    }
 }

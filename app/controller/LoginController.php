@@ -5,16 +5,11 @@ namespace app\controller;
 use app\Usuario;
 
 class LoginController
-
 {
     private $error;
-    public  function getUsuario($usuario, $contraseña)
-    {
-        // en la base usuario = carlos
-        // contraseña = 12345678
-        $usr = $usuario;
-        $pass = $contraseña;
 
+    public  function getUsuario(string $usuario)
+    {
         $usuario = Usuario::traerUser($usuario);
 
         if (!empty($usuario)) {
@@ -24,50 +19,46 @@ class LoginController
         }
     }
 
-    public function validarFormulario($usuario, $contraseña)
+    public function validarFormulario($user, $pass)
     {
-        if (empty($usuario) && empty($contraseña)) {
+        if (empty($user) || empty($pass)) {
             return header("location:../view/login.php?error=rellene los campos");
         }
-        if (empty($usuario)) {
-            if (!empty($contraseña)) {
-                return header("location:../view/login.php?error=ingrese el usuario");
-            }
-        }
-        if (empty($contraseña)) {
-            if (!empty($usuario)) {
-                return header("location:../view/login.php?error=ingrese la contraseña");
-            }
-        }
-        if (!empty($usuario) && !empty($contraseña)) {
-            if ($usuario = $this->getUsuario($usuario, $contraseña)) {
 
-                if ($usuario[0]['contraseña'] == $contraseña) {
-                    if ($usuario[0]['tipo'] == 'administrador') {
-                        $tipo = $usuario[0]["tipo"];
-                        $dni = $usuario[0]["dni"];
-                        $usuario = $usuario[0]["usuario"];
-                        $contraseña = $contraseña[0]["contraseña"];
+        if (!empty($user) && !empty($pass)) {
+            if ($datousuario = $this->getUsuario($user)) {
 
-                        return  header("location:../view/admincatalogo.php?dni=$dni&usuario=$usuario&contraseña=$contraseña");
+                if ($datousuario[0]['contrasenia'] == $pass) {
+                    if ($datousuario[0]['tipo'] == 'administrador') {
+                        $tipo = $datousuario[0]["tipo"];
+                        $dni = $datousuario[0]["dni"];
+                        $usuario = $datousuario[0]["usuario"];
+                        $contrasenia = $datousuario[0]["contrasenia"];
+
+                        return  header("location:../view/admincatalogo.php?dni=$dni&usuario=$usuario&contrasenia=$contrasenia");
                     }
-                    if ($usuario[0]['tipo'] == 'empleado') {
-                        $usuario = $usuario[0]['usuario'];
-                        $tipo = $usuario[0]['tipo'];
+                    if ($datousuario[0]['tipo'] == 'empleado') {
+                        $usuario = $datousuario[0]['usuario'];
+                        $tipo = $datousuario[0]['tipo'];
                         return header("location:../view/empleadoPedidosAtender.php?usuario=$usuario");
                     }
 
-                    if ($usuario[0]['tipo'] == 'cliente') {
-                        $usuario = $usuario[0]['usuario'];
-                        $tipo = $usuario[0]['tipo'];
+                    if ($datousuario[0]['tipo'] == 'cliente') {
+                        $usuario = $datousuario[0]['usuario'];
+                        $tipo = $datousuario[0]['tipo'];
                         return header("location:../view/mispedidos.php?usuario=$usuario");
                     }
                 } else {
-                    return header("location:../view/login.php?error=contraseña  incorrecta");
+                    return header("location:../view/login.php?error=datos incorrecto");
                 }
             } else {
-                return header("location:../view/login.php?error=usuario  incorrecta");
+                return header("location:../view/login.php?error=datos incorrectos");
             }
         }
+    }
+
+    public function crearSession($dni)
+    {
+        // TODO
     }
 }

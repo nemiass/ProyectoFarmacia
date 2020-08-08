@@ -3,20 +3,22 @@
 namespace app;
 
 use app\ConexionDB as db;
+use app\Persona;
+use app\Producto;
 
-class Administrador //extends Usuario
+class Administrador
 {
-    private $tipo;
+    private $nombre;
+    private $apellido;
+    private $dni;
+    private $telefono;
 
-    // public function  __construct($nombres, $apellidos, $telefono, $dni, $user, $pass)
-    // {
-    //parent::__construct($nombres, $apellidos, $telefono, $dni, $user, $pass);
-    //$this->tipo = "administrador";
-    //}
-
-    public function getTipo()
+    public function  __construct($nombre, $apellido, $telefono, $dni)
     {
-        return $this->tipo;
+        $this->nombre = $nombre;
+        $this->apellido = $apellido;
+        $this->dni = $dni;
+        $this->telefono = $telefono;
     }
 
     public static function getAdministrador($dni): array
@@ -25,9 +27,9 @@ class Administrador //extends Usuario
             $db = new ConexionDB();
             $conn = $db->abrirConexion();
 
-            $sql = "SELECT * from administrador where dni=$dni ";
+            $sql = "SELECT * FROM administrador WHERE dni = :dni";
             $respuesta = $conn->prepare($sql);
-            $respuesta->execute();
+            $respuesta->execute(["dni" => $dni]);
             $admin = $respuesta->fetchAll();
             $db->cerrarConexion();
             return $admin;
@@ -36,105 +38,41 @@ class Administrador //extends Usuario
         }
     }
 
-    public static function crearProducto($nombre, $precio, $descripcion, $proveedor)
+    public function actualizarAdministrador()
     {
         try {
             $db = new db();
             $conn = $db->abrirConexion();
 
-            $sql = "INSERT INTO producto (id_producto, nombre, precio,caracteristica,proveedor)
-            VALUES ($nombre, $precio, $descripcion,$proveedor)";
+            $sql = "UPDATE administrador SET nombre=:n , apellido=:a, dni=:dn, telefono=:tel)";
             $respuesta = $conn->prepare($sql);
-            $respuesta->execute();
+            $respuesta->execute([
+                "n" => $this->nombre,
+                "a" => $this->apellido,
+                "dn" => $this->dni,
+                "tel" => $this->telefono
+            ]);
 
             $db->cerrarConexion();
+            return $respuesta->rowCount();
         } catch (\PDOException $e) {
             echo $e->getMessage();
         }
     }
 
-    public static function crearCatalogo($tipo, $id_producto): void
+    //practicando
+    public static function crearProducto(object $Producto): int
     {
-        try {
-            $db = new db();
-            $conn = $db->abrirConexion();
-
-            $sql = "INSERT INTO catalogo (id_catalogo,tipo,id_producto)
-            VALUES ($tipo,$id_producto)";
-            $respuesta = $conn->prepare($sql);
-            $respuesta->execute();
-
-            $db->cerrarConexion();
-        } catch (\PDOException $e) {
-            echo $e->getMessage();
-        }
+        return $Producto->registrarProducto();
     }
 
-    public static function crearFactura($nombre_far, $precio_uni, $precio_total, $fecha, $id_pedido)
+    public static function actualizarProducto(object $Producto): int
     {
-        try {
-            $db = new db();
-            $conn = $db->abrirConexion();
-
-            $sql = "INSERT INTO factura (id_factura,nombres_farmacia,precio_unitario,precio_total,fecha,id_pedido)
-            VALUES ($nombre_far,$precio_uni,$precio_total,$fecha,$id_pedido)";
-            $respuesta = $conn->prepare($sql);
-            $respuesta->execute();
-
-            $db->cerrarConexion();
-        } catch (\PDOException $e) {
-            echo $e->getMessage();
-        }
-    }
-
-    public static function editarFactura($id, $nombre_far, $precio_uni, $precio_total, $fecha): void
-    {
-        try {
-            $db = new db();
-            $conn = $db->abrirConexion();
-
-            $sql = "UPDATE factura
-            SET nombre_farmacia = $nombre_far,precio_unitario=$precio_uni,precio_total=$precio_total,fecha=$fecha
-            WHERE id_factura=$id";
-            $respuesta = $conn->prepare($sql);
-            $respuesta->execute();
-
-            $db->cerrarConexion();
-        } catch (\PDOException $e) {
-            echo $e->getMessage();
-        }
+        return $Producto->actualizarProducto();
     }
 
     public static function eliminarProducto($id): void
     {
-        try {
-            $db = new db();
-            $conn = $db->abrirConexion();
-
-            $sql = "DELETE FROM producto WHERE id_producto=$id;";
-            $respuesta = $conn->prepare($sql);
-            $respuesta->execute();
-
-            $db->cerrarConexion();
-        } catch (\PDOException $e) {
-            echo $e->getMessage();
-        }
-    }
-
-    public static function listarFacturas(): array
-    {
-        try {
-            $db = new ConexionDB();
-            $conn = $db->abrirConexion();
-
-            $sql = "SELECT * from factura";
-            $respuesta = $conn->prepare($sql);
-            $respuesta->execute();
-            $factura = $respuesta->fetchAll();
-            $db->cerrarConexion();
-            return $factura;
-        } catch (\PDOException $e) {
-            echo $e->getMessage();
-        }
+        // TODO, aca el error de borrar en cascade DELETE ON CASCADE
     }
 }
