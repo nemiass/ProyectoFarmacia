@@ -1,11 +1,7 @@
 <!-- Header -->
 <?php
-include "../config/autoload2.php";
-
-use app\controller\AdminController;
-?>
-<?php
 include "layouts/headerAdmin.php";
+use app\controller\AdminController;
 ?>
 <!--/. Header -->
 
@@ -41,8 +37,6 @@ include "layouts/headerAdmin.php";
               <?php
               $admincontroller = new AdminController();
               $empleados = $admincontroller->listarEmpleado();
-
-
               ?>
               <tbody>
                 <?php $i = 1;

@@ -6,61 +6,58 @@ use app\ConexionDB as db;
 
 class Catalogo
 {
-    private $tipo;
+    private $nombre;
+    private $descripcion;
 
-    public function __construct($tipo)
+    public function __construct($nombre, $descripcion)
     {
-        $this->tipo = $tipo;
+        $this->nombre = $nombre;
+        $this->descripcion = $descripcion;
     }
 
-    public function getTipo()
+    public function crearCatalogo(): int
     {
-        return $this->tipo;
-    }
-    public function setTipo($tipo)
-    {
-        return $this->tipo = $tipo;
-    }
-
-    public function registrarCatalogo()
-    {
-        $nombre = $this->nombre;
-        $apellido = $this->apellido;
-        $dni = $this->dni;
         try {
             $db = new db();
             $conn = $db->abrirConexion();
 
-            $sql = "INSERT INTO catalogo(id_cliente,nombre,apellido,dni)
-            VALUES ($nombre,$apellido,$dni)";
+            $sql = "INSERT INTO catalogo (nombre,descripcion)
+            VALUES (:n , :d)";
             $respuesta = $conn->prepare($sql);
-            $respuesta->execute();
+            $respuesta->execute([
+                "n" => $this->nombre,
+                "d" => $this->descripcion
+            ]);
 
             $db->cerrarConexion();
+            return $respuesta->rowCount();
         } catch (\PDOException $e) {
             echo $e->getMessage();
         }
     }
 
-    public function agregarProducto($nombre, $precio, $descripcion, $proveedor)
+    public function actualizarCatalogo(): int
     {
-
         try {
             $db = new db();
             $conn = $db->abrirConexion();
 
-            $sql = "INSERT INTO producto (id_producto, nombre, precio,caracteristica,proveedor)
-            VALUES ($nombre, $precio, $descripcion,$proveedor)";
+            $sql = "INSERT INTO catalogo (nombre,descripcion)
+            VALUES (:n , :d)";
             $respuesta = $conn->prepare($sql);
-            $respuesta->execute();
+            $respuesta->execute([
+                "n" => $this->nombre,
+                "d" => $this->descripcion
+            ]);
 
             $db->cerrarConexion();
+            return $respuesta->rowCount();
         } catch (\PDOException $e) {
             echo $e->getMessage();
         }
     }
 
-    public  static function ListarCatalogo(): array
+    public static function ListarCatalogo(): array
     {
         try {
             $db = new db();
@@ -77,17 +74,39 @@ class Catalogo
         }
     }
 
-    public function eliminarProductoDeCatalogo($id)
+    public static function BorrarCatalogo($id)
     {
         try {
             $db = new db();
             $conn = $db->abrirConexion();
 
-            $sql = "DELETE FROM catalogo WHERE id_catalogo=$id;";
+            $sql = "DELETE FROM catalogo WHERE id_catalogo = :c";
             $respuesta = $conn->prepare($sql);
-            $respuesta->execute();
+            $respuesta->execute([
+                "c" => $id
+            ]);
 
             $db->cerrarConexion();
+            return $respuesta->rowCount();
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public static function quitarProductoDeCatalogo($id_producto)
+    {
+        try {
+            $db = new db();
+            $conn = $db->abrirConexion();
+
+            $sql = "UPDATE producto set id_catalogo = null WHERE id_producto = :id";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute([
+                "c" => $id_producto
+            ]);
+
+            $db->cerrarConexion();
+            return $respuesta->rowCount();
         } catch (\PDOException $e) {
             echo $e->getMessage();
         }

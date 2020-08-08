@@ -6,38 +6,23 @@ use app\Cliente;
 use app\Producto;
 
 class ClienteController
-{   
+{
 
-    function editardatos()
+    public function editardatos()
     {
     }
 
-    function agregarProductoCarrito()
+    public function agregarPedido()
     {
     }
 
-    function eliminarProductoCarrito()
+    public function cancelarPedido()
     {
     }
 
-    function agregarPedido()
+    public function listarproductosxCliente(int $id)
     {
-    }
-
-    function eliminarPedido()
-    {
-    }
-
-    function listarCliente($id){
-        $cliente=Cliente::ListarCliente($id);
-        return $cliente;
-
-    }
-
-    function listarproductosxCliente($id){
-        $productos=Cliente::ListarProductosxCliente($id);
+        $productos = Cliente::ListarProductosxCliente($id);
         return $productos;
-
     }
-
 }

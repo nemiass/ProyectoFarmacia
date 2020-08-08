@@ -18,7 +18,7 @@ class ProductoController
       }
    }
 
-   public function traerProducto($id)
+   public function traerProducto(int $id)
    {
       $producto = Producto::traerProducto($id);
       if (!empty($producto)) {

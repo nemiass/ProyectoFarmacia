@@ -1,5 +1,8 @@
 <?php
 session_start();
+include "../config/autoload2.php";
+
+use app\controller\CatalogoController;
 ?>
 <!DOCTYPE html>
 <html>
@@ -68,7 +71,7 @@ session_start();
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
         <!-- Notifications Dropdown Menu -->
-        <?php if ($_SESSION) : ?>
+        <?php if (isset($_SESSION["estado"])) : ?>
           <a href='#' class='nav-link'>Cerrar sesión</a>
         <?php else : ?>
           <a href='login.php' class='nav-link'>Iniciar sesión</a>
@@ -110,11 +113,7 @@ session_start();
                   Mi Carrito
                   <span class="right badge badge-danger" id="carrito">
                     <?php
-                    if (isset($_SESSION["cantidad"])) {
-                      echo $_SESSION["cantidad"];
-                    } else {
-                      echo "0";
-                    }
+                    echo $cantidad = isset($_SESSION["cantidad"]) ? $_SESSION["cantidad"] : "0";
                     ?>
                   </span>
                 </p>
@@ -148,52 +147,24 @@ session_start();
             <li class="nav-header">
               CATEGORÍAS
             </li>
+            <?php
+            $ccontroller = new CatalogoController;
+            $catalogos = $ccontroller->listarCatalogos();
 
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="fa fa-tags nav-icon"></i>
-                <p>
-                  Cuidado Personal
-                </p>
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="fa fa-tags nav-icon"></i>
-                <p>
-                  Belleza
-                </p>
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="fa fa-tags nav-icon"></i>
-                <p>
-                  Artículos de protección
-                </p>
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="fa fa-tags nav-icon"></i>
-                <p>
-                  Etc
-                </p>
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="fa fa-tags nav-icon"></i>
-                <p>
-                  Etc
-                </p>
-              </a>
-            </li>
-
+            if ($ccontroller) :
+              foreach ($catalogos as $catalogo) :
+                $ncatalogo = $catalogo["nombre"];
+            ?>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="fa fa-tags nav-icon"></i>
+                    <p>
+                      <?= $ncatalogo ?>
+                    </p>
+                  </a>
+                </li>
+            <?php endforeach;
+            endif; ?>
           </ul>
         </nav>
         <!-- /.sidebar-menu -->

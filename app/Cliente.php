@@ -3,64 +3,47 @@
 namespace app;
 
 use app\ConexionDB as db;
+use app\Usuario;
 
 class Cliente
 {
     private $nombre;
     private $apellido;
     private $dni;
+    private $telefono;
 
-    public function getNombre(): string
-    {
-        return $this->nombre;
-    }
-
-    public function setNombre($nombre): void
+    public function  __construct($nombre, $apellido, $dni, $telefono)
     {
         $this->nombre = $nombre;
-    }
-
-    public function setApellido($apellido): void
-    {
         $this->apellido = $apellido;
-    }
-
-    public function getApellido(): int
-    {
-        return $this->apellido;
-    }
-
-    public function setDni($dni): void
-    {
         $this->dni = $dni;
+        $this->telefono = $telefono;
     }
 
-    public function getDni(): int
+    public function registrarCliente(): int
     {
-        return $this->dni;
-    }
-
-    public function registrarse(): void
-    {
-        $nombre = $this->nombre;
-        $apellido = $this->apellido;
-        $dni = $this->dni;
         try {
             $db = new db();
             $conn = $db->abrirConexion();
 
-            $sql = "INSERT INTO cliente(id_cliente,nombre,apellido,dni)
-            VALUES ($nombre,$apellido,$dni)";
+            $sql = "INSERT INTO  empleado(nombre, apellido, dni, telefono)
+            VALUES(nombre=:n , apellido=:a, dni=:dn, telefono=:tel)";
             $respuesta = $conn->prepare($sql);
-            $respuesta->execute();
+            $respuesta->execute([
+                "n" => $this->nombre,
+                "a" => $this->apellido,
+                "dn" => $this->dni,
+                "tel" => $this->telefono
+            ]);
 
             $db->cerrarConexion();
+            return $respuesta->rowCount();
         } catch (\PDOException $e) {
             echo $e->getMessage();
         }
     }
 
-    public  static function ListarClientes(): array
+    public static function ListarClientes(): array
     {
         try {
             $db = new db();
@@ -89,46 +72,53 @@ class Cliente
             $cliente = $respuesta->fetchAll();
             $db->cerrarConexion();
             return $cliente;
-        }
-        catch (\PDOException $e){
-            echo $e->getMessage();
-        }
-    }
-
-    public function crearPedido($cantidad,$fecha,$fecha_entrega,$direccion,$id_producto,$id_cliente)
-    {
-        try {
-            $db = new db();
-            $conn = $db->abrirConexion();
-
-            $sql = "INSERT INTO pedido (id_pedido,cantidad, fecha,fecha_entrega,direccion,id_producto,id_cliente)
-            VALUES ( $cantidad,  $fecha,$fecha_entrega,$direccion, $id_producto, $id_cliente)";
-            $respuesta = $conn->prepare($sql);
-            $respuesta->execute();
-
-            $db->cerrarConexion();
         } catch (\PDOException $e) {
             echo $e->getMessage();
         }
     }
 
-    public function eliminarPedido($id): void
+    //  en la calse pedido
+    public function crearPedido($cantidad, $fecha, $fecha_entrega, $direccion, $id_producto, $id_cliente)
     {
         try {
             $db = new db();
             $conn = $db->abrirConexion();
 
-            $sql = "DELETE FROM pedido WHERE id_pedido=$id";
+            $sql = "UPDATE cliente SET nombre=:n , apellido=:a, dni=:dn, telefono=:tel)";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute([
+                "n" => $this->nombre,
+                "a" => $this->apellido,
+                "dn" => $this->dni,
+                "tel" => $this->telefono
+            ]);
+
+            $db->cerrarConexion();
+            return $respuesta->rowCount();
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+    // cancelar epdido
+    public function CancelarPedido($id): int
+    {
+        try {
+            $db = new db();
+            $conn = $db->abrirConexion();
+
+            $sql = "DELETE FROM pedido WHERE id_pedido=$id and estado = pendiente";
             $respuesta = $conn->prepare($sql);
             $respuesta->execute();
 
             $db->cerrarConexion();
+            return $respuesta->rowCount();
         } catch (\PDOException $e) {
             echo $e->getMessage();
         }
     }
 
-    public  static function ListarProductosxCliente($id) :array {
+    public static function ListarProductosxCliente($id): array
+    {
         try {
             $db = new db();
             $conn = $db->abrirConexion();
@@ -136,13 +126,11 @@ class Cliente
             $sql = "SELECT cantidad,pro.nombre,pro.id_producto,pro.caracteristicas,pro.precio FROM producto as pro JOIN pedido_producto as ped_pro ON pro.id_producto=ped_pro.id_producto JOIN pedido as ped on ped.id_pedido=ped_pro.id_pedido JOIN cliente as cli ON cli.id_cliente=ped.id_cliente WHERE cli.id_cliente=$id";
             $respuesta = $conn->prepare($sql);
             $respuesta->execute();
-            $matriz=$respuesta->fetchAll();
+            $matriz = $respuesta->fetchAll();
             $db->cerrarConexion();
-            return $matriz;        }
-        catch (\PDOException $e){
+            return $matriz;
+        } catch (\PDOException $e) {
             echo $e->getMessage();
         }
-        
-        
     }
 }

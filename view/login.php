@@ -70,8 +70,8 @@ use app\controller\LoginController;
 
         <?php
         if (isset($_POST["send"])) {
-          echo  $usuario = $_POST["user"];
-          echo $contraseña = $_POST["pass"];
+          $usuario = $_POST["user"];
+          $contraseña = $_POST["pass"];
 
           $contuser = new LoginController();
           $contuser->validarFormulario($usuario, $contraseña);

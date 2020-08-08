@@ -1,16 +1,15 @@
 <!-- Header -->
-<?php 
-  include "../config/autoload2.php";
+<?php
+include "layouts/headerAdmin.php";
+?>
+<?php
 
 use app\Cliente;
 use app\controller\ClienteController;
-  ?>
-<?php 
-    include "layouts/headerAdmin.php";
-    $cliente=new Cliente();
-    $clientearreglo=$cliente->ListarCliente($_GET['id_cliente']);
-    $productos=$cliente->ListarProductosxCliente($_GET['id_cliente']);
-    $i=1;
+
+$clientearreglo = Cliente::ListarCliente($_GET['id_cliente']);
+$productos = Cliente::ListarProductosxCliente($_GET['id_cliente']);
+$i = 1;
 ?>
 <!--/. Header -->
 
@@ -28,15 +27,15 @@ use app\controller\ClienteController;
             <!-- title row -->
             <div class="row">
               <div class="col-12">
-                
-            <!-- Main content -->
+
+                <!-- Main content -->
                 <div class="invoice p-3 mb-3 mt-2">
                   <!-- title row -->
                   <div class="row">
                     <div class="col-12">
                       <h4>
                         <i class="fas fa-globe"></i> Farmavida
-                        <small class="float-right"><?php echo date("d/m/Y");?></small>
+                        <small class="float-right"><?php echo date("d/m/Y"); ?></small>
                       </h4>
                     </div>
                     <!-- /.col -->
@@ -57,11 +56,11 @@ use app\controller\ClienteController;
                     <div class="col-sm-4 invoice-col">
                       Destino
                       <address>
-                        <strong><?= $clientearreglo[0]['nombre'] ." ".  $clientearreglo[0]['apellido']?></strong><br>
-                        Jr. tal numero  tal <br>
+                        <strong><?= $clientearreglo[0]['nombre'] . " " .  $clientearreglo[0]['apellido'] ?></strong><br>
+                        Jr. tal numero tal <br>
                         Huánuco Peru<br>
-                        <?= $clientearreglo[0]['telefono']?><br>
-                        <?= $clientearreglo[0]['dni']?>
+                        <?= $clientearreglo[0]['telefono'] ?><br>
+                        <?= $clientearreglo[0]['dni'] ?>
                       </address>
                     </div>
                     <!-- /.col -->
@@ -73,38 +72,39 @@ use app\controller\ClienteController;
                     <!-- /.col -->
                   </div>
                   <!-- /.row -->
-    
+
                   <!-- Table row -->
                   <div class="row">
                     <div class="col-12 table-responsive">
                       <table class="table table-striped">
                         <thead>
-                        <tr>
-                          <th>Cantidad</th>
-                          <th>Producto</th>
-                          <th>Serial #</th>
-                          <th>Description</th>
-                          <th>Precio</th>
-                        </tr>
+                          <tr>
+                            <th>Cantidad</th>
+                            <th>Producto</th>
+                            <th>Serial #</th>
+                            <th>Description</th>
+                            <th>Precio</th>
+                          </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                          <?php foreach($productos as $producto): ?>
-                          <td><?= $producto['cantidad'] ?></td>
-                          <td><?= $producto['nombre'] ?></td>
-                          <td><?= $producto['id_producto'] ?></td>
-                          <td><?= $producto['caracteristicas'] ?></td>
-                          <td>S/<?= $producto['precio'] ?></td>
-                        </tr>
+                          <tr>
+                            <?php foreach ($productos as $producto) : ?>
+                              <td><?= $producto['cantidad'] ?></td>
+                              <td><?= $producto['nombre'] ?></td>
+                              <td><?= $producto['id_producto'] ?></td>
+                              <td><?= $producto['caracteristicas'] ?></td>
+                              <td>S/<?= $producto['precio'] ?></td>
+                          </tr>
 
-                        <?php $i++; endforeach?>
+                        <?php $i++;
+                            endforeach ?>
                         </tbody>
                       </table>
                     </div>
                     <!-- /.col -->
                   </div>
                   <!-- /.row -->
-    
+
                   <div class="row">
                     <!-- accepted payments column -->
                     <div class="col-6">
@@ -117,37 +117,32 @@ use app\controller\ClienteController;
                     <!-- /.col -->
                     <div class="col-6">
                       <p class="lead">Amount Due 2/22/2014</p>
-    
+
                       <div class="table-responsive">
                         <table class="table">
-                          <tbody><tr>
-                            <th style="width:50%">Subtotal:</th>
-                            <td>S/ 200.00</td>
-                          </tr>
-                          <tr>
-                            <th>Delivery:</th>
-                            <td>S/ 8.00</td>
-                          </tr>
-                          <tr>
-                            <th>Total:</th>
-                            <td>S/ 208.00</td>
-                          </tr>
-                        </tbody></table>
+                          <tbody>
+                            <tr>
+                              <th style="width:50%">Subtotal:</th>
+                              <td>S/ 200.00</td>
+                            </tr>
+                            <tr>
+                              <th>Delivery:</th>
+                              <td>S/ 8.00</td>
+                            </tr>
+                            <tr>
+                              <th>Total:</th>
+                              <td>S/ 208.00</td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </div>
                     <!-- /.col -->
                   </div>
                   <!-- /.row -->
-    
+
                   <!-- this row will not appear when printing -->
-                  <div class="row no-print">
-                    <div class="col-12">
-                      <a href="invoice-print.php" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Imprimir</a>
-                      <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
-                        <i class="fas fa-download"></i> Generar PDF
-                      </button>
-                    </div>
-                  </div>
+
                 </div>
               </div>
               <!-- /.col -->

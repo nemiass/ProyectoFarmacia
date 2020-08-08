@@ -1,20 +1,14 @@
 <?php
-session_start();
+include "layouts/headerAdmin.php";
+
 if (isset($_GET['dni'])) {
     $_SESSION['usuario'] = $_GET['usuario'];
-    $_SESSION['contraseña'] = $_GET['contraseña'];
+    $_SESSION['contraseña'] = $_GET['contrasenia'];
     $_SESSION['dni'] = $_GET['dni'];
 }
-
-
 //echo $_SESSION['dni']=$_GET['dni']; 
 ?>
 <!-- Header -->
-<?php
-include "layouts/headerAdmin.php";
-
-
-?>
 <!--/. Header -->
 
 <!-- Content Wrapper. Contains page content -->

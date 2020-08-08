@@ -12,6 +12,7 @@ include "layouts/headerAdmin.php";
     <div class="card card-solid">
       <div class="card-body">
         <div class="row">
+          
           <div class="col-6">
             <h1>Productos</h1>
           </div>

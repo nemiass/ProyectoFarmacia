@@ -1,3 +1,7 @@
+<?php
+session_start();
+include "../config/autoload2.php";
+?>
 <!DOCTYPE html>
 <html>
 
@@ -48,7 +52,6 @@
       <ul class="navbar-nav ml-auto">
         <!-- Notifications Dropdown Menu -->
         <?php
-        session_start();
         $_SESSION['usuario'] = $_GET['usuario'];
         if (!$_SESSION) {
           header("location:login.php");

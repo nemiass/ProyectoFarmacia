@@ -1,3 +1,10 @@
+<?php
+
+include "../config/autoload2.php";
+
+session_start();
+
+?>
 <!DOCTYPE html>
 <html>
 
