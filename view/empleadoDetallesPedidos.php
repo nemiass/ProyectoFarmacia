@@ -40,28 +40,7 @@ include "layouts/headerEmpleado.php";
                     <th>Subtotal</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Anfetaminas</td>
-                    <td>Bueno para la salud</td>
-                    <td>S/ 100.00</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>Anfetaminas</td>
-                    <td>Bueno para la salud</td>
-                    <td>S/ 100.00</td>
-                  </tr>
-
-                  <tr>
-                    <td>2</td>
-                    <td>Anfetaminas</td>
-                    <td>Bueno para la salud</td>
-                    <td>S/ 100.00</td>
-                  </tr>
-                </tbody>
-              </table>
+             
 
               <table class="table mt-3">
                 <thead>

@@ -122,24 +122,4 @@ class Pedido
     
 }
 
-        $cantidad = $this->cantidad;
-        $fecha = $this->fecha;
-        $fecha_entrega = $this->fecha_entrega;
-        $direccion = $this->direccion;
-        $id_producto = $this->id_producto;
-        $id_cliente = $this->id_cliente;
-        try {
-            $db = new db();
-            $conn = $db->abrirConexion();
-
-            $sql = "INSERT INTO pedido (id_pedido,cantidad, fecha,fecha_entrega,direccion,id_producto,id_cliente)
-                VALUES ( $cantidad,  $fecha,$fecha_entrega,$direccion, $id_producto, $id_cliente)";
-            $respuesta = $conn->prepare($sql);
-            $respuesta->execute();
-
-            $db->cerrarConexion();
-        } catch (\PDOException $e) {
-            echo $e->getMessage();
-        }
-    }
 }
