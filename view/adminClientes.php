@@ -1,5 +1,9 @@
 <!-- Header -->
 <?php 
+  include "../config/autoload2.php";
+  use app\controller\AdminController;
+  ?>
+<?php 
 session_start();
     include "layouts/headerAdmin.php";
 ?>
@@ -42,28 +46,24 @@ session_start();
                                 <th>&nbsp</th>
                             </tr>
                         </thead>
-    
+                         <?php
+                         $admincontroller=new AdminController();
+                         $clientes=$admincontroller->listarClientes();   
+                        $hola='hola';
+                         ?>
                         <tbody>
+                        <?php $i=1; foreach($clientes as $cliente):  ?>
                             <tr>
-                                <td>1</td>
-                                <td>Nombre tal</td>
-                                <td>Apellido tal</td>
-                                <td>Teléfono tal</td>
+                                <td><?=$i ?></td>
+                                <td><?= $cliente['nombre']  ?></td>
+                                <td><?= $cliente['apellido']  ?></td>
+                                <td><?= $cliente['telefono']  ?></td>
                                 <td>
-                                    <a href="adminDetallesClientes.php"><button type="button" class="btn btn-block btn-success">Mostrar</button></a>
+                                    <a href="adminDetallesClientes.php?id_cliente=<?= $cliente['id_cliente']?>"><button type="button" class="btn btn-block btn-success">Mostrar</button></a>
                                 </td>
                             </tr>
-
-                            <tr>
-                                <td>1</td>
-                                <td>Nombre tal</td>
-                                <td>Apellido tal</td>
-                                <td>Teléfono tal</td>
-                                <td>
-                                    <a href="adminDetallesClientes.php"><button type="button" class="btn btn-block btn-success">Mostrar</button></a>
-                                </td>
-                            </tr>
-
+                        <?php $i++; endforeach; ?>
+                           
                         </tbody>
                     </table>
                 </div>

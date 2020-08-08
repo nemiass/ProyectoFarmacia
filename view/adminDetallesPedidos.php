@@ -1,6 +1,16 @@
 <!-- Header -->
 <?php 
+  include "../config/autoload2.php";
+
+use app\Cliente;
+use app\controller\ClienteController;
+  ?>
+<?php 
     include "layouts/headerAdmin.php";
+    $cliente=new Cliente();
+    $clientearreglo=$cliente->ListarCliente($_GET['id_cliente']);
+    $productos=$cliente->ListarProductosxCliente($_GET['id_cliente']);
+    $i=1;
 ?>
 <!--/. Header -->
 
@@ -19,8 +29,8 @@
                   <div class="row">
                     <div class="col-12">
                       <h4>
-                        <i class="fas fa-globe"></i> Famavida SA.
-                        <small class="float-right">Date: 2/10/2014</small>
+                        <i class="fas fa-globe"></i> Farmavida
+                        <small class="float-right"><?php echo date("d/m/Y");?></small>
                       </h4>
                     </div>
                     <!-- /.col -->
@@ -41,11 +51,11 @@
                     <div class="col-sm-4 invoice-col">
                       Destino
                       <address>
-                        <strong>Tal persona</strong><br>
+                        <strong><?= $clientearreglo[0]['nombre'] ." ".  $clientearreglo[0]['apellido']?></strong><br>
                         Jr. tal numero  tal <br>
                         Huánuco Peru<br>
-                        Telefono: (555) 539-103<br>
-                        DNI: 12345678
+                        <?= $clientearreglo[0]['telefono']?><br>
+                        <?= $clientearreglo[0]['dni']?>
                       </address>
                     </div>
                     <!-- /.col -->
@@ -68,26 +78,20 @@
                           <th>Producto</th>
                           <th>Serial #</th>
                           <th>Description</th>
-                          <th>Subtotal</th>
+                          <th>Precio</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
-                          <td>1</td>
-                          <td>Anfetaminas</td>
-                          <td>455-981-221</td>
-                          <td>Buenardo la receta</td>
-                          <td>S/100.00</td>
+                          <?php foreach($productos as $producto): ?>
+                          <td><?= $producto['cantidad'] ?></td>
+                          <td><?= $producto['nombre'] ?></td>
+                          <td><?= $producto['id_producto'] ?></td>
+                          <td><?= $producto['caracteristicas'] ?></td>
+                          <td>S/<?= $producto['precio'] ?></td>
                         </tr>
 
-                        <tr>
-                            <td>1</td>
-                            <td>Anfetaminas</td>
-                            <td>455-981-221</td>
-                            <td>Buenardo la receta</td>
-                            <td>S/100.00</td>
-                          </tr>
-                        
+                        <?php $i++; endforeach?>
                         </tbody>
                       </table>
                     </div>

@@ -80,6 +80,23 @@ class Pedido
         
     }
 
+    public static function PedidoRealizado($id):array{
+        try {
+            $db = new db();
+            $conn = $db->abrirConexion();
+
+            $sql = "SELECT ped.id_pedido,ped.fecha,ped.direccion,CONCAT( emp.nombre,' ',emp.apellido )as empleado,sum(prod.precio*ped_prod.cantidad) as total from cliente as cli join pedido as ped ON cli.id_cliente=ped.id_cliente JOIN empleado_pedido as emp_ped ON emp_ped.id_pedido=ped.id_pedido JOIN empleado as emp ON emp.id_empleado=emp_ped.id_empleado JOIN pedido_producto as ped_prod on ped_prod.id_pedido=ped.id_pedido JOIN producto as prod  on prod.id_producto=ped_prod.id_producto WHERE cli.id_cliente=$id";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute();
+            $matriz=$respuesta->fetchAll();
+            $db->cerrarConexion();
+            return $matriz;
+        }
+        catch (\PDOException $e){
+            echo $e->getMessage();
+        }
+    }
+
     public function registrarPedido(): void{
         
             $cantidad=$this->cantidad;

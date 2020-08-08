@@ -1,6 +1,13 @@
 <!-- Header -->
 <?php 
+  include "../config/autoload2.php";
+
+use app\Cliente;
+use app\controller\AdminController;
+  ?>
+<?php 
     include "layouts/headerAdmin.php";
+   
 ?>
 <!--/. Header -->
 
@@ -31,24 +38,32 @@
 
                     <table class="table">
                         <tbody>
+                          <?php
+                          $admincontroller=new AdminController();
+                          $cliente=$admincontroller->listarCliente($_GET['id_cliente']);  
+                          $pedidosRealizados=$admincontroller->listarPedidoRealizado($_GET['id_cliente']);
+                         
+                          $i=1;
+                          $id_cliente=$_GET['id_cliente'];
+                          ?>
                             <tr>
                                 <th scope="row">Nombre:</th>
-                                <td>Tal nombre</td>
+                                <td><?= $cliente[0]['nombre']?></td>
                             </tr>
 
                             <tr>
                                 <th scope="row">Apellido:</th>
-                                <td>Tal apellido</td>
+                                <td><?= $cliente[0]['apellido']?></td>
                             </tr>
 
                             <tr>
                                 <th scope="row">Teléfono:</th>
-                                <td>Tal telefono</td>
+                                <td><?=$cliente[0]['telefono'] ?></td>
                             </tr>
 
                             <tr>
                                 <th scope="row">Dni:</th>
-                                <td>11111111</td>
+                                <td><?= $cliente[0]['dni']?></td>
                             </tr>
                             
                         </tbody>
@@ -86,9 +101,9 @@
                                    <div class="form-group">
                                        <label>Agrupar por:</label>
                                        <select class="custom-select">
-                                         <option>Todos</option>
-                                         <option>Ultimo año</option>
-                                         <option>Ultimo mes</option>
+                                         <option value="">Todos</option>
+                                         <option value="">Ultimo año</option>
+                                         <option value="">Ultimo mes</option>
                                        </select>
                                      </div>
                                 </div>
@@ -101,36 +116,26 @@
                                   <th>Fecha</th>
                                   <th>Lugar Entrega</th>
                                   <th>Empleado</th>
-                                  <th>Monto Total</th>
+                                  <th>SUB Total</th>
                                   <th>&nbsp</th>
                               </tr>
                           </thead>
                           <tbody>
+                            <?php foreach($pedidosRealizados as $pedidoRealizado): ?>
                               <tr>
-                                  <td>1</td>
-                                  <td>12-12-2020</td>
-                                  <td>Jr. tal lugar</td>
-                                  <td>Tal empleado</td>
-                                  <td>S/. 100.00</td>
+                                  <td><?= $i?></td>
+                                  <td><?= $pedidoRealizado['fecha']?></td>
+                                  <td><?= $pedidoRealizado['direccion']?></td>
+                                  <td><?= $pedidoRealizado['empleado']?></td>
+                                  <td>S/. <?= $pedidoRealizado['total']?></td>
                                   <td>
-                                   <a href="adminDetallesPedidos.php">
+                                   <a href="adminDetallesPedidos.php?id_cliente=<?= $id_cliente ?>">
                                     <button type="button" class="btn btn-block btn-success">Mostrar</button>
                                    </a>
                                   </td>
                               </tr>
 
-                              <tr>
-                                <td>1</td>
-                                <td>12-12-2020</td>
-                                <td>Jr. tal lugar</td>
-                                <td>Tal empleado</td>
-                                <td>S/. 100.00</td>
-                                <td>
-                                 <a href="adminDetallesPedidos.php">
-                                  <button type="button" class="btn btn-block btn-success">Mostrar</button>
-                                 </a>
-                                </td>
-                            </tr>
+                            <?php $i++; endforeach; ?>
                           </tbody>
                       </table>
   

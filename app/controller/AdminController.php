@@ -3,6 +3,7 @@ namespace app\controller;
 use app\Empleado;
 use app\Catalogo;
 use app\Administrador;
+use app\Cliente;
 use app\Producto;
 use app\Pedido;
 
@@ -16,6 +17,21 @@ class AdminController
        $empleados=Empleado::ListarEmpleado();
        return $empleados;
    }
+
+   public function listarClientes() :array{
+    $clientes=Cliente::ListarClientes();
+    return $clientes;
+}
+
+public function listarCliente($id) :array{
+  $clientes=Cliente::ListarCliente($id);
+  return $clientes;
+}
+
+public function listarPedidoRealizado($id) :array{
+  $pedidosRealizados=Pedido::PedidoRealizado($id);
+  return $pedidosRealizados;
+}
 
    public function editardatos(){
     

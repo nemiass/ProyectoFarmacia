@@ -82,6 +82,8 @@ class Producto
         
     }
 
+ 
+
     public function actualizarProductos($id,$nombre,$precio,$caracteristicas,$id_catalogo): void{
         try {
             $db = new db();
