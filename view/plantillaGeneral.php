@@ -1,6 +1,5 @@
 <?php
 include "layouts/headerCliente.php";
-include "../config/autoload2.php";
 
 use app\controller\ProductoController;
 ?>
@@ -24,22 +23,22 @@ use app\controller\ProductoController;
             $precio = $producto["precio"];
             $img = $producto["img"];
         ?>
-            <div class="col-3 mt-3">
+            <div class="col-3 mt-2 mb-3">
               <a href="plantillaGeneral.individual.php?id=<?= $id ?>">
-                <img src="../public/img/<?= $img ?>.jpg" style="width:100%; height:70%;" alt="Imagen de producto">
+                <img src="../public/img/<?= $img ?>.jpg" style="width:99%; height:70%;" alt="Imagen de producto">
               </a>
               <div style="height:30%;">
                 <p class="text-center mb-0 "><b><?= $nombre ?></b></p>
                 <p class="mb-0"> <b>Precio:</b> S/<?= number_format($precio, 2, ".", ",") ?></p>
                 <div class="mb-1">
-                  <button type="button" class="btn btn btn-warning" style="width:40%;" onclick="disminuir(<?= $id ?>)">-</button>
+                  <button type="button" class="btn btn btn-warning" style="width:39%;" onclick="disminuir(<?= $id ?>)">-</button>
                   <?php if (isset($_SESSION["Productos"][$id])) : ?>
                     <input class='text-center' type='text' id=<?= $id ?> value=<?= $_SESSION['Productos'][$id]['cantidad'] ?> disabled style='width:17%;'>
                   <?php else : ?>
-                    <input class='text-center' type='text' id=<?= $id ?> value='1' disabled style='width:17%;'>
+                    <input class='text-center' type='text' id=<?= $id ?> value='1' disabled style='width:18%;'>
 
                   <?php endif; ?>
-                  <button type="button" class="btn btn btn-warning" style="width:40%;" onclick="aumentar(<?= $id ?>)">+</button>
+                  <button type="button" class="btn btn btn-warning" style="width:39%;" onclick="aumentar(<?= $id ?>)">+</button>
                 </div>
                 <a href=""></a><button value="agregar" type="button" class="btn btn-block btn-success" onclick="requestCarritoController(<?= $id ?>, this.value)">
                   <i class="fas fa-cart-plus fa-lg mr-2"></i>

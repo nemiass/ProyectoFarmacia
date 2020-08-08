@@ -10,8 +10,6 @@ class LoginController
     private $error;
     public  function getUsuario($usuario, $contraseña)
     {
-        // en la base usuario = carlos
-        // contraseña = 12345678
         $usr = $usuario;
         $pass = $contraseña;
 
@@ -26,19 +24,10 @@ class LoginController
 
     public function validarFormulario($usuario, $contraseña)
     {
-        if (empty($usuario) && empty($contraseña)) {
+        if (empty($usuario) || empty($contraseña)) {
             return header("location:../view/login.php?error=rellene los campos");
         }
-        if (empty($usuario)) {
-            if (!empty($contraseña)) {
-                return header("location:../view/login.php?error=ingrese el usuario");
-            }
-        }
-        if (empty($contraseña)) {
-            if (!empty($usuario)) {
-                return header("location:../view/login.php?error=ingrese la contraseña");
-            }
-        }
+
         if (!empty($usuario) && !empty($contraseña)) {
             if ($usuario = $this->getUsuario($usuario, $contraseña)) {
 
@@ -69,5 +58,10 @@ class LoginController
                 return header("location:../view/login.php?error=usuario  incorrecta");
             }
         }
+    }
+
+    public function crearSession($dni)
+    {
+        // TODO
     }
 }

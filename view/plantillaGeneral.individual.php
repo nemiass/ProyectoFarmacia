@@ -1,7 +1,6 @@
  <!-- Header -->
  <?php
   include "layouts/headerCliente.php";
-  include "../config/autoload2.php";
 
   use app\controller\ProductoController;
   ?>

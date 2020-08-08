@@ -41,7 +41,7 @@ CREATE TABLE `administrador` (
 --
 
 INSERT INTO `administrador` (`id_usuario`, `nombre`, `apellido`, `dni`, `telefono`) VALUES
-(1, 'bill', 'morales davila', '70978397', '912456789'),
+(1, 'bill', 'morales davila', '70978397', '912456789');
 (2, 'wos', 'canguro', '12345678', '999111444');
 
 -- --------------------------------------------------------

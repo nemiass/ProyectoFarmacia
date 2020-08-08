@@ -3,38 +3,22 @@
 namespace app;
 
 use app\ConexionDB as db;
-//include "../config/autoload.php";
 
 class Producto
 {
     private $nombre;
     private $precio;
     private $caracteristicas;
+    private $imagen;
     private $id_catalogo;
 
-    public function __construct($nombre, $precio, $caracteristicas, $id_catalogo)
+    public function __construct($nombre, $precio, $caracteristicas, $img, $id_catalogo)
     {
         $this->nombre = $nombre;
         $this->precio = $precio;
         $this->caracteristicas = $caracteristicas;
+        $this->imagen = $img;
         $this->id_catalogo = $id_catalogo;
-    }
-
-    public static function getNombre(): array
-    {
-        try {
-            $db = new db();
-            $conn = $db->abrirConexion();
-
-            $sql = "SELECT nombre from producto ";
-            $respuesta = $conn->prepare($sql);
-            $respuesta->execute();
-            $nombre = $respuesta->fetchAll();
-            $db->cerrarConexion();
-            return $nombre;
-        } catch (\PDOException $e) {
-            echo $e->getMessage();
-        }
     }
 
     public function setNombre($nombre): void
@@ -42,25 +26,58 @@ class Producto
         $this->nombre = $nombre;
     }
 
-    public function registrarProducto(): void
+    public function registrarProducto(): int
     {
-        $nombre = $this->nombre;
-        $precio = $this->precio;
-        $descripcion = $this->descripcion;
-        $id_catalogo = $this->id_catalogo;
         try {
             $db = new db();
             $conn = $db->abrirConexion();
 
-            $sql = "INSERT INTO producto (null,nombre, precio,caracteristica,id_catalogo)
-            VALUES ($nombre, $precio, $descripcion,$id_catalogo)";
+            $sql = "INSERT INTO producto (null,nombre, precio, caracteristicas, imagen, id_catalogo)
+            VALUES (:n, :p, :c, :img, :idc)";
             $respuesta = $conn->prepare($sql);
-            $respuesta->execute();
+            $respuesta->execute([
+                "n" => $this->nombre,
+                "p" => $this->precio,
+                "c" => $this->caracteristicas,
+                "img" => $this->imagen,
+                "idc" => $this->id_catalogo
+            ]);
 
             $db->cerrarConexion();
+            return $respuesta->rowCount();
         } catch (\PDOException $e) {
             echo $e->getMessage();
         }
+    }
+
+    public function actualizarProductos($id): int
+    {
+        try {
+            $db = new db();
+            $conn = $db->abrirConexion();
+
+            $sql = "UPDATE producto
+            SET nombre = :n, precio = :p, caracteristicas= :c, img = :im, id_catalogo= :idc
+            WHERE id_producto = :id";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute([
+                "n" => $this->nombre,
+                "p" => $this->precio,
+                "c" => $this->caracteristicas,
+                "im" => $this->imagen,
+                "idc" => $this->id_catalogo
+            ]);
+
+            $db->cerrarConexion();
+            return $res = $respuesta->rowCount();
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public function eliminarProducto()
+    {
+        //TODO: esto al final da problemas (ON DELETE CASCADE)
     }
 
     public  static function ListarProductos(): array
@@ -75,24 +92,6 @@ class Producto
             $matriz = $respuesta->fetchAll();
             $db->cerrarConexion();
             return $matriz;
-        } catch (\PDOException $e) {
-            echo $e->getMessage();
-        }
-    }
-
-    public function actualizarProductos($id, $nombre, $precio, $caracteristicas, $id_catalogo): void
-    {
-        try {
-            $db = new db();
-            $conn = $db->abrirConexion();
-
-            $sql = "UPDATE producto
-            SET nombre =$nombre, precio =$precio, caracteristicas=$caracteristicas,id_catalogo=$id_catalogo
-            WHERE id_producto=$id";
-            $respuesta = $conn->prepare($sql);
-            $respuesta->execute();
-
-            $db->cerrarConexion();
         } catch (\PDOException $e) {
             echo $e->getMessage();
         }

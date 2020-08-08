@@ -3,58 +3,41 @@
 namespace app;
 
 use app\ConexionDB as db;
+use app\Usuario;
 
 class Cliente
 {
     private $nombre;
     private $apellido;
     private $dni;
+    private $telefono;
 
-    public function getNombre(): string
-    {
-        return $this->nombre;
-    }
-
-    public function setNombre($nombre): void
+    public function  __construct($nombre, $apellido, $dni, $telefono)
     {
         $this->nombre = $nombre;
-    }
-
-    public function setApellido($apellido): void
-    {
         $this->apellido = $apellido;
-    }
-
-    public function getApellido(): int
-    {
-        return $this->apellido;
-    }
-
-    public function setDni($dni): void
-    {
         $this->dni = $dni;
+        $this->telefono = $telefono;
     }
 
-    public function getDni(): int
+    public function registrarCliente(): int
     {
-        return $this->dni;
-    }
-
-    public function registrarse(): void
-    {
-        $nombre = $this->nombre;
-        $apellido = $this->apellido;
-        $dni = $this->dni;
         try {
             $db = new db();
             $conn = $db->abrirConexion();
 
-            $sql = "INSERT INTO cliente(id_cliente,nombre,apellido,dni)
-            VALUES ($nombre,$apellido,$dni)";
+            $sql = "INSERT INTO  empleado(nombre, apellido, dni, telefono)
+            VALUES(nombre=:n , apellido=:a, dni=:dn, telefono=:tel)";
             $respuesta = $conn->prepare($sql);
-            $respuesta->execute();
+            $respuesta->execute([
+                "n" => $this->nombre,
+                "a" => $this->apellido,
+                "dn" => $this->dni,
+                "tel" => $this->telefono
+            ]);
 
             $db->cerrarConexion();
+            return $respuesta->rowCount();
         } catch (\PDOException $e) {
             echo $e->getMessage();
         }
@@ -77,34 +60,44 @@ class Cliente
         }
     }
 
-    public function crearPedido($cantidad, $fecha, $fecha_entrega, $direccion, $id_producto, $id_cliente)
+    public function actualizarCliente()
     {
         try {
             $db = new db();
             $conn = $db->abrirConexion();
 
-            $sql = "INSERT INTO pedido (id_pedido,cantidad, fecha,fecha_entrega,direccion,id_producto,id_cliente)
-            VALUES ( $cantidad,  $fecha,$fecha_entrega,$direccion, $id_producto, $id_cliente)";
+            $sql = "UPDATE cliente SET nombre=:n , apellido=:a, dni=:dn, telefono=:tel)";
             $respuesta = $conn->prepare($sql);
-            $respuesta->execute();
+            $respuesta->execute([
+                "n" => $this->nombre,
+                "a" => $this->apellido,
+                "dn" => $this->dni,
+                "tel" => $this->telefono
+            ]);
 
             $db->cerrarConexion();
+            return $respuesta->rowCount();
         } catch (\PDOException $e) {
             echo $e->getMessage();
         }
     }
 
-    public function eliminarPedido($id): void
+    public function crearPedido()
+    {
+    }
+
+    public function CancelarPedido($id): int
     {
         try {
             $db = new db();
             $conn = $db->abrirConexion();
 
-            $sql = "DELETE FROM pedido WHERE id_pedido=$id";
+            $sql = "DELETE FROM pedido WHERE id_pedido=$id and estado = pendiente";
             $respuesta = $conn->prepare($sql);
             $respuesta->execute();
 
             $db->cerrarConexion();
+            return $respuesta->rowCount();
         } catch (\PDOException $e) {
             echo $e->getMessage();
         }
