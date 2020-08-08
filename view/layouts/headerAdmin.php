@@ -1,8 +1,13 @@
 <?php
+<<<<<<< HEAD
 
 include "../config/autoload2.php";
 
 session_start();
+=======
+session_start();
+include "../config/autoload2.php";
+>>>>>>> misCambios
 
 ?>
 <!DOCTYPE html>

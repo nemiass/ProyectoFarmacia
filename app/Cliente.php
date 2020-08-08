@@ -108,7 +108,12 @@ class Cliente
 
             $sql = "DELETE FROM pedido WHERE id_pedido=$id and estado = pendiente";
             $respuesta = $conn->prepare($sql);
-            $respuesta->execute();
+            $respuesta->execute([
+                "n" => $this->nombre,
+                "a" => $this->apellido,
+                "dn" => $this->dni,
+                "tel" => $this->telefono
+            ]);
 
             $db->cerrarConexion();
             return $respuesta->rowCount();

@@ -4,7 +4,6 @@ namespace app;
 
 use app\ConexionDB as db;
 
-
 class Usuario
 {
     private $user;
