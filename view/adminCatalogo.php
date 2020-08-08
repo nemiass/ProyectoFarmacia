@@ -1,24 +1,24 @@
 <?php
 session_start();
-        if(isset($_GET['dni'])){
-            $_SESSION['usuario']=$_GET['usuario']; 
-            $_SESSION['contraseña']=$_GET['contraseña']; 
-            $_SESSION['dni']=$_GET['dni']; 
-        }
-         
-        
+if (isset($_GET['dni'])) {
+    $_SESSION['usuario'] = $_GET['usuario'];
+    $_SESSION['contraseña'] = $_GET['contraseña'];
+    $_SESSION['dni'] = $_GET['dni'];
+}
+
+
 //echo $_SESSION['dni']=$_GET['dni']; 
 ?>
 <!-- Header -->
-<?php 
-    include "layouts/headerAdmin.php";
-    
-  
+<?php
+include "layouts/headerAdmin.php";
+
+
 ?>
 <!--/. Header -->
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper"> 
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
     <!-- Main content -->
     <section class="content">
 
@@ -33,70 +33,70 @@ session_start();
                         <button type="button" class="btn btn-block btn-success">Agregar Catálogo</button>
                     </div>
                 </div>
-              <div class="row">
-                <div class="col-12">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Nombre</th>
-                                <th>Descripción</th>
-                                <th>&nbsp</th>
-                                <th>&nbsp</th>
-                            </tr>
-                        </thead>
-    
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Nombre tal</td>
-                                <td>desc tal</td>
-                                <td>
-                                    <a href="#"><button type="button" class="btn btn-block btn-success">Editar</button></a>
-                                </td>
-  
-                                <td>
-                                  <a href="#"><button type="button" class="btn btn-block btn-danger">Eliminar</button></a>
-                              </td>
+                <div class="row">
+                    <div class="col-12">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Nombre</th>
+                                    <th>Descripción</th>
+                                    <th>&nbsp</th>
+                                    <th>&nbsp</th>
+                                </tr>
+                            </thead>
 
-                              <td>
-                                <a href="adminCatalogoProducto.php"><button type="button" class="btn btn-block btn-warning">Ver productos</button></a>
-                            </td>
-                            </tr>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Nombre tal</td>
+                                    <td>desc tal</td>
+                                    <td>
+                                        <a href="#"><button type="button" class="btn btn-block btn-success">Editar</button></a>
+                                    </td>
 
-                            <tr>
-                                <td>1</td>
-                                <td>Nombre tal</td>
-                                <td>desc tal</td>
-                                <td>
-                                    <a href="#"><button type="button" class="btn btn-block btn-success">Editar</button></a>
-                                </td>
-  
-                                <td>
-                                  <a href="#"><button type="button" class="btn btn-block btn-danger">Eliminar</button></a>
-                              </td>
+                                    <td>
+                                        <a href="#"><button type="button" class="btn btn-block btn-danger">Eliminar</button></a>
+                                    </td>
 
-                              <td>
-                                <a href="adminCatalogoProducto.php"><button type="button" class="btn btn-block btn-warning">Ver productos</button></a>
-                            </td>
-                            </tr>
+                                    <td>
+                                        <a href="adminCatalogoProducto.php"><button type="button" class="btn btn-block btn-warning">Ver productos</button></a>
+                                    </td>
+                                </tr>
 
-                        </tbody>
-                    </table>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Nombre tal</td>
+                                    <td>desc tal</td>
+                                    <td>
+                                        <a href="#"><button type="button" class="btn btn-block btn-success">Editar</button></a>
+                                    </td>
+
+                                    <td>
+                                        <a href="#"><button type="button" class="btn btn-block btn-danger">Eliminar</button></a>
+                                    </td>
+
+                                    <td>
+                                        <a href="adminCatalogoProducto.php"><button type="button" class="btn btn-block btn-warning">Ver productos</button></a>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-              </div>
             </div>
             <!-- /.card-body -->
-          </div>
-        
-      </section>
+        </div>
+
+    </section>
     <!-- /.content -->
-  
-  </div>
-  <!-- /.content-wrapper -->
-  
+
+</div>
+<!-- /.content-wrapper -->
+
 <!-- Footer -->
-<?php 
-    include "layouts/footer.php";
+<?php
+include "layouts/footer.php";
 ?>
 <!--/. Footer -->

@@ -1,5 +1,7 @@
 <?php
+
 namespace app;
+
 use app\ConexionDB as db;
 
 class Cliente
@@ -8,7 +10,7 @@ class Cliente
     private $apellido;
     private $dni;
 
-    public function getNombre():string
+    public function getNombre(): string
     {
         return $this->nombre;
     }
@@ -23,7 +25,7 @@ class Cliente
         $this->apellido = $apellido;
     }
 
-    public function getApellido():int
+    public function getApellido(): int
     {
         return $this->apellido;
     }
@@ -33,15 +35,16 @@ class Cliente
         $this->dni = $dni;
     }
 
-    public function getDni():int
+    public function getDni(): int
     {
         return $this->dni;
     }
 
-    public function registrarse():void
-    {  $nombre=$this->nombre;
-        $apellido=$this->apellido;
-        $dni=$this->dni;
+    public function registrarse(): void
+    {
+        $nombre = $this->nombre;
+        $apellido = $this->apellido;
+        $dni = $this->dni;
         try {
             $db = new db();
             $conn = $db->abrirConexion();
@@ -50,16 +53,15 @@ class Cliente
             VALUES ($nombre,$apellido,$dni)";
             $respuesta = $conn->prepare($sql);
             $respuesta->execute();
-           
+
             $db->cerrarConexion();
-          
-        }
-        catch (\PDOException $e){
+        } catch (\PDOException $e) {
             echo $e->getMessage();
         }
     }
 
-    public  static function ListarClientes() :array {
+    public  static function ListarClientes(): array
+    {
         try {
             $db = new db();
             $conn = $db->abrirConexion();
@@ -67,11 +69,10 @@ class Cliente
             $sql = "SELECT * from cliente";
             $respuesta = $conn->prepare($sql);
             $respuesta->execute();
-            $matriz=$respuesta->fetchAll();
+            $matriz = $respuesta->fetchAll();
             $db->cerrarConexion();
             return $matriz;
-        }
-        catch (\PDOException $e){
+        } catch (\PDOException $e) {
             echo $e->getMessage();
         }
     }
@@ -104,16 +105,14 @@ class Cliente
             VALUES ( $cantidad,  $fecha,$fecha_entrega,$direccion, $id_producto, $id_cliente)";
             $respuesta = $conn->prepare($sql);
             $respuesta->execute();
-           
+
             $db->cerrarConexion();
-            
-        }
-        catch (\PDOException $e){
+        } catch (\PDOException $e) {
             echo $e->getMessage();
         }
     }
 
-    public function eliminarPedido($id):void
+    public function eliminarPedido($id): void
     {
         try {
             $db = new db();
@@ -122,34 +121,9 @@ class Cliente
             $sql = "DELETE FROM pedido WHERE id_pedido=$id";
             $respuesta = $conn->prepare($sql);
             $respuesta->execute();
-           
+
             $db->cerrarConexion();
-            
-        }
-        catch (\PDOException $e){
-            echo $e->getMessage();
-        }
-    }
-
-    public function agregarAlCarrito()
-    {
-        // TODO
-    }
-
-    public function EliminarDelCarrito($id)
-    {
-        try {
-            $db = new db();
-            $conn = $db->abrirConexion();
-
-            $sql = "DELETE FROM pedido WHERE id_pedido=$id";
-            $respuesta = $conn->prepare($sql);
-            $respuesta->execute();
-           
-            $db->cerrarConexion();
-            
-        }
-        catch (\PDOException $e){
+        } catch (\PDOException $e) {
             echo $e->getMessage();
         }
     }

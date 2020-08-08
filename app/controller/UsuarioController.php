@@ -1,5 +1,7 @@
 <?php
+
 namespace app\controller;
+
 use app\Usuario;
 
 class UsuarioController
@@ -7,20 +9,14 @@ class UsuarioController
 
     function listarUsuario()
     {
-    
     }
     function EliminarUsuario()
     {
-        
     }
     function editarUsuario()
     {
-        
     }
     function CrearUsuario()
     {
-        
     }
 }
-
-?>

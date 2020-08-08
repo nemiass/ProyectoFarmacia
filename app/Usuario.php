@@ -1,5 +1,7 @@
 <?php
+
 namespace app;
+
 use app\ConexionDB as db;
 
 abstract class Usuario
@@ -10,7 +12,7 @@ abstract class Usuario
     protected $dni;
     protected $user;
     protected $pass;
-  
+
     public function __construct($nombres, $apellidos, $telefono, $dni, $user, $pass)
     {
         $this->nombres = $nombres;
@@ -71,7 +73,8 @@ abstract class Usuario
         $this->pass = $pass;
     }
 
-    public  static function listarUsuario() :array {
+    public  static function listarUsuario(): array
+    {
         try {
             $db = new db();
             $conn = $db->abrirConexion();
@@ -80,21 +83,19 @@ abstract class Usuario
             es.id_pa=p.id;";
             $respuesta = $conn->prepare($sql);
             $respuesta->execute();
-            $matriz=$respuesta->fetchAll();
+            $matriz = $respuesta->fetchAll();
             $db->cerrarConexion();
             return $matriz;
-        }
-        catch (\PDOException $e){
+        } catch (\PDOException $e) {
             echo $e->getMessage();
         }
     }
 
     public static function allUsuario()
     {
-
     }
 
-    public static function traerUser($user):array
+    public static function traerUser($user): array
     {
         try {
             $db = new db();
@@ -104,10 +105,8 @@ abstract class Usuario
             $respuesta->execute([$user]);
             $usuario = $respuesta->fetchAll();
             $db->cerrarConexion();
-                return $usuario;
-        }
-
-        catch (\PDOException $e){
+            return $usuario;
+        } catch (\PDOException $e) {
             return $e->getMessage();
         }
     }

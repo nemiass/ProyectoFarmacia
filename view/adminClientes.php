@@ -5,34 +5,29 @@
   ?>
 <?php 
 session_start();
-    include "layouts/headerAdmin.php";
+include "layouts/headerAdmin.php";
 ?>
 <!--/. Header -->
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper"> 
-    <!-- Main content -->
-    <section class="content">
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Main content -->
+  <section class="content">
 
-        <div class="card card-solid">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-9">
-                        <h1>Clientes</h1>
-                    </div>
-                    <div class="col-3 mt-3">
-                    <form class="form-inline ml-3">
-                        <div class="input-group input-group-sm">
-                          <input class="form-control form-control" type="search" placeholder="buscar cliente" aria-label="Search">
-                          <div class="input-group-append">
-                            <button class="btn btn-navbar" type="submit">
-                              <i class="fas fa-search"></i>
-                            </button>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                    
+    <div class="card card-solid">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-9">
+            <h1>Clientes</h1>
+          </div>
+          <div class="col-3 mt-3">
+            <form class="form-inline ml-3">
+              <div class="input-group input-group-sm">
+                <input class="form-control form-control" type="search" placeholder="buscar cliente" aria-label="Search">
+                <div class="input-group-append">
+                  <button class="btn btn-navbar" type="submit">
+                    <i class="fas fa-search"></i>
+                  </button>
                 </div>
               <div class="row">
                 <div class="col-12">
@@ -71,16 +66,19 @@ session_start();
             </div>
             <!-- /.card-body -->
           </div>
-        
-      </section>
-    <!-- /.content -->
-  
-  </div>
-  <!-- /.content-wrapper -->
+        </div>
+      </div>
+      <!-- /.card-body -->
+    </div>
 
-    <!-- Footer -->
-<?php 
+  </section>
+  <!-- /.content -->
+
+</div>
+<!-- /.content-wrapper -->
+
+<!-- Footer -->
+<?php
 include "layouts/footer.php";
 ?>
-<!--/. Footer -->  
- 
+<!--/. Footer -->

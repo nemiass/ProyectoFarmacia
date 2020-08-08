@@ -14,12 +14,18 @@ use app\controller\ClienteController;
 ?>
 <!--/. Header -->
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper"> 
-    <!-- Main content -->
-    <section class="content">
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Main content -->
+  <section class="content">
 
-        <div class="container-fluid">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+
+          <!-- Main content -->
+          <div class="invoice p-3 mb-3 mt-2">
+            <!-- title row -->
             <div class="row">
               <div class="col-12">
                 
@@ -143,20 +149,34 @@ use app\controller\ClienteController;
                     </div>
                   </div>
                 </div>
-                <!-- /.invoice -->
-              </div><!-- /.col -->
-            </div><!-- /.row -->
-          </div>
-        
-      </section>
-    <!-- /.content -->
-  
-  </div>
-  <!-- /.content-wrapper -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
 
-    <!-- Footer -->
-    <?php 
-    include "layouts/footer.php";
-    ?>
-    <!--/. Footer --> 
-  
+            <!-- this row will not appear when printing -->
+            <div class="row no-print">
+              <div class="col-12">
+                <a href="invoice-print.php" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Imprimir</a>
+                <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
+                  <i class="fas fa-download"></i> Generar PDF
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- /.invoice -->
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div>
+
+  </section>
+  <!-- /.content -->
+
+</div>
+<!-- /.content-wrapper -->
+
+<!-- Footer -->
+<?php
+include "layouts/footer.php";
+?>
+<!--/. Footer -->

@@ -1,5 +1,7 @@
 <?php
+
 namespace app\controller;
+
 use app\Empleado;
 use app\Catalogo;
 use app\Administrador;
@@ -62,4 +64,3 @@ public function listarPedidoRealizado($id) :array{
        
    }
 }
-?>

@@ -1,5 +1,7 @@
 <?php
+
 namespace app;
+
 use app\ConexionDB as db;
 
 class Pedido
@@ -17,7 +19,7 @@ class Pedido
         $this->fechaEntrega = $fechaEntrega;
     }
 
-    public function getCantidad():array
+    public function getCantidad(): array
     {
         try {
             $db = new db();
@@ -26,11 +28,10 @@ class Pedido
             $sql = "SELECT cantidad from pedido";
             $respuesta = $conn->prepare($sql);
             $respuesta->execute();
-            $cantidad=$respuesta->fetchAll();
+            $cantidad = $respuesta->fetchAll();
             $db->cerrarConexion();
             return $cantidad;
-        }
-        catch (\PDOException $e){
+        } catch (\PDOException $e) {
             echo $e->getMessage();
         }
     }
@@ -61,7 +62,8 @@ class Pedido
         $this->fechaEntrega = $fechaEntrega;
     }
 
-    public  static function ListarPedidos() :array {
+    public  static function ListarPedidos(): array
+    {
         try {
             $db = new db();
             $conn = $db->abrirConexion();
@@ -69,15 +71,12 @@ class Pedido
             $sql = "SELECT * from pedido";
             $respuesta = $conn->prepare($sql);
             $respuesta->execute();
-            $matriz=$respuesta->fetchAll();
+            $matriz = $respuesta->fetchAll();
             $db->cerrarConexion();
             return $matriz;
-        }
-        catch (\PDOException $e){
+        } catch (\PDOException $e) {
             echo $e->getMessage();
         }
-        
-        
     }
 
     public static function PedidoRealizado($id):array{
@@ -123,6 +122,24 @@ class Pedido
     
 }
 
+        $cantidad = $this->cantidad;
+        $fecha = $this->fecha;
+        $fecha_entrega = $this->fecha_entrega;
+        $direccion = $this->direccion;
+        $id_producto = $this->id_producto;
+        $id_cliente = $this->id_cliente;
+        try {
+            $db = new db();
+            $conn = $db->abrirConexion();
 
+            $sql = "INSERT INTO pedido (id_pedido,cantidad, fecha,fecha_entrega,direccion,id_producto,id_cliente)
+                VALUES ( $cantidad,  $fecha,$fecha_entrega,$direccion, $id_producto, $id_cliente)";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute();
 
+            $db->cerrarConexion();
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
 }

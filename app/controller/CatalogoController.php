@@ -1,16 +1,17 @@
 <?php
+
 namespace app\controller;
+
 use app\Catalogo;
 
 class CatalogoController
 {
 
-   function agregarCatalogo(){
-
+   function agregarCatalogo()
+   {
    }
 
-   function  eliminarCatalogo(){
-
+   function  eliminarCatalogo()
+   {
    }
 }
-?>

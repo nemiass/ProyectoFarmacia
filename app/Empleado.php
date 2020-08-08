@@ -1,5 +1,7 @@
 <?php
+
 namespace app;
+
 use app\ConexionDB as db;
 
 class Empleado extends Usuario
@@ -21,16 +23,16 @@ class Empleado extends Usuario
             $sql = "SELECT user_tipo from factura";
             $respuesta = $conn->prepare($sql);
             $respuesta->execute();
-            $tipo=$respuesta->fetchAll();
+            $tipo = $respuesta->fetchAll();
             $db->cerrarConexion();
             return $tipo;
-        }
-        catch (\PDOException $e){
+        } catch (\PDOException $e) {
             echo $e->getMessage();
         }
     }
 
-    public  static function ListarEmpleado() :array {
+    public  static function ListarEmpleado(): array
+    {
         try {
             $db = new db();
             $conn = $db->abrirConexion();
@@ -38,15 +40,12 @@ class Empleado extends Usuario
             $sql = "SELECT * from empleado";
             $respuesta = $conn->prepare($sql);
             $respuesta->execute();
-            $matriz=$respuesta->fetchAll();
+            $matriz = $respuesta->fetchAll();
             $db->cerrarConexion();
             return $matriz;
-        }
-        catch (\PDOException $e){
+        } catch (\PDOException $e) {
             echo $e->getMessage();
         }
-        
-        
     }
 
 
@@ -59,11 +58,10 @@ class Empleado extends Usuario
             $sql = "SELECT * from pedido";
             $respuesta = $conn->prepare($sql);
             $respuesta->execute();
-            $pedido=$respuesta->fetchAll();
+            $pedido = $respuesta->fetchAll();
             $db->cerrarConexion();
             return $pedido;
-        }
-        catch (\PDOException $e){
+        } catch (\PDOException $e) {
             echo $e->getMessage();
         }
     }
@@ -77,16 +75,11 @@ class Empleado extends Usuario
             $sql = "SELECT * from cliente";
             $respuesta = $conn->prepare($sql);
             $respuesta->execute();
-            $cliente=$respuesta->fetchAll();
+            $cliente = $respuesta->fetchAll();
             $db->cerrarConexion();
             return $cliente;
-        }
-        catch (\PDOException $e){
+        } catch (\PDOException $e) {
             echo $e->getMessage();
         }
-    }
-
-    public function hacerFactura(){
-        // TODO
     }
 }

@@ -1,29 +1,31 @@
 <?php
+
 namespace app\controller;
+
 use app\Cliente;
 use app\Producto;
 
 class ClienteController
 {   
 
-    function editardatos(){
+    function editardatos()
+    {
+    }
 
+    function agregarProductoCarrito()
+    {
     }
-    
-    function agregarProductoCarrito(){
-        
+
+    function eliminarProductoCarrito()
+    {
     }
-    
-    function eliminarProductoCarrito(){
-        
+
+    function agregarPedido()
+    {
     }
-    
-    function agregarPedido(){
-        
-    }
-    
-    function eliminarPedido(){
-        
+
+    function eliminarPedido()
+    {
     }
 
     function listarCliente($id){
@@ -39,5 +41,3 @@ class ClienteController
     }
 
 }
-
-?>
