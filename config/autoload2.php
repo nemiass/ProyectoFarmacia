@@ -1,7 +1,7 @@
 <?php
 define('ROOT', dirname(__FILE__));
 define('DS', DIRECTORY_SEPARATOR);
-//autoload mejorado
+//mejorado
 spl_autoload_register(function ($nombre_clase) {
 
     $ruta = ROOT . DS . "../" . str_replace("\\", DS, $nombre_clase) . '.php';
