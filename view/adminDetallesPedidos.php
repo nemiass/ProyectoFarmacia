@@ -109,10 +109,10 @@ $i = 1;
                     <!-- accepted payments column -->
                     <div class="col-6">
                       <p class="lead">Metodos de Pago:</p>
-                      <img src="../public/dist/img/credit/visa.png" alt="Visa">
-                      <img src="../public/dist/img/credit/mastercard.png" alt="Mastercard">
-                      <img src="../public/dist/img/credit/american-express.png" alt="American Express">
-                      <img src="../public/dist/img/credit/paypal2.png" alt="Paypal">
+                      <img src="public/dist/img/credit/visa.png" alt="Visa">
+                      <img src="public/dist/img/credit/mastercard.png" alt="Mastercard">
+                      <img src="public/dist/img/credit/american-express.png" alt="American Express">
+                      <img src="public/dist/img/credit/paypal2.png" alt="Paypal">
                     </div>
                     <!-- /.col -->
                     <div class="col-6">
@@ -152,7 +152,7 @@ $i = 1;
             <!-- this row will not appear when printing -->
             <div class="row no-print">
               <div class="col-12">
-                <a href="invoice-print.php" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Imprimir</a>
+                <a href="index.php?p=imprimir.php" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Imprimir</a>
                 <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
                   <i class="fas fa-download"></i> Generar PDF
                 </button>

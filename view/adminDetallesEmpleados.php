@@ -117,7 +117,7 @@ include "layouts/headerAdmin.php";
                     <td>Tal cliente</td>
                     <td>S/. 100.00</td>
                     <td>
-                      <a href="adminDetallesPedidos.php">
+                      <a href="index.php?p=adminDetallesPedidos">
                         <button type="button" class="btn btn-block btn-success">Mostrar</button>
                       </a>
                     </td>
@@ -130,7 +130,7 @@ include "layouts/headerAdmin.php";
                     <td>Tal cliente</td>
                     <td>S/. 100.00</td>
                     <td>
-                      <a href="adminDetallesPedidos.php">
+                      <a href="index.php?p=adminDetallesPedidos">
                         <button type="button" class="btn btn-block btn-success">Mostrar</button>
                       </a>
                     </td>

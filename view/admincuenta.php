@@ -2,10 +2,11 @@
 <?php
 
 include "layouts/headerAdmin.php";
-
-use app\controller\AdminController;
 ?>
 <?php
+
+use app\controller\AdminController;
+
 $admincontroller = new AdminController();
 $admin = $admincontroller->getAdmin($_SESSION['dni']);
 ?>

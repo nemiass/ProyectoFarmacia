@@ -25,8 +25,6 @@ foreach ($productos as $p) {
         "descripcion" => $p["caracteristicas"]
     );
 }
-
-
 $suma = $_GET["a"] + $_GET["b"];
 $jason_productos["datos"] = $datos;
 $jason_productos["suma"] = $suma;

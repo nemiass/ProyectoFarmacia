@@ -48,7 +48,7 @@ include "layouts/headerEmpleado.php";
                   <td>S/100.00</td>
                   <td>Cliente</td>
                   <td>
-                    <a href="empleadoDetallesPedidos.php"><button type="button" class="btn btn-block btn-success">Ver Detalles</button></a>
+                    <a href="index.php?p=empleadoDetallesPedidos"><button type="button" class="btn btn-block btn-success">Ver Detalles</button></a>
                   </td>
                 </tr>
 
@@ -59,7 +59,7 @@ include "layouts/headerEmpleado.php";
                   <td>S/100.00</td>
                   <td>Papo</td>
                   <td>
-                    <a href="empleadodetallesPedidos.php"><button type="button" class="btn btn-block btn-success">Ver Detalles</button></a>
+                    <a href="index.php?p=empleadodetallesPedidos"><button type="button" class="btn btn-block btn-success">Ver Detalles</button></a>
                   </td>
                 </tr>
 

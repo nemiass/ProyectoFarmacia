@@ -49,7 +49,7 @@ include "layouts/headerEmpleado.php";
                                     </td>
 
                                     <td>
-                                        <a href="empleadoDetallesPedidos.php"><button type="button" class="btn btn-block btn-success">Ver Detalles</button></a>
+                                        <a href="index.php?p=empleadoDetallesPedidos"><button type="button" class="btn btn-block btn-success">Ver Detalles</button></a>
                                     </td>
                                 </tr>
 
@@ -65,7 +65,7 @@ include "layouts/headerEmpleado.php";
                                     </td>
 
                                     <td>
-                                        <a href="empleadoDetallesPedidos.php"><button type="button" class="btn btn-block btn-success">Ver Detalles</button></a>
+                                        <a href="index.php?p=empleadoDetallesPedidos"><button type="button" class="btn btn-block btn-success">Ver Detalles</button></a>
                                     </td>
                                 </tr>
 

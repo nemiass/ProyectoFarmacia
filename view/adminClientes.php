@@ -1,8 +1,6 @@
 <!-- Header -->
 <?php
 include "layouts/headerAdmin.php";
-
-use app\controller\AdminController;
 ?>
 <!--/. Header -->
 
@@ -46,6 +44,9 @@ use app\controller\AdminController;
                 </tr>
               </thead>
               <?php
+
+              use app\controller\AdminController;
+
               $admincontroller = new AdminController();
               $clientes = $admincontroller->listarClientes();
               $hola = 'hola';
@@ -59,7 +60,7 @@ use app\controller\AdminController;
                     <td><?= $cliente['apellido']  ?></td>
                     <td><?= $cliente['telefono']  ?></td>
                     <td>
-                      <a href="adminDetallesClientes.php?id_cliente=<?= $cliente['id_cliente'] ?>"><button type="button" class="btn btn-block btn-success">Mostrar</button></a>
+                      <a href="index.php?p=adminDetallesClientes&id_cliente=<?= $cliente['id_cliente'] ?>"><button type="button" class="btn btn-block btn-success">Mostrar</button></a>
                     </td>
                   </tr>
                 <?php $i++;

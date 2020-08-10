@@ -17,12 +17,12 @@ class Usuario
         $this->pass = $pass;
     }
 
-    public function setDni($id)
+    public function setDni($dn)
     {
-        $this->dni = $id;
+        $this->dni = $dn;
     }
 
-    public function setTipoUsuario($tipo)
+    public function setTipo($tipo)
     {
         $this->tipo = $tipo;
     }
@@ -33,14 +33,14 @@ class Usuario
             $db = new db();
             $conn = $db->abrirConexion();
 
-            $sql = "INSERT INTO usuario(usuario, contraseña, tipo, dni)
-            VALUES (:u, :c, :t, :idr)";
+            $sql = "INSERT INTO usuarios(usuario, contrasenia, tipo, dni)
+            VALUES (:u, :c, :t, :dni)";
             $respuesta = $conn->prepare($sql);
             $respuesta->execute([
-                "u" => $this->user,
-                "c" => $this->pass,
-                "t" => $this->tipo,
-                "idr" => $this->dni,
+                ":u" => $this->user,
+                ":c" => $this->pass,
+                ":t" => $this->tipo,
+                ":dni" => $this->dni,
             ]);
 
             $db->cerrarConexion();
@@ -88,9 +88,18 @@ class Usuario
         }
     }
 
+    public static function Validar($datos): bool
+    {
+        foreach ($datos as $dato) {
+            if (!(preg_match('/^[a-zA-Z0-9]+$/', $dato))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public function hashContraseña()
     {
         // TODO
     }
 }
-

@@ -50,7 +50,7 @@ include "layouts/headerAdmin.php";
                   <td>Papo</td>
                   <td>Papo</td>
                   <td>
-                    <a href="adminDetallesPedidos.php"><button type="button" class="btn btn-block btn-success">Ver Detalles</button></a>
+                    <a href="index.php?p=adminDetallesPedidos"><button type="button" class="btn btn-block btn-success">Ver Detalles</button></a>
                   </td>
                 </tr>
 
@@ -62,7 +62,7 @@ include "layouts/headerAdmin.php";
                   <td>Papo</td>
                   <td>Papo</td>
                   <td>
-                    <a href="adminDetallesPedidos.php"><button type="button" class="btn btn-block btn-success">Ver Detalles</button></a>
+                    <a href="index.php?p=adminDetallesPedidos"><button type="button" class="btn btn-block btn-success">Ver Detalles</button></a>
                   </td>
                 </tr>
 

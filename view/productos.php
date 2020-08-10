@@ -25,7 +25,7 @@ use app\controller\ProductoController;
         ?>
             <div class="col-3 mt-2 mb-3">
               <a href="plantillaGeneral.individual.php?id=<?= $id ?>">
-                <img src="../public/img/<?= $img ?>.jpg" style="width:99%; height:70%;" alt="Imagen de producto">
+                <img src="public/img/<?= $img ?>.jpg" style="width:99%; height:70%;" alt="Imagen de producto">
               </a>
               <div style="height:30%;">
                 <p class="text-center mb-0 "><b><?= $nombre ?></b></p>

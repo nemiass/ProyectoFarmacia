@@ -20,24 +20,24 @@ class Cliente
         $this->telefono = $telefono;
     }
 
-    public function registrarCliente(): int
+    public function registrarCliente(): void
     {
         try {
             $db = new db();
             $conn = $db->abrirConexion();
 
-            $sql = "INSERT INTO  empleado(nombre, apellido, dni, telefono)
-            VALUES(nombre=:n , apellido=:a, dni=:dn, telefono=:tel)";
+            $sql = "INSERT INTO cliente(nombre, apellido, dni, telefono)
+            VALUES(:n ,:a, :dn, :tel)";
             $respuesta = $conn->prepare($sql);
             $respuesta->execute([
-                "n" => $this->nombre,
-                "a" => $this->apellido,
-                "dn" => $this->dni,
-                "tel" => $this->telefono
+                ':n' => $this->nombre,
+                ':a' => $this->apellido,
+                ':dn' => $this->dni,
+                ':tel' => $this->telefono
             ]);
 
             $db->cerrarConexion();
-            return $respuesta->rowCount();
+           
         } catch (\PDOException $e) {
             echo $e->getMessage();
         }

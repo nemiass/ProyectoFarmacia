@@ -1,25 +1,11 @@
 <?php
-if (isset($_SESSION)) {
+require_once "config/autoload2.php";
 
-    if ($_SESSION["estado"] == "OK") {
-        switch ($_SESSION["tipo"]) {
-            case "cliente":
-                header("location: view/plantillaGeneral.php");
-                break;
+use app\controller\VistasController;
 
-            case "empleado":
-                header("location: view/empleado.php");
-                break;
+$vcontroller = new VistasController();
 
-            case "administrador":
-                header("location: view/admincuenta.php");
-                break;
-
-            default:
-                header("location: view/registrarse.php");
-                break;
-        }
-    }
+if (isset($_SESSION["estado"])) {
 } else {
-    header("location: view/plantillaGeneral.php");
+    $vcontroller->plantillaGeneral();
 }
