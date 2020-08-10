@@ -8,7 +8,7 @@
       <div class="card-body login-card-body">
         <p class="login-box-msg">Inicie sessión</p>
 
-        <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
+        <form method="post">
 
           <div class="input-group mb-3">
             <input type="text" class="form-control" placeholder="usuario" name="user">
@@ -41,18 +41,7 @@
         </form>
         <!-- /.social-auth-links -->
 
-        <?php
-
-        use app\controller\LoginController;
-
-        if (isset($_POST["send"])) {
-          $usuario = $_POST["user"];
-          $contraseña = $_POST["pass"];
-
-          $contuser = new LoginController();
-          $contuser->validarFormulario($usuario, $contraseña);
-        }
-        ?>
+      
         <p class="mt-3">
           <a href="index.php?p=registrarse" class="text-center">Registrarme</a>
         </p>

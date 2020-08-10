@@ -3,7 +3,6 @@
 namespace app\controller;
 
 use app\Cliente;
-use app\Producto;
 use app\Usuario;
 
 class ClienteController
@@ -17,20 +16,23 @@ class ClienteController
                 "ape" => $_POST["apellido"],
                 "tel" => $_POST["telefono"],
                 "usr" => $_POST["usuario"],
-                "pass" => $_POST["contraseña"]
+                "pass" => $_POST["contraseña"],
+                "pass2" => $_POST["contraseña2"],
             );
 
-            if (Usuario::Validar($c)) {
+            $errores = Usuario::Validar($c);
+
+            if ($errores == "0") {
                 $cliente = new Cliente($c["nom"], $c["ape"], $c["dni"], $c["tel"]);
                 $cliente->registrarCliente();
-                //$nuew_pass = Usuario::hashContraseña($c["pass"]);
-                $user = new Usuario($c["usr"], $c["pass"]);
+                $password = password_hash($c["pass"], PASSWORD_BCRYPT);
+                $user = new Usuario($c["usr"], $password);
                 $user->setDni($c["dni"]);
                 $user->setTipo("cliente");
                 $user->RegistrarCuenta();
-                header("Location:index.php?p=productos");
+                header("location:index.php?p=productos");
             } else {
-                header("Location: index.php");
+                header("location: index.php?p=registrarse&e=$errores");
             }
         }
     }

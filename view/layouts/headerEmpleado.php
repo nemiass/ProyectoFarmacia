@@ -16,12 +16,7 @@
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
         <!-- Notifications Dropdown Menu -->
-        <?php
-        $_SESSION['usuario'] = $_GET['usuario'];
-        if (!$_SESSION) {
-          header("location:login.php");
-        }
-        ?>
+
         <a href='login.php' class='nav-link' value="">Cerrar sesión</a>
       </ul>
     </nav>

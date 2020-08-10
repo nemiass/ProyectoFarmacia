@@ -72,7 +72,7 @@ class Usuario
         }
     }
 
-    public static function traerUser($user): array
+    public static function traerUser($user)
     {
         try {
             $db = new db();
@@ -82,23 +82,41 @@ class Usuario
             $respuesta->execute([$user]);
             $usuario = $respuesta->fetchAll();
             $db->cerrarConexion();
-            return $usuario;
+
+            if (!empty($usuario)) {
+                return $usuario;
+            }
+            return false;
         } catch (\PDOException $e) {
             return $e->getMessage();
         }
     }
 
-    public static function Validar($datos): bool
+    public static function Validar($datos)
     {
+        $errores = "";
+        if (self::traerUser($datos["usr"])) {
+            return $errores = "usuario ya esxite";
+        }
         foreach ($datos as $dato) {
             if (!(preg_match('/^[a-zA-Z0-9]+$/', $dato))) {
-                return false;
+                return $errores = "rellenes los espacios correctamente";
             }
         }
-        return true;
+        if (strlen($datos["pass"]) > 8) {
+            return $errores = "contraseña maximo 8 caracteres";
+        } else if ($datos["pass"] != $datos["pass2"]) {
+            return $errores = "contraseñas no coinciden";
+        }
+        return $errores = "0";
     }
 
-    public function hashContraseña()
+    public function verificarHash()
+    {
+        // TODO
+    }
+
+    public function crearSession()
     {
         // TODO
     }

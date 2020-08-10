@@ -2,8 +2,7 @@
 include "layouts/headerAdmin.php";
 //echo $_SESSION['dni']=$_GET['dni']; 
 ?>
-<!-- Header -->
-<!--/. Header -->
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Main content -->

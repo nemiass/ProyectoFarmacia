@@ -1,13 +1,23 @@
+<?php
+
+use app\controller\ClienteController;
+
+$ccontroller = new ClienteController();
+$ccontroller->Registrar();
+?>
+
 <body class="hold-transition register-page">
   <div class="register-box">
     <div class="register-logo">
-      <a href="#"><b>Farma</b>Vida</a>
+      <a><b>Farma</b>Vida</a>
     </div>
 
     <div class="card">
       <div class="card-body register-card-body">
         <p class="login-box-msg">Registrarse</p>
-
+        <?php if (isset($_GET["e"])) : ?>
+          <div class="alert alert-danger" role="alert"><?= $_GET["e"] ?>!!!</div>
+        <?php endif; ?>
         <form action="#" method="POST">
 
           <div class="input-group mb-3">
@@ -63,7 +73,7 @@
               </div>
             </div>
           </div>
-          
+
           <div class="input-group mb-3">
             <input name="contraseña2" type="password" class="form-control" placeholder="confirmar contraseña">
             <div class="input-group-append">
@@ -74,20 +84,11 @@
           </div>
           <input name="reg" type="submit" class="btn btn-primary btn-block" value="registrarse">
         </form>
-        <?php
-
-        use app\controller\ClienteController;
-
-        $ccontroller = new ClienteController();
-        $ccontroller->Registrar();
-        ?>
         <div class="mt-3">
           <a href="index.php?p=login.php" class="text-center">Ya tengo cuenta</a>
-
         </div>
       </div>
       <!-- /.form-box -->
     </div>
   </div>
-</body>
-<!--<script src="public/jspropio/apiReniec.js"></script>-->
+  <!--<script src="public/jspropio/apiReniec.js"></script>-->

@@ -1,7 +1,5 @@
 <?php
 include "layouts/headerCliente.php";
-
-use app\controller\ProductoController;
 ?>
 <!--/. Header -->
 
@@ -13,6 +11,7 @@ use app\controller\ProductoController;
       <!-- Main row -->
       <div class="row">
         <?php
+        use app\controller\ProductoController;
         $pcontroller = new ProductoController();
         $productos = $pcontroller->listarProductos();
 
