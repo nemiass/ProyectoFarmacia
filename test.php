@@ -19,6 +19,14 @@
     $respuesta->execute();
     $productos = $respuesta->fetchAll();
     $conn = null;
+
+    require_once "config/autoload2.php";
+
+    use app\Usuario;
+
+    var_dump(Usuario::traerUser("goes"));
+    session_start();
+    session_destroy();
     ?>
 
     <table>

@@ -8,7 +8,6 @@ class Vistas
     {
         switch ($tipo_usuario) {
             case "administrador":
-                echo "administrador";
                 return $this->traerVistaAdmin($pagina);
                 break;
             case "empleado":
@@ -30,11 +29,9 @@ class Vistas
 
         if (in_array($pagina, $lista_a)) {
             $vista = "view/" . $pagina . ".php";
-        }
-        else if ($pagina == "productos") {
+        } else if ($pagina == "productos") {
             $vista = "view/productos.php";
-        } 
-        else {
+        } else {
             $vista = "view/admincuenta.php";
         }
         return $vista;
@@ -49,11 +46,9 @@ class Vistas
 
         if (in_array($pagina, $lista_e)) {
             $vista = "view/" . $pagina . ".php";
-        }
-        else if ($pagina == "productos") {
+        } else if ($pagina == "productos") {
             $vista = "view/productos.php";
-        } 
-        else {
+        } else {
             $vista = "view/empleadoCuenta.php";
         }
         return $vista;
@@ -68,11 +63,9 @@ class Vistas
 
         if (in_array($pagina, $lista_c)) {
             $vista = "view/" . $pagina . ".php";
-        }
-        else if ($pagina == "productos") {
+        } else if ($pagina == "productos") {
             $vista = "view/productos.php";
-        } 
-        else {
+        } else {
             $vista = "view/login.php";
         }
         return $vista;

@@ -110,14 +110,4 @@ class Usuario
         }
         return $errores = "0";
     }
-
-    public function verificarHash()
-    {
-        // TODO
-    }
-
-    public function crearSession()
-    {
-        // TODO
-    }
 }

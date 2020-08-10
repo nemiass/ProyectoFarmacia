@@ -30,7 +30,7 @@ class ClienteController
                 $user->setDni($c["dni"]);
                 $user->setTipo("cliente");
                 $user->RegistrarCuenta();
-                header("location:index.php?p=productos");
+                header("location:index.php?p=micuenta");
             } else {
                 header("location: index.php?p=registrarse&e=$errores");
             }

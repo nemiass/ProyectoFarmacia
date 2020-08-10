@@ -1,3 +1,11 @@
+<?php
+
+use app\controller\LoginController;
+
+$lcontroller = new LoginController();
+$lcontroller->iniciarSesion();
+?>
+
 <body class="hold-transition login-page">
   <div class="login-box">
     <div class="login-logo">
@@ -8,10 +16,10 @@
       <div class="card-body login-card-body">
         <p class="login-box-msg">Inicie sessión</p>
 
-        <form method="post">
+        <form method="POST">
 
           <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="usuario" name="user">
+            <input type="text" class="form-control" placeholder="usuario" name="usu">
             <div class="input-group-append">
               <div class="input-group-append">
                 <div class="input-group-text">
@@ -26,28 +34,23 @@
           </div>
 
           <div class="input-group mb-3">
-            <input type="password" class="form-control" placeholder="contraseña" name="pass">
+            <input type="password" class="form-control" placeholder="contraseña" name="contra">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-lock"></span>
               </div>
             </div>
           </div>
-
-          <button type="submit" name="send" class="btn btn-primary btn-block">Iniciar sessión</button>
-
-          <!-- /.col -->
-
+          <button type="submit" name="log" class="btn btn-primary btn-block">Iniciar sessión</button>
         </form>
-        <!-- /.social-auth-links -->
 
-      
+
         <p class="mt-3">
           <a href="index.php?p=registrarse" class="text-center">Registrarme</a>
         </p>
-        <?php if (isset($_GET['error'])) : ?>
+        <?php if (isset($_GET['e'])) : ?>
           <div class="alert alert-danger text-center" role="alert">
-            <?= $_GET['error'] ?>
+            <?= $_GET['e'] ?>
           </div>
         <?php endif; ?>
       </div>

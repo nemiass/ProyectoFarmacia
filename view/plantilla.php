@@ -32,9 +32,29 @@
 <!-- Contenidos -->
 
 <?php
+
 use app\controller\VistasController;
+
 $vcontroller = new VistasController();
-$vcontroller->solicitarVista();
+
+if (isset($_SESSION["estado"])) {
+    switch ($_SESSION["rol"]) {
+        case "cliente":
+            $vcontroller->solicitarVista();
+            break;
+
+        case "administador":
+            $vcontroller->solicitarVista("administrador");
+            break;
+
+        case "empleado":
+            $vcontroller->solicitarVista("empleado");
+            break;
+    }
+} else {
+
+    $vcontroller->solicitarVista();
+}
 ?>
 
 
