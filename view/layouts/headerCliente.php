@@ -35,7 +35,7 @@
       <ul class="navbar-nav ml-auto">
         <!-- Notifications Dropdown Menu -->
         <?php if (isset($_SESSION["estado"])) : ?>
-          <a href='#' class='nav-link'>Cerrar sesión</a>
+          <a href='index.php?p=logout' class='nav-link'>Cerrar sesión</a>
         <?php else : ?>
           <a href='index.php?p=login' class='nav-link'>Iniciar sesión</a>
         <?php endif; ?>
@@ -59,16 +59,16 @@
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
                  with font-awesome or any other icon font library -->
-
-            <li class="nav-item">
-              <a href="index.php?p=micuenta" class="nav-link">
-                <i class="fas  fa-user fa-lg mr-2"></i>
-                <p>
-                  Mi Cuenta
-                </p>
-              </a>
-            </li>
-
+            <?php if (isset($_SESSION["estado"])) : ?>
+              <li class="nav-item">
+                <a href="index.php?p=micuenta" class="nav-link">
+                  <i class="fas  fa-user fa-lg mr-2"></i>
+                  <p>
+                    Mi Cuenta
+                  </p>
+                </a>
+              </li>
+            <?php endif; ?>
             <li class="nav-item">
               <a href="index.php?p=carrito" class="nav-link">
                 <i class="fas fa-cart-plus fa-lg mr-2"></i>
@@ -83,30 +83,32 @@
               </a>
             </li>
 
-            <li class="nav-item has-treeview">
-              <a href="#" class="nav-link active">
-                <i class="fas fa-truck fa-lg mr-2"></i>
-                <p>
-                  Mis pedidos
-                  <i class="right fa fa-angle-left"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview" style="display: none;">
-                <li class="nav-item">
-                  <a href="index.php?p=misPedidos" class="nav-link active">
-                    <i class="fa fa-circle-o nav-icon"></i>
-                    <p>Pedidos Actuales</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="index.php?p=historialPedidos" class="nav-link">
-                    <i class="fa fa-circle-o nav-icon"></i>
-                    <p>Historial Pedidos</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
-
+            <?php if (isset($_SESSION["estado"])) : ?>
+              <li class="nav-item has-treeview">
+                <a href="#" class="nav-link active">
+                  <i class="fas fa-truck fa-lg mr-2"></i>
+                  <p>
+                    Mis pedidos
+                    <i class="right fa fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview" style="display: none;">
+                  <li class="nav-item">
+                    <a href="index.php?p=misPedidos" class="nav-link active">
+                      <i class="fa fa-circle-o nav-icon"></i>
+                      <p>Pedidos Actuales</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="index.php?p=historialPedidos" class="nav-link">
+                      <i class="fa fa-circle-o nav-icon"></i>
+                      <p>Historial Pedidos</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            <?php endif; ?>
+            
             <li class="nav-header">
               CATEGORÍAS
             </li>

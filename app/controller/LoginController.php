@@ -20,11 +20,19 @@ class LoginController
                 $_SESSION["estado"] = true;
                 $_SESSION["dni"] = $usrdb[0]["dni"];
                 $_SESSION["rol"] = $usrdb[0]["tipo"];
+                $_SESSION["user"] = $l["usr"];
+                $_SESSION["pass"] = $l["pass"];
                 header("location: index.php");
             } else {
                 header("location: index.php?p=login&e=$e");
             }
         }
+    }
+
+    public function cerrarSession()
+    {
+        session_unset();
+        session_destroy();
     }
 
     public function validarDatos($datos)

@@ -24,13 +24,13 @@ class Vistas
             "adminCatalogo", "adminCatalogoProducto", "adminClientes",
             "admincuenta", "adminDetallesClientes", "adminDetallesEmpleados",
             "adminDetallesPedidos", "adminEmpleados", "adminPedidosAtendidos",
-            "adminProductos"
+            "adminProductos", "imprimir", "logout", "agregarEmpleado"
         );
 
         if (in_array($pagina, $lista_a)) {
             $vista = "view/" . $pagina . ".php";
-        } else if ($pagina == "productos") {
-            $vista = "view/productos.php";
+        } else if ($pagina == "index") {
+            $vista = "view/admincuenta.php";
         } else {
             $vista = "view/admincuenta.php";
         }
@@ -41,13 +41,14 @@ class Vistas
     {
         $lista_e = array(
             "empleadoPedidosAtender", "empleadoPedidosAtendidos",
-            "empleadoDetallesPedidos", "empleadoCuenta"
+            "empleadoDetallesPedidos", "empleadoCuenta", "imprimir",
+            "logout"
         );
 
         if (in_array($pagina, $lista_e)) {
             $vista = "view/" . $pagina . ".php";
-        } else if ($pagina == "productos") {
-            $vista = "view/productos.php";
+        } else if ($pagina == "index") {
+            $vista = "view/empleadoCuenta.php";
         } else {
             $vista = "view/empleadoCuenta.php";
         }
@@ -58,12 +59,13 @@ class Vistas
     {
         $lista_c = array(
             "productos", "registrarse", "misPedidos", "login", "micuenta",
-            "producto", "imprimir", "historialPedidos", "carrito", "detallesPedidos"
+            "producto", "imprimir", "historialPedidos", "carrito", "detallesPedidos",
+            "imprimir", "logout"
         );
 
         if (in_array($pagina, $lista_c)) {
             $vista = "view/" . $pagina . ".php";
-        } else if ($pagina == "productos") {
+        } else if ($pagina == "index") {
             $vista = "view/productos.php";
         } else {
             $vista = "view/login.php";

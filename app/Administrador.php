@@ -29,10 +29,33 @@ class Administrador
 
             $sql = "SELECT * FROM administrador WHERE dni = :dni";
             $respuesta = $conn->prepare($sql);
-            $respuesta->execute(["dni" => $dni]);
-            $admin = $respuesta->fetchAll();
+            $respuesta->execute([":dni" => $dni]);
+            $admin = $respuesta->fetch();
             $db->cerrarConexion();
             return $admin;
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public function registrarAdministrador(): void
+    {
+        try {
+            $db = new db();
+            $conn = $db->abrirConexion();
+
+            $sql = "INSERT INTO administrador(nombre, apellido, dni, telefono)
+            VALUES(:n ,:a, :dn, :tel)";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute([
+                ':n' => $this->nombre,
+                ':a' => $this->apellido,
+                ':dn' => $this->dni,
+                ':tel' => $this->telefono
+            ]);
+
+            $db->cerrarConexion();
+           
         } catch (\PDOException $e) {
             echo $e->getMessage();
         }

@@ -48,18 +48,7 @@ include "layouts/headerCliente.php";
                   <td>S/100.00</td>
                   <td>Papo</td>
                   <td>
-                    <a href="detallesPedidos.php"><button type="button" class="btn btn-block btn-success">Ver Detalles</button></a>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>2</td>
-                  <td>12-12-2020</td>
-                  <td>Mi casa</td>
-                  <td>S/100.00</td>
-                  <td>Papo</td>
-                  <td>
-                    <a href="detallesPedidos.php"><button type="button" class="btn btn-block btn-success">Ver Detalles</button></a>
+                    <a href="index.php?p=detallesPedidos"><button type="button" class="btn btn-block btn-success">Ver Detalles</button></a>
                   </td>
                 </tr>
 

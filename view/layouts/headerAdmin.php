@@ -6,7 +6,7 @@
       <!-- Left navbar links -->
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><img src="../public/img/icons/menu.png" alt="menu" style="opacity: .8; width:30px;"></a>
+          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><img src="public/img/icons/menu.png" alt="menu" style="opacity: .8; width:30px;"></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
           <a href="#" class="nav-link">Inicio</a>
@@ -16,8 +16,12 @@
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
         <!-- Notifications Dropdown Menu -->
+        <?php if (isset($_SESSION["estado"])) : ?>
+          <a href='index.php?p=logout' class='nav-link'>Cerrar sesión</a>
+        <?php else : ?>
+          <a href='index.php?p=login' class='nav-link'>Iniciar sesión</a>
+        <?php endif; ?>
 
-        <a href='login.php' class='nav-link' value="">Cerrar sesión</a>
       </ul>
     </nav>
     <!-- /.navbar -->

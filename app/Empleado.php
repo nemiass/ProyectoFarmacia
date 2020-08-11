@@ -26,13 +26,13 @@ class Empleado
             $conn = $db->abrirConexion();
 
             $sql = "INSERT INTO  empleado(nombre, apellido, dni, telefono)
-            VALUES(nombre=:n , apellido=:a, dni=:dn, telefono=:tel)";
+            VALUES(:n , :a, :dn, :tel)";
             $respuesta = $conn->prepare($sql);
             $respuesta->execute([
-                "n" => $this->nombre,
-                "a" => $this->apellido,
-                "dn" => $this->dni,
-                "tel" => $this->telefono
+                ":n" => $this->nombre,
+                ":a" => $this->apellido,
+                ":dn" => $this->dni,
+                ":tel" => $this->telefono
             ]);
 
             $db->cerrarConexion();
@@ -51,10 +51,10 @@ class Empleado
             $sql = "UPDATE empleado SET nombre=:n , apellido=:a, dni=:dn, telefono=:tel)";
             $respuesta = $conn->prepare($sql);
             $respuesta->execute([
-                "n" => $this->nombre,
-                "a" => $this->apellido,
-                "dn" => $this->dni,
-                "tel" => $this->telefono
+                ":n" => $this->nombre,
+                ":a" => $this->apellido,
+                ":dn" => $this->dni,
+                ":tel" => $this->telefono
             ]);
 
             $db->cerrarConexion();

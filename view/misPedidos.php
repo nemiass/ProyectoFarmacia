@@ -45,7 +45,7 @@ include "layouts/headerCliente.php";
                   </td>
 
                   <td>
-                    <a href="detallesPedidos.php"><button type="button" class="btn btn-block btn-success">Ver Detalles</button></a>
+                    <a href="index.php?p=detallesPedidos"><button type="button" class="btn btn-block btn-success">Ver Detalles</button></a>
                   </td>
                 </tr>
 

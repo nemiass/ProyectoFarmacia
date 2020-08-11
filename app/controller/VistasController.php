@@ -16,7 +16,7 @@ class VistasController
         if (isset($_GET["p"])) {
             $pagina = $_GET["p"];
         } else {
-            $pagina = "productos";
+            $pagina = "index";
         }
 
         $mvista = new Vistas();

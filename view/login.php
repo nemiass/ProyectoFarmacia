@@ -6,18 +6,19 @@ $lcontroller = new LoginController();
 $lcontroller->iniciarSesion();
 ?>
 
-<body class="hold-transition login-page">
+<body class="hold-transition login-page" style="background-color: #f1efa7;">
   <div class="login-box">
     <div class="login-logo">
-      <a href="#"><b>Farma</b>Vida</a>
+      <a href="index.php">
+        <img src="public/img/icons/farmacia.png" alt="" style="width: 100px;">
+      </a>
+
     </div>
     <!-- /.login-logo -->
     <div class="card">
-      <div class="card-body login-card-body">
-        <p class="login-box-msg">Inicie sessión</p>
-
-        <form method="POST">
-
+      <div class="card-body login-card-body" style="background:#e1f9f4;">
+        <h2 class="text-center mt-0 mb-4" style="background:#e1f9f4;">Farma<b>Vida</b></h2>
+        <form method="POST" class="mt-0">
           <div class="input-group mb-3">
             <input type="text" class="form-control" placeholder="usuario" name="usu">
             <div class="input-group-append">
@@ -44,10 +45,11 @@ $lcontroller->iniciarSesion();
           <button type="submit" name="log" class="btn btn-primary btn-block">Iniciar sessión</button>
         </form>
 
-
-        <p class="mt-3">
-          <a href="index.php?p=registrarse" class="text-center">Registrarme</a>
-        </p>
+        <div class="mt-4">
+          <div class="d-flex justify-content-center links">
+            No tienes una cuenta? <a href="index.php?p=registrarse" class="ml-2">Registrarse</a>
+          </div>
+        </div>
         <?php if (isset($_GET['e'])) : ?>
           <div class="alert alert-danger text-center" role="alert">
             <?= $_GET['e'] ?>

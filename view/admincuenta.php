@@ -40,19 +40,19 @@ $admin = $admincontroller->getAdmin($_SESSION['dni']);
                 <tbody>
                   <tr>
                     <td>Nombre:</td>
-                    <td><?= $admin[0]['nombre'] ?></td>
+                    <td><?= $admin['nombre'] ?></td>
                   </tr>
                   <tr>
                     <td>Apelllido:</td>
-                    <td><?= $admin[0]['apellido'] ?></td>
+                    <td><?= $admin['apellido'] ?></td>
                   </tr>
                   <tr>
                     <td>Dni:</td>
-                    <td><?= $admin[0]['dni'] ?></td>
+                    <td><?= $admin['dni'] ?></td>
                   </tr>
                   <tr>
                     <td>Telefono:</td>
-                    <td><?= $admin[0]['telefono'] ?></td>
+                    <td><?= $admin['telefono'] ?></td>
                   </tr>
                   <tr>
                     <td colspan="2">
@@ -137,11 +137,11 @@ $admin = $admincontroller->getAdmin($_SESSION['dni']);
                 <tbody>
                   <tr>
                     <td>User:</td>
-                    <td><?= $_SESSION['usuario'] ?></td>
+                    <td><?= $_SESSION['user'] ?></td>
                   </tr>
                   <tr>
                     <td>Password:</td>
-                    <td><?= $_SESSION['contraseña'] ?></td>
+                    <td><?= $_SESSION['pass'] ?></td>
                   </tr>
                   <tr>
                     <td colspan="2">

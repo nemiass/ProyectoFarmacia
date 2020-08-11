@@ -50,6 +50,7 @@ class AdminController
     return false;
   }
 
+
   public function EliminarEmpleado(int $id_emp)
   {
     if (Empleado::eliminarEmpleado($id_emp) != 0) {

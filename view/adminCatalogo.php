@@ -46,7 +46,7 @@ include "layouts/headerAdmin.php";
                                     </td>
 
                                     <td>
-                                        <a href="adminCatalogoProducto.php"><button type="button" class="btn btn-block btn-warning">Ver productos</button></a>
+                                        <a href="index.php?p=adminCatalogoProducto"><button type="button" class="btn btn-block btn-warning">Ver productos</button></a>
                                     </td>
                                 </tr>
 

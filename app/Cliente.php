@@ -77,6 +77,23 @@ class Cliente
         }
     }
 
+    public static function getCliente($dni)
+    {
+        try {
+            $db = new ConexionDB();
+            $conn = $db->abrirConexion();
+
+            $sql = "SELECT * FROM cliente WHERE dni = :dni";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute([":dni" => $dni]);
+            $admin = $respuesta->fetch();
+            $db->cerrarConexion();
+            return $admin;
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
     //  en la calse pedido
     public function crearPedido($cantidad, $fecha, $fecha_entrega, $direccion, $id_producto, $id_cliente)
     {

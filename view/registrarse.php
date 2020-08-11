@@ -6,18 +6,24 @@ $ccontroller = new ClienteController();
 $ccontroller->Registrar();
 ?>
 
-<body class="hold-transition register-page">
+<body class="hold-transition register-page" style="background-color: #f1efa7;">
   <div class="register-box">
     <div class="register-logo">
-      <a><b>Farma</b>Vida</a>
+      <a href="index.php">
+        <img src="public/img/icons/farmacia.png" alt="" style="width: 80px;">
+      </a>
     </div>
 
     <div class="card">
-      <div class="card-body register-card-body">
-        <p class="login-box-msg">Registrarse</p>
-        <?php if (isset($_GET["e"])) : ?>
-          <div class="alert alert-danger" role="alert"><?= $_GET["e"] ?>!!!</div>
-        <?php endif; ?>
+      <div class="card-body register-card-body" style="background:#e1f9f4;">
+        <p class="login-box-msg">Formulario de registro</p>
+        <?php if (isset($_GET["e"])) :
+          if ($_GET["e"] == "ok") : ?>
+            <div class="alert alert-success" role="alert">Registrado Correctamente!!!</div>
+          <?php else : ?>
+            <div class="alert alert-danger" role="alert"><?= $_GET["e"] ?>!!!</div>
+        <?php endif;
+        endif; ?>
         <form action="#" method="POST">
 
           <div class="input-group mb-3">

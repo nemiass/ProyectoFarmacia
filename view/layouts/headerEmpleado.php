@@ -16,8 +16,12 @@
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
         <!-- Notifications Dropdown Menu -->
+        <?php if (isset($_SESSION["estado"])) : ?>
+          <a href='index.php?p=logout' class='nav-link'>Cerrar sesión</a>
+        <?php else : ?>
+          <a href='index.php?p=login' class='nav-link'>Iniciar sesión</a>
+        <?php endif; ?>
 
-        <a href='login.php' class='nav-link' value="">Cerrar sesión</a>
       </ul>
     </nav>
     <!-- /.navbar -->

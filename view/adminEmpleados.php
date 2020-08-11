@@ -1,6 +1,7 @@
 <!-- Header -->
 <?php
 include "layouts/headerAdmin.php";
+
 use app\controller\AdminController;
 ?>
 <!--/. Header -->
@@ -17,7 +18,9 @@ use app\controller\AdminController;
             <h1>Empleados</h1>
           </div>
           <div class="col-3">
-            <button type="button" class="btn btn-block btn-success">Agregar Empleado</button>
+            <a href="index.php?p=agregarEmpleado">
+              <button type="button" class="btn btn-block btn-success">Agregar Empleado</button>
+            </a>
           </div>
 
         </div>

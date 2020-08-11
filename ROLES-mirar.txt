@@ -1,0 +1,11 @@
+ADMINISTRADOR
+
+usuario: admin
+contraseña: admin
+
+EMPLEADO: --//Solo el admin agrega empleados
+usuario: empleado
+contraseña: empleado
+
+ClIENTE
+Los clientes se registran

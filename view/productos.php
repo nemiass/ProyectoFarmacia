@@ -23,7 +23,7 @@ include "layouts/headerCliente.php";
             $img = $producto["img"];
         ?>
             <div class="col-3 mt-2 mb-3">
-              <a href="plantillaGeneral.individual.php?id=<?= $id ?>">
+              <a href="index.php?p=producto&id=<?= $id ?>">
                 <img src="public/img/<?= $img ?>.jpg" style="width:99%; height:70%;" alt="Imagen de producto">
               </a>
               <div style="height:30%;">

@@ -43,7 +43,7 @@ if (isset($_SESSION["estado"])) {
             $vcontroller->solicitarVista();
             break;
 
-        case "administador":
+        case "administrador":
             $vcontroller->solicitarVista("administrador");
             break;
 

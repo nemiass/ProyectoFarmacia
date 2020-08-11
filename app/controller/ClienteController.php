@@ -30,11 +30,21 @@ class ClienteController
                 $user->setDni($c["dni"]);
                 $user->setTipo("cliente");
                 $user->RegistrarCuenta();
-                header("location:index.php?p=micuenta");
+                header("location:index.php?p=registrarse&e=ok");
             } else {
                 header("location: index.php?p=registrarse&e=$errores");
             }
         }
+    }
+
+    public function traerCliente($dni)
+    {
+        $cliente = Cliente::getCliente($dni);
+
+        if (!empty($cliente)) {
+            return $cliente;
+        }
+        echo "error dni";
     }
 
     public function editardatos()

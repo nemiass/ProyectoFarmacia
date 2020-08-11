@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Invoice Print</title>
+  <title>Imprimir</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Bootstrap 4 -->
@@ -116,10 +116,10 @@
                 <!-- accepted payments column -->
                 <div class="col-6">
                   <p class="lead">Metodos de Pago:</p>
-                  <img src="../public/dist/img/credit/visa.png" alt="Visa">
-                  <img src="../public/dist/img/credit/mastercard.png" alt="Mastercard">
-                  <img src="../public/dist/img/credit/american-express.png" alt="American Express">
-                  <img src="../public/dist/img/credit/paypal2.png" alt="Paypal">
+                  <img src="public/dist/img/credit/visa.png" alt="Visa">
+                  <img src="public/dist/img/credit/mastercard.png" alt="Mastercard">
+                  <img src="public/dist/img/credit/american-express.png" alt="American Express">
+                  <img src="public/dist/img/credit/paypal2.png" alt="Paypal">
                 </div>
                 <!-- /.col -->
                 <div class="col-6">
