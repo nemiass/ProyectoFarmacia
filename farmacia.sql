@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-08-2020 a las 00:03:05
+-- Tiempo de generación: 11-08-2020 a las 22:28:44
 -- Versión del servidor: 10.4.13-MariaDB
 -- Versión de PHP: 7.4.7
 
@@ -40,7 +40,7 @@ CREATE TABLE `administrador` (
 --
 
 INSERT INTO `administrador` (`id_usuario`, `nombre`, `apellido`, `dni`, `telefono`) VALUES
-(1, 'bill', 'morales davila', '12345678', '912456789');
+(3, 'Admin', 'Admin', '12345678', '12345678');
 
 -- --------------------------------------------------------
 
@@ -80,7 +80,18 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`id_cliente`, `nombre`, `apellido`, `dni`, `telefono`) VALUES
-(1, 'cristina', 'dasdasdas', '12345678', '666666666');
+(1, 'cristina', 'dasdasdas', '12345678', '666666666'),
+(4, 'nemias', 'ponce', '73546902', '12345678'),
+(5, 'nemias', 'nemias', 'nemias', 'nemias'),
+(6, 'nemias', 'nemias', '45698', '123456'),
+(7, 'cristina', 'rivera', '22222222', '12345678'),
+(8, 'hola', 'hola', '789564', '12345678'),
+(9, 'go', 'goes', '44444444', '456892'),
+(10, 'cris', 'cris', '12345678', '12345678'),
+(11, 'nemias', 'nemias', '12345689', '12345678'),
+(12, 'flor', 'himena', '88956325', '88888569'),
+(13, 'juan', 'carlos', '12345678', '585555'),
+(16, 'sharon', 'sharon', '88888888', '123564');
 
 -- --------------------------------------------------------
 
@@ -102,7 +113,11 @@ CREATE TABLE `empleado` (
 
 INSERT INTO `empleado` (`id_empleado`, `nombre`, `apellido`, `dni`, `telefono`) VALUES
 (1, 'jordy', 'gomez', '14785236', '91245678'),
-(2, 'daniel', 'apolinario', '14785231', '91285678');
+(2, 'daniel', 'apolinario', '14785231', '91285678'),
+(3, 'juan', 'ponce', '12345', '444444'),
+(4, 'juan', 'carlos', '78956', '666666'),
+(5, 'carlitos', 'carlota', '45689', '45689123'),
+(6, 'empleado', 'empleado', '11111', '12345');
 
 -- --------------------------------------------------------
 
@@ -231,7 +246,7 @@ INSERT INTO `producto` (`id_producto`, `nombre`, `precio`, `caracteristicas`, `i
 CREATE TABLE `usuarios` (
   `id_usuario` int(11) NOT NULL,
   `usuario` varchar(20) DEFAULT NULL,
-  `contrasenia` varchar(64) DEFAULT NULL,
+  `contrasenia` varchar(72) DEFAULT NULL,
   `tipo` varchar(20) DEFAULT NULL,
   `dni` char(8) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -241,8 +256,14 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `usuario`, `contrasenia`, `tipo`, `dni`) VALUES
-(4, 'bill', 'bill', 'administrador', '12345678'),
-(5, 'wos', 'wos', 'administrador', '1');
+(28, 'cris', '$2y$10$9YXmnRAMxTul4q.U/tedaO/ptZZVQD6Zs1CKnWKFR8UHt7gP3Xzjm', 'cliente', '12345678'),
+(29, 'nemias', '$2y$10$0FBvpQSmY5S1/ocILAok5ujIWXeIWtjmAKjT7OQTRkmkDRtjzPgc6', 'cliente', '12345689'),
+(33, 'empleado', '$2y$10$JSFSPRS48fAqiLgrVOBfF.d3Xc26tnnQgatx7LF6RVrjbrr0cYZya', 'empleado', '66666665'),
+(34, 'popo', '$2y$10$ktNyj68dU7hiqVmkNEb1JuFceWKaD21v4CLZkjCkcKEzuVZsFgwDW', 'empleado', '12345'),
+(36, 'cora', '$2y$10$ogZ2Zsib7rQzv5aDCyfi9utLiRux.eQOVFvGbB5luugY7teKylTIy', 'empleado', '45689'),
+(37, 'admin', '$2y$10$LGsNdIyJWLa2EnodHL3qseHjkvXnvBjSp/sCbIUPRM1pwBrAtyvAa', 'administrador', '12345678'),
+(38, 'emp', '$2y$10$UdaeRfTkZznwiDErXrJHNuTwJIOqa32E5QhO8KAnEBZlxVOVsirLC', 'empleado', '11111'),
+(39, 'sharon', '$2y$10$PVVXBz4Sx8zjfp849n/L7uuBliV9kTBoTXuLCdEuM4zUmadfAauGa', 'cliente', '88888888');
 
 --
 -- Índices para tablas volcadas
@@ -330,7 +351,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `administrador`
 --
 ALTER TABLE `administrador`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `catalogo`
@@ -342,13 +363,13 @@ ALTER TABLE `catalogo`
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `empleado`
 --
 ALTER TABLE `empleado`
-  MODIFY `id_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `empleado_pedido`
@@ -384,7 +405,7 @@ ALTER TABLE `producto`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- Restricciones para tablas volcadas
