@@ -11,7 +11,7 @@ class VistasController
         include "view/plantilla.php";
     }
 
-    public function solicitarVista($tipo_usuario = "cliente")
+    public function solicitarVista($tipo_usuario = "general")
     {
         if (isset($_GET["p"])) {
             $pagina = $_GET["p"];

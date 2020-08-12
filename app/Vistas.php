@@ -7,6 +7,9 @@ class Vistas
     public function traerVista($pagina, $tipo_usuario)
     {
         switch ($tipo_usuario) {
+            case "general":
+                return $this->traerVistaGeneral($pagina);
+                break;
             case "administrador":
                 return $this->traerVistaAdmin($pagina);
                 break;
@@ -15,6 +18,7 @@ class Vistas
                 break;
             case "cliente":
                 return $this->traerVistaCliente($pagina);
+                break;
         }
     }
 
@@ -61,6 +65,22 @@ class Vistas
             "productos", "registrarse", "misPedidos", "login", "micuenta",
             "producto", "imprimir", "historialPedidos", "carrito", "detallesPedidos",
             "imprimir", "logout"
+        );
+
+        if (in_array($pagina, $lista_c)) {
+            $vista = "view/" . $pagina . ".php";
+        } else if ($pagina == "index") {
+            $vista = "view/productos.php";
+        } else {
+            $vista = "view/login.php";
+        }
+        return $vista;
+    }
+
+    public function traerVistaGeneral($pagina)
+    {
+        $lista_c = array(
+            "productos", "registrarse", "login", "producto", "carrito", "logout"
         );
 
         if (in_array($pagina, $lista_c)) {

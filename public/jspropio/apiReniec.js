@@ -1,7 +1,8 @@
 function sendRequest() {
-  let token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Im5laGVtaWFzdGZAZ21haWwuY29tIn0.        4heFpCuWoTFH7ert4sUz4U0lZGJgrkpFh6FwJ5yI5fc";
-  let dni   = document.getElementById("dni").value;
-  let url   = `https://dniruc.apisperu.com/api/v1/dni/${dni}?token=${token}`;
+  let token =
+    "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Im5laGVtaWFzdGZAZ21haWwuY29tIn0.        4heFpCuWoTFH7ert4sUz4U0lZGJgrkpFh6FwJ5yI5fc";
+  let dni = document.getElementById("dni").value;
+  let url = `https://dniruc.apisperu.com/api/v1/dni/${dni}?token=${token}`;
 
   const request = new XMLHttpRequest();
   request.open("GET", url, true);

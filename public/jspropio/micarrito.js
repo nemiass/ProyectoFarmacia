@@ -1,10 +1,11 @@
 function requestCarritoController(id, tipo) {
   const ajaxrequest = new XMLHttpRequest();
-  let cantidad  = document.getElementById(id).value;
-  let idc       = id;
-  let accion    = tipo;
-  let url       = "http://localhost/proyectoFarmacia/app/controller/CarritoController.php";
-  let uri       = url + `?id=${idc}&cantidad=${cantidad}&tipo=${accion}`;
+  let cantidad = document.getElementById(id).value;
+  let idc = id;
+  let accion = tipo;
+  let url =
+    "http://localhost/proyectoFarmacia/app/controller/CarritoController.php";
+  let uri = url + `?id=${idc}&cantidad=${cantidad}&tipo=${accion}`;
 
   ajaxrequest.open("GET", uri, true);
   ajaxrequest.setRequestHeader(

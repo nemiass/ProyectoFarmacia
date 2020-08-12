@@ -6,8 +6,6 @@ use app\Administrador;
 use app\Cliente;
 use app\Usuario;
 
-use function PHPSTORM_META\registerArgumentsSet;
-
 function Registrar()
 {
     $admin = new Administrador("Admin", "admin", "12345678", "12345678");

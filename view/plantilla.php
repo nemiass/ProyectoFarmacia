@@ -40,7 +40,7 @@ $vcontroller = new VistasController();
 if (isset($_SESSION["estado"])) {
     switch ($_SESSION["rol"]) {
         case "cliente":
-            $vcontroller->solicitarVista();
+            $vcontroller->solicitarVista("cliente");
             break;
 
         case "administrador":
