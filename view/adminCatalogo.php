@@ -33,10 +33,23 @@ include "layouts/headerAdmin.php";
                             </thead>
 
                             <tbody>
+                            <?php
+
+                               
+                            use app\controller\CatalogoController;
+
+                               $admincontroller = new CatalogoController();
+                               $catalogo = $admincontroller->listarCatalogos();
+                               
+
+                               $i = 1;
+                               
+                                ?>
+                                <?php foreach( $catalogo as $cat):  ?>
                                 <tr>
-                                    <td>1</td>
-                                    <td>Nombre tal</td>
-                                    <td>desc tal</td>
+                                    <td><?= $i?></td>
+                                    <td><?= $cat['nombre'] ?></td>
+                                    <td><?=  $cat['descripcion']; $i++;?></td>
                                     <td>
                                         <a href="#"><button type="button" class="btn btn-block btn-success">Editar</button></a>
                                     </td>
@@ -50,22 +63,7 @@ include "layouts/headerAdmin.php";
                                     </td>
                                 </tr>
 
-                                <tr>
-                                    <td>1</td>
-                                    <td>Nombre tal</td>
-                                    <td>desc tal</td>
-                                    <td>
-                                        <a href="#"><button type="button" class="btn btn-block btn-success">Editar</button></a>
-                                    </td>
-
-                                    <td>
-                                        <a href="#"><button type="button" class="btn btn-block btn-danger">Eliminar</button></a>
-                                    </td>
-
-                                    <td>
-                                        <a href="adminCatalogoProducto.php"><button type="button" class="btn btn-block btn-warning">Ver productos</button></a>
-                                    </td>
-                                </tr>
+                                <?php  endforeach;  ?>
 
                             </tbody>
                         </table>

@@ -42,29 +42,32 @@ include "layouts/headerAdmin.php";
               </thead>
 
               <tbody>
+              <?php
+
+use app\controller\PedidoController;
+
+
+                    $admincontroller = new PedidoController();
+                    $pedido = $admincontroller->listarPedidosAtendidos();
+   
+
+                     $i = 1;
+   
+    ?>
+    <?php foreach($pedido as $ped): ?>
                 <tr>
-                  <td>1</td>
-                  <td>12-12-2020</td>
-                  <td>Mi casa</td>
-                  <td>S/100.00</td>
-                  <td>Papo</td>
-                  <td>Papo</td>
+                  <td><?= $i; $i++ ?></td>
+                  <td><?= $ped['fecha_entrega'] ?></td>
+                  <td><?= $ped['direccion'] ?></td>
+                  <td><?= $ped['total'] ?></td>
+                  <td><?= $ped['empleado'] ?></td>
+                  <td><?= $ped['cliente'] ?></td>
                   <td>
                     <a href="index.php?p=adminDetallesPedidos"><button type="button" class="btn btn-block btn-success">Ver Detalles</button></a>
                   </td>
                 </tr>
 
-                <tr>
-                  <td>2</td>
-                  <td>12-12-2020</td>
-                  <td>Mi casa</td>
-                  <td>S/100.00</td>
-                  <td>Papo</td>
-                  <td>Papo</td>
-                  <td>
-                    <a href="index.php?p=adminDetallesPedidos"><button type="button" class="btn btn-block btn-success">Ver Detalles</button></a>
-                  </td>
-                </tr>
+    <?php endforeach; ?>
 
               </tbody>
             </table>

@@ -14,4 +14,13 @@ class PedidoController
     function eliminarPedido()
     {
     }
+
+    function listarPedidosAtendidos()
+    {
+        $pedido=Pedido::ListarPedidosAtendidos();
+        return $pedido;
+    }
+
+
+
 }

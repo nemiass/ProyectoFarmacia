@@ -41,7 +41,7 @@ include "layouts/headerAdmin.php";
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>img</th>
+                  <th>Producto</th>
                   <th>Nombre</th>
                   <th>Descripción</th>
                   <th>Precio</th>
@@ -52,42 +52,65 @@ include "layouts/headerAdmin.php";
               </thead>
 
               <tbody>
+              <?php
+
+                               
+
+use app\controller\ProductoController;
+
+   $admincontroller = new ProductoController();
+   $cproducto = $admincontroller->listarProductos();
+   
+
+   $i = 1;
+   
+    ?>
+    <?php foreach($cproducto as $pro): ?>
                 <tr>
-                  <td>1</td>
-                  <td>Img</td>
-                  <td>Nombre tal</td>
-                  <td>desc tal</td>
-                  <td>precio tal</td>
-                  <td>catalogo tal</td>
+                  <td><?= $i ; $i++;?></td>
+                  <td> <div class="col-12" style="width: 60px; height:60px;">
+               <img src="public/img/<?= $pro['img'] ?>.jpg" class="product-image" alt="Product Image" style="width:100%; height:100%;">
+             </div></td>
+                  <td><?= $pro['1']?></td>
+                  <td><?= $pro['caracteristicas']?></td>
+                  <td><?= $pro['precio']?></td>
+                  <td><?= $pro['7']?></td>
                   <td>
                     <a href="#"><button type="button" class="btn btn-block btn-success">Editar</button></a>
                   </td>
 
                   <td>
-                    <a href="#"><button type="button" class="btn btn-block btn-danger">Eliminar</button></a>
+                  <button type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#exampleModal">
+                  <?=$pro['0'] ?>
+                  </button>
+                  
+                  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Eliminar Producto</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+     
+      <div class="modal-footer">
+     
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">cancelar</button>
+        <a href="index.php?p=adminProductos&id=<?=$pro['0'] ?>"><button type="button" name="eliminar" class="btn btn-primary"><?=$pro['0'] ?></button></a>
+      
+      </div>
+    </div>
+  </div>
+</div>
+
                   </td>
 
 
                 </tr>
 
-                <tr>
-                  <td>1</td>
-                  <td>Img</td>
-                  <td>Nombre tal</td>
-                  <td>desc tal</td>
-                  <td>precio tal</td>
-                  <td>catalogo tal</td>
-                  <td>
-                    <a href="#"><button type="button" class="btn btn-block btn-success">Editar</button></a>
-                  </td>
-
-                  <td>
-                    <a href="#"><button type="button" class="btn btn-block btn-danger">Eliminar</button></a>
-                  </td>
-
-
-                </tr>
-
+             
+                <?php endforeach ?>
               </tbody>
             </table>
           </div>
@@ -101,7 +124,19 @@ include "layouts/headerAdmin.php";
 
 </div>
 <!-- /.content-wrapper -->
+<?php  
+if(isset($_GET['eliminar'])){
+  echo "eliminar";
+}
 
+
+
+
+
+
+
+
+?>
 <!-- Footer -->
 <?php
 include "layouts/footer.php";

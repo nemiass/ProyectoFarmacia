@@ -86,7 +86,7 @@ class Producto
             $db = new db();
             $conn = $db->abrirConexion();
 
-            $sql = "SELECT * from producto";
+            $sql = "SELECT * FROM producto as pro join catalogo as cat on cat.id_catalogo=pro.id_catalogo";
             $respuesta = $conn->prepare($sql);
             $respuesta->execute();
             $matriz = $respuesta->fetchAll();
