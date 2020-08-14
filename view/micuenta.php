@@ -5,7 +5,7 @@ include "layouts/headerCliente.php";
 
 use app\controller\ClienteController;
 
-$ccontroller = new ClienteController();
+$ccontroller = new ClienteController;
 $cliente = $ccontroller->traerCliente($_SESSION['dni']);
 
 

@@ -35,7 +35,7 @@
 
 use app\controller\VistasController;
 
-$vcontroller = new VistasController();
+$vcontroller = new VistasController;
 
 if (isset($_SESSION["estado"])) {
     switch ($_SESSION["rol"]) {

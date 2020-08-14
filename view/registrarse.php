@@ -2,7 +2,7 @@
 
 use app\controller\ClienteController;
 
-$ccontroller = new ClienteController();
+$ccontroller = new ClienteController;
 $ccontroller->Registrar();
 ?>
 

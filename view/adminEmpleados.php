@@ -38,7 +38,7 @@ use app\controller\AdminController;
                 </tr>
               </thead>
               <?php
-              $admincontroller = new AdminController();
+              $admincontroller = new AdminController;
               $empleados = $admincontroller->listarEmpleado();
               ?>
               <tbody>

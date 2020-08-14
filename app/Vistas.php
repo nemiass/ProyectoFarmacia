@@ -80,7 +80,7 @@ class Vistas
     public function traerVistaGeneral($pagina)
     {
         $lista_c = array(
-            "productos", "registrarse", "login", "producto", "carrito", "logout"
+            "productos", "registrarse", "login", "producto", "carrito"
         );
 
         if (in_array($pagina, $lista_c)) {

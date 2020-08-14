@@ -15,7 +15,7 @@
 
             use app\controller\ProductoController;
 
-            $pcontroller = new ProductoController();
+            $pcontroller = new ProductoController;
             $producto = $pcontroller->traerProducto($_GET["id"]);
             foreach ($producto as $p) {
               $id = $p["id_producto"];

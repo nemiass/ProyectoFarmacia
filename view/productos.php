@@ -11,8 +11,10 @@ include "layouts/headerCliente.php";
       <!-- Main row -->
       <div class="row">
         <?php
+
         use app\controller\ProductoController;
-        $pcontroller = new ProductoController();
+
+        $pcontroller = new ProductoController;
         $productos = $pcontroller->listarProductos();
 
         if ($productos) :

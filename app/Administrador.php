@@ -55,7 +55,6 @@ class Administrador
             ]);
 
             $db->cerrarConexion();
-           
         } catch (\PDOException $e) {
             echo $e->getMessage();
         }

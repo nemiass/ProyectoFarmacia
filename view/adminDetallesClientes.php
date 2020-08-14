@@ -32,7 +32,7 @@ include "layouts/headerAdmin.php";
 
               use app\controller\AdminController;
 
-              $admincontroller = new AdminController();
+              $admincontroller = new AdminController;
               $cliente = $admincontroller->listarCliente($_GET['id_cliente']);
               $pedidosRealizados = $admincontroller->listarPedidoRealizado($_GET['id_cliente']);
 

@@ -3,7 +3,7 @@
 
 use app\controller\EmpleadoController;
 
-$econtroller = new EmpleadoController();
+$econtroller = new EmpleadoController;
 $econtroller->RegistrarEmpleado();
 
 include "layouts/headerAdmin.php";

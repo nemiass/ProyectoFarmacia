@@ -7,7 +7,7 @@ include "layouts/headerAdmin.php";
 
 use app\controller\AdminController;
 
-$admincontroller = new AdminController();
+$admincontroller = new AdminController;
 $admin = $admincontroller->getAdmin($_SESSION['dni']);
 ?>
 <!--/. Header -->
