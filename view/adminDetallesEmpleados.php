@@ -1,5 +1,10 @@
 <!-- Header -->
 <?php
+
+use app\controller\ClienteController;
+use app\controller\EmpleadoController;
+use app\controller\PedidoController;
+
 include "layouts/headerAdmin.php";
 ?>
 <!--/. Header -->
@@ -35,26 +40,37 @@ include "layouts/headerAdmin.php";
 
               <table class="table">
                 <tbody>
+                <?php
+                $i=1;
+              $empleadocontroller = new EmpleadoController;
+              $pedidocontroller=new PedidoController();
+             $cliente=new ClienteController;
+             
+              $empleado = $empleadocontroller->traerempleado($_GET['id_empleado']);
+              $pedidos=$pedidocontroller->listarPedidosAtendidosempleado($_GET['id_empleado']);
+              
+              ?>
+              
                   <tr>
                     <th scope="row">Nombre:</th>
-                    <td>Tal nombre</td>
+                    <td><?= $empleado[0]['nombre'] ?></td>
                   </tr>
 
                   <tr>
                     <th scope="row">Apellido:</th>
-                    <td>Tal apellido</td>
+                    <td><?= $empleado[0]['apellido'] ?></td>
                   </tr>
 
                   <tr>
                     <th scope="row">Teléfono:</th>
-                    <td>Tal telefono</td>
+                    <td><?= $empleado[0]['telefono'] ?></td>
                   </tr>
 
                   <tr>
                     <th scope="row">Dni:</th>
-                    <td>11111111</td>
+                    <td><?= $empleado[0]['dni'] ?></td>
                   </tr>
-
+            
                 </tbody>
               </table>
             </div>
@@ -110,31 +126,25 @@ include "layouts/headerAdmin.php";
                   </tr>
                 </thead>
                 <tbody>
+                  <?php
+            foreach($pedidos as $ped):
+                  ?>
                   <tr>
-                    <td>1</td>
-                    <td>12-12-2020</td>
-                    <td>Jr. tal lugar</td>
-                    <td>Tal cliente</td>
-                    <td>S/. 100.00</td>
+                    <td><?=$i; $i++; ?></td>
+                    <td><?=$ped['fecha'] ?></td>
+                    <td><?=$ped['direccion'] ?></td>
+                    <td><?=$ped['cliente'] ?></td>
+                    <td>S/. <?=$ped['total'] ?></td>
                     <td>
-                      <a href="index.php?p=adminDetallesPedidos">
+                      <a href="index.php?p=adminDetallesPedidosEmpleado&id_pedido=<?= $ped['5']?>&id_cliente=<?=$ped['0'] ?>">
                         <button type="button" class="btn btn-block btn-success">Mostrar</button>
                       </a>
                     </td>
                   </tr>
 
-                  <tr>
-                    <td>1</td>
-                    <td>12-12-2020</td>
-                    <td>Jr. tal lugar</td>
-                    <td>Tal cliente</td>
-                    <td>S/. 100.00</td>
-                    <td>
-                      <a href="index.php?p=adminDetallesPedidos">
-                        <button type="button" class="btn btn-block btn-success">Mostrar</button>
-                      </a>
-                    </td>
-                  </tr>
+                  <?php
+           endforeach;
+           ?>
                 </tbody>
               </table>
 

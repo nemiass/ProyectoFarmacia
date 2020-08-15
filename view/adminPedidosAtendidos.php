@@ -34,7 +34,7 @@ include "layouts/headerAdmin.php";
                   <th>Nro</th>
                   <th>FechaEntregada</th>
                   <th>Lugar Etregado</th>
-                  <th>Moto pagado</th>
+                  <th>Monto pagado</th>
                   <th>Empleado</th>
                   <th>Cliente</th>
                   <th>&nbsp</th>
@@ -59,11 +59,11 @@ use app\controller\PedidoController;
                   <td><?= $i; $i++ ?></td>
                   <td><?= $ped['fecha_entrega'] ?></td>
                   <td><?= $ped['direccion'] ?></td>
-                  <td><?= $ped['total'] ?></td>
+                  <td>S/.<?= $ped['total'] ?></td>
                   <td><?= $ped['empleado'] ?></td>
                   <td><?= $ped['cliente'] ?></td>
                   <td>
-                    <a href="index.php?p=adminDetallesPedidos"><button type="button" class="btn btn-block btn-success">Ver Detalles</button></a>
+                    <a href="index.php?p=adminDetallesPedidosGeneral&id_cliente=<?= $ped['0']?>&id_pedido=<?=$ped['6'] ?>"><button type="button" class="btn btn-block btn-success">Ver Detalles</button></a>
                   </td>
                 </tr>
 

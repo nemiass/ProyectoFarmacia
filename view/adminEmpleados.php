@@ -50,7 +50,7 @@ use app\controller\AdminController;
                     <td><?= $empleados['apellido'] ?></td>
                     <td><?= $empleados['telefono'] ?></td>
                     <td>
-                      <a href="index.php?p=adminDetallesEmpleados"><button type="button" class="btn btn-block btn-success">Ver Detalles</button></a>
+                      <a href="index.php?p=adminDetallesEmpleados&id_empleado=<?=$empleados['id_empleado']?>"><button type="button" class="btn btn-block btn-success">Ver Detalles</button></a>
                     </td>
 
                     <td>

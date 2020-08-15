@@ -139,13 +139,13 @@ class Cliente
         }
     }
 
-    public static function ListarProductosxCliente($id): array
+    public static function ListarProductosxCliente($id,$id2): array
     {
         try {
             $db = new db();
             $conn = $db->abrirConexion();
 
-            $sql = "SELECT cantidad,pro.nombre,pro.id_producto,pro.caracteristicas,pro.precio FROM producto as pro JOIN pedido_producto as ped_pro ON pro.id_producto=ped_pro.id_producto JOIN pedido as ped on ped.id_pedido=ped_pro.id_pedido JOIN cliente as cli ON cli.id_cliente=ped.id_cliente WHERE cli.id_cliente=$id";
+            $sql = "SELECT fecha_entrega,direccion,cantidad,pro.nombre,pro.id_producto,pro.caracteristicas,pro.precio FROM producto as pro JOIN pedido_producto as ped_pro ON pro.id_producto=ped_pro.id_producto JOIN pedido as ped on ped.id_pedido=ped_pro.id_pedido JOIN cliente as cli ON cli.id_cliente=ped.id_cliente WHERE cli.id_cliente=$id AND ped.id_pedido=$id2 ";
             $respuesta = $conn->prepare($sql);
             $respuesta->execute();
             $matriz = $respuesta->fetchAll();

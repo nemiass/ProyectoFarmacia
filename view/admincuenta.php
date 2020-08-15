@@ -6,9 +6,13 @@ include "layouts/headerAdmin.php";
 <?php
 
 use app\controller\AdminController;
+use app\controller\FarmaciaController;
 
 $admincontroller = new AdminController;
+ $farmaciacontroller=new  FarmaciaController;
 $admin = $admincontroller->getAdmin($_SESSION['dni']);
+$farmacia=$farmaciacontroller->datosFarmacia();
+
 ?>
 <!--/. Header -->
 
@@ -84,22 +88,22 @@ $admin = $admincontroller->getAdmin($_SESSION['dni']);
                 <tbody>
                   <tr>
                     <th scope="row">Nombre:</th>
-                    <td>Tal</td>
+                    <td><?=$farmacia[0]['1'] ?></td>
                   </tr>
 
                   <tr>
-                    <th scope="row">Ubicación:</th>
-                    <td>Tal</td>
+                    <th scope="row">Direccion</th>
+                    <td><?=$farmacia[0]['2'] ?></td>
                   </tr>
 
                   <tr>
-                    <th scope="row">Teléfono:</th>
-                    <td>Tal</td>
+                    <th scope="row">Telefono</th>
+                    <td><?=$farmacia[0]['3'] ?></td>
                   </tr>
 
                   <tr>
-                    <th scope="row">Correo:</th>
-                    <td>Tal</td>
+                    <th scope="row">Correo</th>
+                    <td><?=$farmacia[0]['4'] ?></td>
                   </tr>
 
                   <tr>

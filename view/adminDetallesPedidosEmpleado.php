@@ -9,15 +9,16 @@ use app\controller\ClienteController;
 use app\controller\FarmaciaController;
 
 use app\controller\AdminController;
+use app\controller\EmpleadoController;
 
 $admincontroller = new AdminController;
-
-$pedidosRealizados = $admincontroller->monto($_GET['id_cliente'],$_GET['id_pedido']);
+$empleado=new EmpleadoController;
+$cliente=new ClienteController;
+$productos = $empleado->listarpedidosxempleado($_GET['id_cliente'],$_GET['id_pedido']);
 $farmaciacontroller=new FarmaciaController();
-$cliente=new ClienteController();
 $farmacia=$farmaciacontroller->datosFarmacia();
-$clientearreglo = Cliente::ListarCliente($_GET['id_cliente']);
-$productos =$cliente->listarproductosxCliente($_GET['id_cliente'],$_GET['id_pedido']);
+$clientearreglo =$cliente->traerCliente($_GET['id_cliente']);
+$pedidosRealizados=$empleado->subtotal($_GET['id_cliente'],$_GET['id_pedido']);
 $i = 1;
 ?>
 <!--/. Header -->
@@ -88,7 +89,7 @@ $i = 1;
                       <table class="table table-striped">
                         <thead>
                           <tr>
-                            <th>Cantidad</th>
+                            
                             <th>Producto</th>
                             <th>Serial #</th>
                             <th>Description</th>

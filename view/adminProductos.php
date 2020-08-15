@@ -96,7 +96,7 @@ include "layouts/headerAdmin.php";
 
                             <div class="modal-footer">
                               <button type="button" class="btn btn-secondary" data-dismiss="modal">cancelar</button>
-                              <a href="index.php?p=adminProductos&id=<?= $pro['id_producto'] ?>"><button type="button" name="eliminar" class="btn btn-primary"><?= $pro["id_producto"] ?></button></a>
+                              <a href="index.php?p=adminProductos&id=<?= $pro['id_producto'] ?>"><button type="button"class="btn btn-primary"><?= $pro["id_producto"] ?></button></a>
                             </div>
                           </div>
                         </div>
@@ -110,6 +110,11 @@ include "layouts/headerAdmin.php";
 
                 <?php endforeach; ?>
               </tbody>
+              <?php
+if (isset($_GET['id'])) {
+  echo $_GET['id'];
+}
+?>
             </table>
           </div>
         </div>
@@ -122,10 +127,6 @@ include "layouts/headerAdmin.php";
 
 </div>
 <!-- /.content-wrapper -->
-<?php
-if (isset($_GET['eliminar'])) {
-  echo "eliminar";
-}
 
 
 
@@ -134,7 +135,7 @@ if (isset($_GET['eliminar'])) {
 
 
 
-?>
+
 <!-- Footer -->
 <?php
 include "layouts/footer.php";

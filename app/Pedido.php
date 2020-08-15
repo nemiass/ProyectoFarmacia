@@ -68,7 +68,7 @@ class Pedido
             $db = new db();
             $conn = $db->abrirConexion();
 
-            $sql = "SELECT fecha_entrega,direccion,SUM(cantidad*precio) as total,CONCAT( emp.nombre,' ',emp.apellido ) as empleado,CONCAT( cli.nombre,' ',cli.apellido ) as cliente FROM pedido as ped JOIN pedido_producto as ped_pro on ped.id_pedido=ped_pro.id_pedido JOIN producto as pro on pro.id_producto=ped_pro.id_producto JOIN empleado_pedido as emp_ped on emp_ped.id_pedido=ped.id_pedido JOIN empleado as emp on emp.id_empleado=emp_ped.id_empleado JOIN cliente as cli on cli.id_cliente=ped.id_cliente GROUP BY ped.id_pedido";
+            $sql = "SELECT cli.id_cliente,fecha_entrega,direccion,SUM(cantidad*precio) as total,CONCAT( emp.nombre,' ',emp.apellido ) as empleado,CONCAT( cli.nombre,' ',cli.apellido ) as cliente,ped.id_pedido FROM pedido as ped JOIN pedido_producto as ped_pro on ped.id_pedido=ped_pro.id_pedido JOIN producto as pro on pro.id_producto=ped_pro.id_producto JOIN empleado_pedido as emp_ped on emp_ped.id_pedido=ped.id_pedido JOIN empleado as emp on emp.id_empleado=emp_ped.id_empleado JOIN cliente as cli on cli.id_cliente=ped.id_cliente GROUP BY ped.id_pedido";
             $respuesta = $conn->prepare($sql);
             $respuesta->execute();
             $matriz = $respuesta->fetchAll();
@@ -85,7 +85,42 @@ class Pedido
             $db = new db();
             $conn = $db->abrirConexion();
 
-            $sql = "SELECT ped.id_pedido,ped.fecha,ped.direccion,CONCAT( emp.nombre,' ',emp.apellido )as empleado,sum(prod.precio*ped_prod.cantidad) as total from cliente as cli join pedido as ped ON cli.id_cliente=ped.id_cliente JOIN empleado_pedido as emp_ped ON emp_ped.id_pedido=ped.id_pedido JOIN empleado as emp ON emp.id_empleado=emp_ped.id_empleado JOIN pedido_producto as ped_prod on ped_prod.id_pedido=ped.id_pedido JOIN producto as prod  on prod.id_producto=ped_prod.id_producto WHERE cli.id_cliente=$id";
+            $sql = "SELECT ped.id_pedido,ped.fecha,ped.direccion,CONCAT( emp.nombre,' ',emp.apellido )as empleado,sum(prod.precio*ped_prod.cantidad) as total from cliente as cli join pedido as ped ON cli.id_cliente=ped.id_cliente JOIN empleado_pedido as emp_ped ON emp_ped.id_pedido=ped.id_pedido JOIN empleado as emp ON emp.id_empleado=emp_ped.id_empleado JOIN pedido_producto as ped_prod on ped_prod.id_pedido=ped.id_pedido JOIN producto as prod  on prod.id_producto=ped_prod.id_producto WHERE cli.id_cliente=$id  GROUP BY ped.id_pedido";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute();
+            $matriz = $respuesta->fetchAll();
+            $db->cerrarConexion();
+            return $matriz;
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+
+    public static function subtotal($id,$id2): array
+    {
+        try {
+            $db = new db();
+            $conn = $db->abrirConexion();
+
+            $sql = "SELECT ped.id_pedido,ped.fecha,sum(prod.precio*ped_prod.cantidad) as total from cliente as cli join pedido as ped ON cli.id_cliente=ped.id_cliente JOIN empleado_pedido as emp_ped ON emp_ped.id_pedido=ped.id_pedido JOIN empleado as emp ON emp.id_empleado=emp_ped.id_empleado JOIN pedido_producto as ped_prod on ped_prod.id_pedido=ped.id_pedido JOIN producto as prod  on prod.id_producto=ped_prod.id_producto WHERE cli.id_cliente=$id AND ped.id_pedido=$id2   GROUP BY ped.id_pedido";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute();
+            $matriz = $respuesta->fetchAll();
+            $db->cerrarConexion();
+            return $matriz;
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public static function PedidoRealizadoEmpleado($id): array
+    {
+        try {
+            $db = new db();
+            $conn = $db->abrirConexion();
+
+            $sql = "SELECT cli.id_cliente,ped.fecha,ped.direccion,CONCAT( cli.nombre,' ',cli.apellido )as cliente,sum(prod.precio*ped_prod.cantidad) as total,ped.id_pedido from cliente as cli join pedido as ped ON cli.id_cliente=ped.id_cliente JOIN empleado_pedido as emp_ped ON emp_ped.id_pedido=ped.id_pedido JOIN empleado as emp ON emp.id_empleado=emp_ped.id_empleado JOIN pedido_producto as ped_prod on ped_prod.id_pedido=ped.id_pedido JOIN producto as prod  on prod.id_producto=ped_prod.id_producto  WHERE emp.id_empleado=$id   GROUP BY ped.id_pedido";
             $respuesta = $conn->prepare($sql);
             $respuesta->execute();
             $matriz = $respuesta->fetchAll();

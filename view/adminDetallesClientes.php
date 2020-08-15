@@ -127,9 +127,9 @@ include "layouts/headerAdmin.php";
                       <td><?= $pedidoRealizado['fecha'] ?></td>
                       <td><?= $pedidoRealizado['direccion'] ?></td>
                       <td><?= $pedidoRealizado['empleado'] ?></td>
-                      <td> <?= $pedidoRealizado['total'] ?></td>
+                      <td> S/. <?= $pedidoRealizado['total'] ?></td>
                       <td>
-                        <a href="index.php?p=adminDetallesPedidos&id_cliente=<?= $id_cliente ?>">
+                        <a href="index.php?p=adminDetallesPedidos&id_pedido=<?= $pedidoRealizado['id_pedido'] ?>&id_cliente=<?= $id_cliente ?>">
                           <button type="button" class="btn btn-block btn-success">Mostrar</button>
                         </a>
                       </td>

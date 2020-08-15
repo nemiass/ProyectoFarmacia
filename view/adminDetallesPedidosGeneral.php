@@ -12,13 +12,13 @@ use app\controller\AdminController;
 
 $admincontroller = new AdminController;
 
-$pedidosRealizados = $admincontroller->monto($_GET['id_cliente'],$_GET['id_pedido']);
+$pedidosRealizados = $admincontroller->listarPedidoRealizado($_GET['id_cliente']);
 $farmaciacontroller=new FarmaciaController();
-$cliente=new ClienteController();
 $farmacia=$farmaciacontroller->datosFarmacia();
 $clientearreglo = Cliente::ListarCliente($_GET['id_cliente']);
-$productos =$cliente->listarproductosxCliente($_GET['id_cliente'],$_GET['id_pedido']);
+$productos = Cliente::ListarProductosxCliente($_GET['id_cliente'],$_GET['id_pedido']);
 $i = 1;
+
 ?>
 <!--/. Header -->
 

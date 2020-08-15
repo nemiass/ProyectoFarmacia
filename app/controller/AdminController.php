@@ -162,4 +162,11 @@ class AdminController
     $pedidosRealizados = Pedido::PedidoRealizado($id);
     return $pedidosRealizados;
   }
+
+  public function monto($id,$id2): array
+  {
+    $pedidosRealizados = Pedido::subtotal($id,$id2);
+    return $pedidosRealizados;
+  }
+
 }

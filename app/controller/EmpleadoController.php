@@ -53,4 +53,19 @@ class EmpleadoController
         }
         return $errores = "0";
     }
+
+    public function traerempleado($id){
+      $empleado=Empleado::traerEmpleado($id);
+      return $empleado;
+    }
+
+    public function listarpedidosxempleado($id,$id2){
+        $empleado=Empleado::ListarProductosxEmpleado($id,$id2);
+        return $empleado;
+      }
+
+      public function subtotal($id,$id2){
+        $empleado=Empleado::subtotal($id,$id2);
+        return $empleado;
+      }
 }

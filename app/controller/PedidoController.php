@@ -21,6 +21,10 @@ class PedidoController
         return $pedido;
     }
 
-
+    function listarPedidosAtendidosempleado($id)
+    {
+        $pedido=Pedido::PedidoRealizadoEmpleado($id);
+        return $pedido;
+    }
 
 }

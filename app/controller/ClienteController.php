@@ -59,9 +59,9 @@ class ClienteController
     {
     }
 
-    public function listarproductosxCliente(int $id)
+    public function listarproductosxCliente(int $id,$id2)
     {
-        $productos = Cliente::ListarProductosxCliente($id);
+        $productos = Cliente::ListarProductosxCliente($id,$id2);
         return $productos;
     }
 }
