@@ -49,9 +49,9 @@ include "layouts/headerAdmin.php";
                                 <tr>
                                     <td><?= $i; $i++?></td>
                                     <td><?= $cat['nombre'] ?></td>
-                                    <td><?= $cat['nombre'] ?></td>
+                                    <td><?= $cat['descripcion'] ?></td>
                                     <td>
-                                        <a href="index.php?p=editarCatalogo&nombre=<?= $cat['nombre'] ?>&descripcion=<?= $cat['nombre'] ?>&id=<?= $cat['id_catalogo'] ?>"><button type="button" class="btn btn-block btn-success">Editar</button></a>
+                                        <a href="index.php?p=editarCatalogo&nombre=<?= $cat['nombre'] ?>&descripcion=<?= $cat['descripcion'] ?>&id=<?= $cat['id_catalogo'] ?>"><button type="button" class="btn btn-block btn-success">Editar</button></a>
                                     </td>
 
                                     <td>
@@ -59,7 +59,7 @@ include "layouts/headerAdmin.php";
                                     </td>
 
                                     <td>
-                                        <a href="index.php?p=adminCatalogoProducto"><button type="button" class="btn btn-block btn-warning">Ver productos</button></a>
+                                        <a href="index.php?p=adminCatalogoProducto&id=<?= $cat['id_catalogo'] ?>&nombre=<?= $cat['nombre'] ?>"><button type="button" class="btn btn-block btn-warning">Ver productos</button></a>
                                     </td>
                                 </tr>
 

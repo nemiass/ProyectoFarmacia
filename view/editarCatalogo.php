@@ -2,10 +2,9 @@
 
 use app\controller\CatalogoController;
 $catalogocontroller=new CatalogoController;
-if(isset($_POST['enviar'])){
-    $catalogocontroller->EditarCatalogos($_POST['nombre'],$_POST['descripcion'],$_POST['dni']);
-    header("location:index.php?p=adminEmpleados");
-}
+
+    $catalogocontroller->EditarCatalogos();
+
 include "layouts/headerAdmin.php";
 
 
@@ -32,13 +31,18 @@ include "layouts/headerAdmin.php";
                 <form role="form" method="POST">
                     <div class="card-body">
                         <div class="form-group">
-                        <input  name="id" type="hidden" value="<?=$_GET['id'] ?>">
+                      
                             <label for="exampleInputEmail1">nombre</label>
                             <input type="texto" class="form-control" value='<?=$_GET['nombre'] ?>' id="exampleInputEmail1" placeholder="ingrese DNI" name="nombre">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">descripcion</label>
                             <input type="texto" class="form-control" value='<?=$_GET['descripcion'] ?>'  id="exampleInputEmail1" placeholder="ingrese nombre" name="descripcion">
+                      
+                    </div>
+                    <div class="form-group">
+                            <label for="exampleInputEmail1"></label>
+                            <input type="hidden" class="form-control" value='<?=$_GET['id'] ?>'  id="exampleInputEmail1" placeholder="ingrese nombre" name="id">
                       
                     </div>
                     <!-- /.card-body -->

@@ -36,23 +36,26 @@ class Catalogo
         }
     }
 
-    public static function actualizarCatalogo($nom,$des,$id): void
+    public static function actualizarCatalogo($nombre,$descripcion,$id): void
     {
+        
+           
         try {
             $db = new db();
             $conn = $db->abrirConexion();
 
             $sql = "UPDATE catalogo
-            SET nombre = '$nom', descripcion = '$des'
+            SET nombre = '$nombre', descripcion = '$descripcion'
             WHERE id_catalogo=$id";
             $respuesta = $conn->prepare($sql);
             $respuesta->execute();
 
             $db->cerrarConexion();
-          
+           
         } catch (\PDOException $e) {
             echo $e->getMessage();
-        }
+        
+    }
     }
 
     public static function ListarCatalogo(): array
@@ -62,6 +65,23 @@ class Catalogo
             $conn = $db->abrirConexion();
 
             $sql = "SELECT * from catalogo";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute();
+            $matriz = $respuesta->fetchAll();
+            $db->cerrarConexion();
+            return $matriz;
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public static function ListarCatalogoxproducto($id_cat): array
+    {
+        try {
+            $db = new db();
+            $conn = $db->abrirConexion();
+
+            $sql = "SELECT pro.id_producto as id_pro,img,pro.nombre as nombre,caracteristicas,precio  FROM catalogo as cat JOIN producto as pro on pro.id_catalogo=cat.id_catalogo WHERE cat.id_catalogo=$id_cat";
             $respuesta = $conn->prepare($sql);
             $respuesta->execute();
             $matriz = $respuesta->fetchAll();

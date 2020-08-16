@@ -1,5 +1,8 @@
 <!-- Header -->
 <?php
+
+use app\controller\CatalogoController;
+
 include "layouts/headerAdmin.php";
 ?>
 <!--/. Header -->
@@ -13,7 +16,7 @@ include "layouts/headerAdmin.php";
       <div class="card-body">
         <div class="row">
           <div class="col-9">
-            <h1>Catálogo tal</h1>
+            <h1>Catálogo  <?= $_GET['nombre']?></h1>
           </div>
 
           <div class="col-3">
@@ -30,7 +33,15 @@ include "layouts/headerAdmin.php";
           </div>
 
         </div>
-        <div class="row">
+   
+                <?php
+              $catalogocontroller=new CatalogoController;
+              $producto=$catalogocontroller->listarCatalogosxproducto($_GET['id']);
+             
+             $i=1;
+               ?>
+               <?php if($producto):?>
+                <div class="row">
           <div class="col-12">
             <table class="table table-striped">
               <thead>
@@ -46,12 +57,15 @@ include "layouts/headerAdmin.php";
               </thead>
 
               <tbody>
+                <?php foreach($producto as $pro): ?>
                 <tr>
-                  <td>1</td>
-                  <td>imagen</td>
-                  <td>Nombre tal</td>
-                  <td>desc tal</td>
-                  <td>precio tal</td>
+                  <td><?= $i; $i++?></td>
+                  <td>  <div class="col-12" style="width: 60px; height:60px;">
+                        <img src="public/img/<?= $pro['img'] ?>.jpg" class="product-image" alt="Product Image" style="width:100%; height:100%;">
+                      </div></td>
+                  <td><?=$pro['nombre']?></td>
+                  <td><?=$pro['caracteristicas']?></td>
+                  <td><?=$pro['precio']?></td>
                   <td>
                     <a href="#"><button type="button" class="btn btn-block btn-success">Editar</button></a>
                   </td>
@@ -59,28 +73,18 @@ include "layouts/headerAdmin.php";
                   <td>
                     <a href="#"><button type="button" class="btn btn-block btn-danger">Eliminar</button></a>
                   </td>
+                  </tbody>
+                <?php endforeach; ?>
+                  <?php else: ?>
 
+                    <h1>no hay productos en este catalogo</h1>
 
-                </tr>
+               <?php endif;?>
 
-                <tr>
-                  <td>1</td>
-                  <td>imagen</td>
-                  <td>Nombre tal</td>
-                  <td>desc tal</td>
-                  <td>precio tal</td>
-                  <td>
-                    <a href="#"><button type="button" class="btn btn-block btn-success">Editar</button></a>
-                  </td>
-
-                  <td>
-                    <a href="#"><button type="button" class="btn btn-block btn-danger">Eliminar</button></a>
-                  </td>
-
-
-                </tr>
-
-              </tbody>
+               
+          
+               
+             
             </table>
           </div>
         </div>
