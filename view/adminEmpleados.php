@@ -43,18 +43,18 @@ use app\controller\AdminController;
               ?>
               <tbody>
                 <?php $i = 1;
-                foreach ($empleados as $empleados) :   ?>
+                foreach ($empleados as $empleado) :   ?>
                   <tr>
                     <td><?= $i ?></td>
-                    <td><?= $empleados['nombre'] ?></td>
-                    <td><?= $empleados['apellido'] ?></td>
-                    <td><?= $empleados['telefono'] ?></td>
+                    <td><?= $empleado['nombre'] ?></td>
+                    <td><?= $empleado['apellido'] ?></td>
+                    <td><?= $empleado['telefono'] ?></td>
                     <td>
-                      <a href="index.php?p=adminDetallesEmpleados&id_empleado=<?=$empleados['id_empleado']?>"><button type="button" class="btn btn-block btn-success">Ver Detalles</button></a>
+                      <a href="index.php?p=adminDetallesEmpleados&id_empleado=<?=$empleado['id_empleado']?>"><button type="button" class="btn btn-block btn-success">Ver Detalles</button></a>
                     </td>
 
                     <td>
-                      <a href="#"><button type="button" class="btn btn-block btn-danger">Dar de baja</button></a>
+                      <a href="index.php?p=eliminarEmpleado&id=<?= $empleado['0']?>"><button type="button" class="btn btn-block btn-danger">Dar de baja</button></a>
                     </td>
                   </tr>
                 <?php $i++;

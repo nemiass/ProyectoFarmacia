@@ -28,7 +28,7 @@ class Vistas
             "adminCatalogo", "adminCatalogoProducto", "adminClientes",
             "admincuenta", "adminDetallesClientes", "adminDetallesEmpleados",
             "adminDetallesPedidos", "adminEmpleados", "adminPedidosAtendidos",
-            "adminProductos", "imprimir", "logout", "agregarEmpleado","adminDetallesPedidosGeneral","adminDetallesPedidosEmpleado"
+            "adminProductos", "imprimir", "logout", "agregarEmpleado","adminDetallesPedidosGeneral","adminDetallesPedidosEmpleado","eliminarEmpleado","eliminarCatalogo","eliminarProducto","editarCatalogo"
         );
 
         if (in_array($pagina, $lista_a)) {

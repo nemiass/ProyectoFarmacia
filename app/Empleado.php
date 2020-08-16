@@ -64,17 +64,17 @@ class Empleado
         }
     }
 
-    public static function eliminarEmpleado($id): int
+    public static function eliminarEmpleado($id): void
     {
         try {
             $db = new db();
             $conn = $db->abrirConexion();
 
-            $sql = "DELETE FROM empleado where id = :id";
+            $sql = "DELETE FROM empleado where id_empleado =$id";
             $respuesta = $conn->prepare($sql);
-            $respuesta->execute(["id" => $id]);
+            $respuesta->execute();
             $db->cerrarConexion();
-            return $respuesta->rowCount();
+           
         } catch (\PDOException $e) {
             echo $e->getMessage();
         }

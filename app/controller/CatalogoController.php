@@ -18,6 +18,17 @@ class CatalogoController
       }
    }
 
+   public function EditarCatalogos($nom,$des,$id)
+   {
+      $catalogos = Catalogo::actualizarCatalogo($nom,$des,$id);
+
+      if (!empty($catalogos)) {
+         return $catalogos;
+      } else {
+         return false;
+      }
+   }
+
    public function agregarCatalogo()
    {
    }

@@ -68,4 +68,9 @@ class EmpleadoController
         $empleado=Empleado::subtotal($id,$id2);
         return $empleado;
       }
+
+      public function eliminarEmpleado($id){
+        $empleado=Empleado::eliminarEmpleado($id);
+        return $empleado;
+      }
 }

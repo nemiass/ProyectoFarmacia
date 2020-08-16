@@ -47,15 +47,15 @@ include "layouts/headerAdmin.php";
                                 ?>
                                 <?php foreach( $catalogo as $cat):  ?>
                                 <tr>
-                                    <td><?= $i?></td>
+                                    <td><?= $i; $i++?></td>
                                     <td><?= $cat['nombre'] ?></td>
-                                    <td><?=  $cat['descripcion']; $i++;?></td>
+                                    <td><?= $cat['nombre'] ?></td>
                                     <td>
-                                        <a href="#"><button type="button" class="btn btn-block btn-success">Editar</button></a>
+                                        <a href="index.php?p=editarCatalogo&nombre=<?= $cat['nombre'] ?>&descripcion=<?= $cat['nombre'] ?>&id=<?= $cat['id_catalogo'] ?>"><button type="button" class="btn btn-block btn-success">Editar</button></a>
                                     </td>
 
                                     <td>
-                                        <a href="#"><button type="button" class="btn btn-block btn-danger">Eliminar</button></a>
+                                        <a href="index.php?p=eliminarProducto"><button type="button" class="btn btn-block btn-danger">Eliminar</button></a>
                                     </td>
 
                                     <td>

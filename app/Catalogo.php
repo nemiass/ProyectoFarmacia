@@ -36,22 +36,20 @@ class Catalogo
         }
     }
 
-    public function actualizarCatalogo(): int
+    public static function actualizarCatalogo($nom,$des,$id): void
     {
         try {
             $db = new db();
             $conn = $db->abrirConexion();
 
-            $sql = "INSERT INTO catalogo (nombre,descripcion)
-            VALUES (:n , :d)";
+            $sql = "UPDATE catalogo
+            SET nombre = '$nom', descripcion = '$des'
+            WHERE id_catalogo=$id";
             $respuesta = $conn->prepare($sql);
-            $respuesta->execute([
-                "n" => $this->nombre,
-                "d" => $this->descripcion
-            ]);
+            $respuesta->execute();
 
             $db->cerrarConexion();
-            return $respuesta->rowCount();
+          
         } catch (\PDOException $e) {
             echo $e->getMessage();
         }
