@@ -69,8 +69,9 @@ class EmpleadoController
         return $empleado;
       }
 
-      public function eliminarEmpleado($id){
-        $empleado=Empleado::eliminarEmpleado($id);
-        return $empleado;
+      public function eliminarEmpleado($dni){
+        $empleado=Empleado::eliminarEmpleado($dni);
+        Usuario::eliminarUsuario($dni);
+        
       }
 }

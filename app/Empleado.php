@@ -64,13 +64,13 @@ class Empleado
         }
     }
 
-    public static function eliminarEmpleado($id): void
+    public static function eliminarEmpleado($dni): void
     {
         try {
             $db = new db();
             $conn = $db->abrirConexion();
 
-            $sql = "DELETE FROM empleado where id_empleado =$id";
+            $sql = "DELETE FROM empleado where dni =$dni";
             $respuesta = $conn->prepare($sql);
             $respuesta->execute();
             $db->cerrarConexion();

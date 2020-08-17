@@ -40,6 +40,7 @@ use app\controller\AdminController;
               <?php
               $admincontroller = new AdminController;
               $empleados = $admincontroller->listarEmpleado();
+              
               ?>
               <tbody>
                 <?php $i = 1;
@@ -54,7 +55,7 @@ use app\controller\AdminController;
                     </td>
 
                     <td>
-                      <a href="index.php?p=eliminarEmpleado&id=<?= $empleado['0']?>"><button type="button" class="btn btn-block btn-danger">Dar de baja</button></a>
+                      <a href="index.php?p=eliminarEmpleado&dni=<?= $empleado['dni']?>"><button type="button" class="btn btn-block btn-danger">Dar de baja</button></a>
                     </td>
                   </tr>
                 <?php $i++;

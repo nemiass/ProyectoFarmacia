@@ -110,4 +110,19 @@ class Usuario
         }
         return $errores = "0";
     }
+
+    public static function eliminarUsuario($dni){
+        try {
+            $db = new db();
+            $conn = $db->abrirConexion();
+
+            $sql = "DELETE FROM usuarios where dni =$dni";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute();
+            $db->cerrarConexion();
+           
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
 }
