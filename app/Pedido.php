@@ -11,13 +11,39 @@ class Pedido
     private $fecha_entrega;
     private $fechaEntrega;
     private $direccion;
+    private $id_cliente;
 
-    public function __construct($cantidad, $fecha, $fechaEntrega)
+    public function __construct($fecha, $fecha_entrega, $direccion,$id_cliente)
     {
-        $this->cantidad = $cantidad;
         $this->fecha = $fecha;
-        $this->fechaEntrega = $fechaEntrega;
+        $this->fecha_entrega = $fecha_entrega;
+        $this->direccion=$direccion;
+        $this->id_cliente=$id_cliente;
     }
+
+    public function registrarPedido(): array
+    {
+        try {
+            $db = new db();
+            $conn = $db->abrirConexion();
+
+            $sql = "INSERT INTO  pedido(fecha,fecha_entrega, direccion,estado,id_cliente)
+            VALUES('$this->fecha_entrega ','$this->fecha','$this->direccion', 'pendiente',$this->id_cliente)";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute();
+            $sql = "SELECT * FROM pedido ORDER by id_pedido DESC LIMIT 1";
+            $respuesta1 = $conn->prepare($sql);
+            $respuesta1->execute();
+            $pedido = $respuesta1->fetchAll();
+            $db->cerrarConexion();
+            return $pedido;
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    
+    
 
     public function getCantidad(): array
     {

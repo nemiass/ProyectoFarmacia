@@ -1,7 +1,19 @@
 <!-- Header -->
 <?php
+ 
+use app\controller\ClienteController;
+use app\controller\PedidoController;
+
+$ccontroller = new ClienteController;
+$pcontroller=new PedidoController;
+
+$cliente = $ccontroller->traerCliente($_SESSION['dni']);
+$id_cliente=$cliente[0]['id_cliente'];
+
 //session_start();
 include "layouts/headerCliente.php";
+//$pedido=$pcontroller->registrarPedido($cliente['id_cliente']);
+
 ?>
 <!--/. Header -->
 
@@ -30,6 +42,7 @@ include "layouts/headerCliente.php";
 
         <div class="row">
           <div class="col-12">
+        
             <table class="table table-striped" id="lista-pedidos">
               <thead>
                 <tr>
@@ -44,6 +57,8 @@ include "layouts/headerCliente.php";
               <tbody>
                 <?php
                 //session_start();
+                $pedido=$pcontroller->registrarPedido($id_cliente);
+               $id_pedido=$pedido[0]['id_pedido'];
                 if (!empty($_SESSION["Productos"])) :
                   foreach ($_SESSION["Productos"] as $p) :
                     $id = $p["id"];
@@ -51,7 +66,9 @@ include "layouts/headerCliente.php";
                     $precio = $p["precio"];
                     $cantidad = $p["cantidad"];
                     $subtotal = $p["subtotal"];
+                    //$pcontroller->registrarPedidoProducto($cantidad,$id,$id_pedido,$id);
                 ?>
+             
                     <tr id="<?= $id ?>A">
                       <td><?= $nombre ?></td>
                       <td>S/<?= number_format($precio, 2, ".", ",") ?></td>
@@ -66,17 +83,47 @@ include "layouts/headerCliente.php";
                 else : ?>
                   <div class='alert alert-warning' role='alert'>Tu carrito está vacío!</div>
                 <?php endif; ?>
+                
               </tbody>
             </table>
+       
           </div>
         </div>
-        <div class="row">
-          <button type="button" class="btn btn-block btn-primary btn-lg">Realizar Pedido</button>
-        </div>
-      </div>
-      <!-- /.card-body -->
-    </div>
+        <form  role="form" method="POST" >          
+                            <label for="exampleInputEmail1">direccion de entrega</label>
+                            <input type="texto" class="form-control"  id="exampleInputEmail1"  name="direccion">
+                      
+              
+       
 
+                            <label for="exampleInputEmail1">Fecha de entrega </label>
+                            <input type="date"  placeholder="dd-mm-yyyy"class="form-control"  id="exampleInputEmail1"  name="fecha">
+                      <br><br>
+                   
+        <div class="row">
+      
+        <?php if(!isset($_POST['enviar'])): ?>
+          <button type="submit" class="btn btn-block btn-primary btn-lg" name="enviar">Realizar Pedido</button>
+     
+
+
+
+ 
+ 
+
+     
+        </div>
+        
+      </div>
+      </form>
+      <!-- /.card-body -->
+        <?php else: ?>
+        <?php  $_SESSION["Productos"]=null;
+                      $_SESSION["cantidad"]=null;  ?>
+      <div class="row">
+  <a href=" index.php?p=productos"><button type="button" class="btn btn-block btn-primary btn-lg" name="enviar">Pedido Exitoso</button></a></div>
+    </div>
+    <?php  endif ?>
   </section>
   <!-- /.content -->
 
