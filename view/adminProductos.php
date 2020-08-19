@@ -76,7 +76,7 @@ include "layouts/headerAdmin.php";
                     <td><?= $pro['precio'] ?></td>
                     <td><?= $pro['7'] ?></td>
                     <td>
-                      <a href="index.php?p=editarProducto&nombre=<?= $pro['1'] ?>&caracteristicas=<?= $pro['caracteristicas'] ?>&precio=<?= $pro['precio'] ?>&id_producto=<?= $pro['id_producto'] ?>"><button type="button" class="btn btn-block btn-success">Editar</button></a>
+                      <a href="index.php?p=editarProducto&nombre=<?= $pro['1'] ?>&caracteristicas=<?= $pro['caracteristicas'] ?>&precio=<?= $pro['precio'] ?>&id_producto=<?= $pro['id_producto'] ?>&img=<?= $pro['img'] ?>"><button type="button" class="btn btn-block btn-success">Editar</button></a>
                     </td>
 
                     <td>

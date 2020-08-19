@@ -71,6 +71,25 @@ class Producto
         }
     }
 
+    public  static function actualizarProductosSinImg($id,$nombre,$precio,$caracteristicas): int
+    {
+        try {
+            $db = new db();
+            $conn = $db->abrirConexion();
+
+            $sql = "UPDATE producto
+            SET nombre ='$nombre', precio =$precio, caracteristicas='$caracteristicas'
+            WHERE id_producto = $id";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute();
+
+            $db->cerrarConexion();
+            return $res = $respuesta->rowCount();
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
     public function eliminarProducto()
     {
         //TODO: esto al final da problemas (ON DELETE CASCADE)

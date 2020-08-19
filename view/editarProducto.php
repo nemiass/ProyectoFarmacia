@@ -52,8 +52,8 @@ include "layouts/headerAdmin.php";
                             <label for="exampleInputEmail1"></label>
                             <input type="hidden" class="form-control" value='<?=$_GET['id_producto'] ?>'  id="exampleInputEmail1"  name="id">
 
-                            <input type="file" name="foto" value="null"><br><br>
-                      
+                            <input type="file" name="foto" value='<?=$_GET['img'] ?>'  ><br><br>
+                      <?php var_dump($_GET['img'])?>
                     </div>
                     <!-- /.card-body -->
 

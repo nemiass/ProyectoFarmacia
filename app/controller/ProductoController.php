@@ -54,7 +54,13 @@ public function ActualizarProducto(){
       Producto::actualizarProductos($id,$nom,$pre,$des,$img);        
       header("location: index.php?p=adminProductos");
    }else{
-      header("location: index.php?p=agregarProducto&e=agregar imagen");
+      $nom=$_POST['nombre'];
+      $des=$_POST['caracteristicas'];
+      $pre=$_POST['precio'];
+      $id=$_POST['id'];
+     
+      Producto::actualizarProductosSinImg($id,$nom,$pre,$des);  
+      header("location: index.php?p=adminProductos");
   }
    }
  
