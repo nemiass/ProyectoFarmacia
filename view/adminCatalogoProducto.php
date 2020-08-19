@@ -61,7 +61,7 @@ include "layouts/headerAdmin.php";
                 <tr>
                   <td><?= $i; $i++?></td>
                   <td>  <div class="col-12" style="width: 60px; height:60px;">
-                        <img src="public/img/<?= $pro['img'] ?>.jpg" class="product-image" alt="Product Image" style="width:100%; height:100%;">
+                        <img src="<?= $pro['img'] ?>" class="product-image" alt="Product Image" style="width:100%; height:100%;">
                       </div></td>
                   <td><?=$pro['nombre']?></td>
                   <td><?=$pro['caracteristicas']?></td>

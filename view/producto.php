@@ -29,7 +29,7 @@
            <div class="col-12 col-sm-6">
              <h3 class="d-inline-block d-sm-none"></h3>
              <div class="col-12" style="width: 500px; height:500px;">
-               <img src="public/img/<?= $img ?>.jpg" class="product-image" alt="Product Image" style="width:100%; height:100%;">
+               <img src="<?= $img ?>" class="product-image" alt="Product Image" style="width:100%; height:100%;">
              </div>
            </div>
            <div class="col-12 col-sm-6">

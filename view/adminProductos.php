@@ -31,7 +31,7 @@ include "layouts/headerAdmin.php";
           </div>
 
           <div class="col-3">
-            <button type="button" class="btn btn-block btn-success">Agregar Producto</button>
+            <a href="index.php?p=agregarProducto"><button type="button" class="btn btn-block btn-success">Agregar Producto</button></a>
           </div>
 
         </div>
@@ -68,7 +68,7 @@ include "layouts/headerAdmin.php";
                         $i++; ?></td>
                     <td>
                       <div class="col-12" style="width: 60px; height:60px;">
-                        <img src="public/img/<?= $pro['img'] ?>.jpg" class="product-image" alt="Product Image" style="width:100%; height:100%;">
+                        <img src="<?= $pro['img'] ?>" class="product-image" alt="Product Image" style="width:100%; height:100%;">
                       </div>
                     </td>
                     <td><?= $pro['1'] ?></td>
@@ -76,7 +76,7 @@ include "layouts/headerAdmin.php";
                     <td><?= $pro['precio'] ?></td>
                     <td><?= $pro['7'] ?></td>
                     <td>
-                      <a href="#"><button type="button" class="btn btn-block btn-success">Editar</button></a>
+                      <a href="index.php?p=editarProducto&nombre=<?= $pro['1'] ?>&caracteristicas=<?= $pro['caracteristicas'] ?>&precio=<?= $pro['precio'] ?>&id_producto=<?= $pro['id_producto'] ?>"><button type="button" class="btn btn-block btn-success">Editar</button></a>
                     </td>
 
                     <td>
