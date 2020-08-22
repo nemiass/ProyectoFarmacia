@@ -46,7 +46,7 @@ include "layouts/headerAdmin.php";
               $pedidocontroller=new PedidoController();
              $cliente=new ClienteController;
              
-              $empleado = $empleadocontroller->traerempleado($_GET['id_empleado']);
+              $empleado = $empleadocontroller->traerempleado($_GET['dni']);
               $pedidos=$pedidocontroller->listarPedidosAtendidosempleado($_GET['id_empleado']);
               
               ?>
@@ -54,6 +54,7 @@ include "layouts/headerAdmin.php";
                   <tr>
                     <th scope="row">Nombre:</th>
                     <td><?= $empleado[0]['nombre'] ?></td>
+                  
                   </tr>
 
                   <tr>
@@ -121,7 +122,7 @@ include "layouts/headerAdmin.php";
                     <th>Fecha</th>
                     <th>Lugar Entrega</th>
                     <th>Cliente</th>
-                    <th>Monto Total</th>
+                    <th>Sub Total</th>
                     <th>&nbsp</th>
                   </tr>
                 </thead>

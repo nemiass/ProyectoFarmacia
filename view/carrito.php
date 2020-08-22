@@ -58,7 +58,7 @@ include "layouts/headerCliente.php";
                 <?php
                 //session_start();
                 $pedido=$pcontroller->registrarPedido($id_cliente);
-                var_dump($pedido);
+             
                $id_pedido=$pedido[0]['id_pedido'];
                 if (!empty($_SESSION["Productos"])) :
                   foreach ($_SESSION["Productos"] as $p) :

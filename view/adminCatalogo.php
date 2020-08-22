@@ -16,7 +16,7 @@ include "layouts/headerAdmin.php";
 
                     </div>
                     <div class="col-3">
-                        <button type="button" class="btn btn-block btn-success">Agregar Catálogo</button>
+                        <a href="index.php?p=agregarCatalogo"><button type="button" class="btn btn-block btn-success">Agregar Catálogo</button></a>
                     </div>
                 </div>
                 <div class="row">

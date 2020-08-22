@@ -50,8 +50,21 @@ class CatalogoController
 
 
    }
-   public function agregarCatalogo()
-   {
+   public function crearCatalogo()
+   {if(isset($_POST['reg'])){
+      if(!empty($_POST['nombre'])&&!empty($_POST['nombre'])){
+         $nombre=$_POST['nombre'];
+         $descripcion=$_POST['nombre'];
+         $catalogo=new Catalogo($nombre,$descripcion);
+         $catalogo->crearCatalogo();
+         header("location:index.php?p=adminCatalogo");
+      }else{
+         $error="rellene datos";
+         return $error;
+      }
+      
+   }
+
    }
 
    public function  eliminarCatalogo()

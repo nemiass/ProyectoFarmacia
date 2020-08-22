@@ -198,7 +198,7 @@ class Pedido
             $db = new db();
             $conn = $db->abrirConexion();
 
-            $sql = "SELECT cli.id_cliente,ped.fecha,ped.direccion,CONCAT( cli.nombre,' ',cli.apellido )as cliente,sum(prod.precio*ped_prod.cantidad) as total,ped.id_pedido from cliente as cli join pedido as ped ON cli.id_cliente=ped.id_cliente JOIN empleado_pedido as emp_ped ON emp_ped.id_pedido=ped.id_pedido JOIN empleado as emp ON emp.id_empleado=emp_ped.id_empleado JOIN pedido_producto as ped_prod on ped_prod.id_pedido=ped.id_pedido JOIN producto as prod  on prod.id_producto=ped_prod.id_producto  WHERE emp.id_empleado=$id   GROUP BY ped.id_pedido";
+            $sql = "SELECT cli.id_cliente,ped.fecha,ped.direccion,CONCAT( cli.nombre,' ',cli.apellido )as cliente,sum(prod.precio*ped_prod.cantidad) as total,ped.id_pedido from cliente as cli join pedido as ped ON cli.id_cliente=ped.id_cliente JOIN empleado_pedido as emp_ped ON emp_ped.id_pedido=ped.id_pedido JOIN empleado as emp ON emp.id_empleado=emp_ped.id_empleado JOIN pedido_producto as ped_prod on ped_prod.id_pedido=ped.id_pedido JOIN producto as prod  on prod.id_producto=ped_prod.id_producto  WHERE emp.id_empleado=$id and ped.estado='entregado'   GROUP BY ped.id_pedido";
             $respuesta = $conn->prepare($sql);
             $respuesta->execute();
             $matriz = $respuesta->fetchAll();

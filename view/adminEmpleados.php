@@ -51,7 +51,7 @@ use app\controller\AdminController;
                     <td><?= $empleado['apellido'] ?></td>
                     <td><?= $empleado['telefono'] ?></td>
                     <td>
-                      <a href="index.php?p=adminDetallesEmpleados&id_empleado=<?=$empleado['id_empleado']?>"><button type="button" class="btn btn-block btn-success">Ver Detalles</button></a>
+                      <a href="index.php?p=adminDetallesEmpleados&id_empleado=<?=$empleado['id_empleado']?>&dni=<?=$empleado['dni']?>"><button type="button" class="btn btn-block btn-success">Ver Detalles</button></a>
                     </td>
 
                     <td>
