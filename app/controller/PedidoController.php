@@ -2,6 +2,7 @@
 
 namespace app\controller;
 
+use app\Empleado_pedido;
 use app\Pedido;
 use app\Pedido_producto;
 
@@ -54,5 +55,34 @@ class PedidoController
         $pedido=Pedido::PedidoRealizadoEmpleado($id);
         return $pedido;
     }
+
+    function listarpedidosaAtender()
+    {
+        $pedido=Pedido::PedidoaAtender();
+        return $pedido;
+    }
+
+    function registrarEmpleado_pedido(){
+        if(isset($_POST['enviar'])){
+           $id_pedido= $_POST['id_pedido'];
+           $id_empleado= $_POST['id_empleado'];
+          $empleado_pedido=new Empleado_pedido($id_empleado,$id_pedido);
+          $empleado_pedido->registrarEmpleado_pedido();
+          Pedido::actualizarEstado($id_pedido);
+        }
+
+    
+    }
+
+    function detallesaAtender($id_cliente,$id_pedido){
+        $pedido=Pedido::detallesaAtender($id_cliente,$id_pedido);
+        return $pedido;
+   }
+
+   
+   function PedidosAtendidos($id_empleado){
+    $pedido=Pedido::pedidos_atendido($id_empleado);
+    return $pedido;
+}
 
 }

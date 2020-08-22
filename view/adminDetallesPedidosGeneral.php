@@ -88,6 +88,7 @@ $i = 1;
                       <table class="table table-striped">
                         <thead>
                           <tr>
+                         
                             <th>Cantidad</th>
                             <th>Producto</th>
                             <th>Serial #</th>

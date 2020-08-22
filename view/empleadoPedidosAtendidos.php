@@ -1,5 +1,12 @@
 <!-- Header -->
 <?php
+
+use app\controller\PedidoController;
+
+$pcontroller=new PedidoController;
+$dni=$_SESSION['dni'];
+$pedidos=$pcontroller->PedidosAtendidos($dni);
+$i=1;
 include "layouts/headerEmpleado.php";
 ?>
 <!--/. Header -->
@@ -34,35 +41,27 @@ include "layouts/headerEmpleado.php";
                   <th>#</th>
                   <th>FechaEntregada</th>
                   <th>Lugar Etregado</th>
-                  <th>Moto</th>
+                  <th>subtotal</th>
                   <th>Cliente</th>
                   <th>&nbsp</th>
                 </tr>
               </thead>
 
               <tbody>
+            
+                <?php foreach($pedidos as $ped): ?>
                 <tr>
-                  <td>1</td>
-                  <td>12-12-2020</td>
-                  <td>Mi casa</td>
-                  <td>S/100.00</td>
-                  <td>Cliente</td>
+                
+                  <td><?=$i;$i++?></td>
+                  <td><?=$ped['fecha_entrega']?></td>
+                  <td><?=$ped['direccion']?></td>
+                  <td>S/<?=$ped['subtotal']?></td>
+                  <td><?=$ped['nombre']?></td>
                   <td>
-                    <a href="index.php?p=empleadoDetallesPedidos"><button type="button" class="btn btn-block btn-success">Ver Detalles</button></a>
+                    <a href="index.php?p=empleadoDetallesPedidos&id_pedido=<?=$ped['id_pedido'] ?>&id_cliente=<?=$ped['id_cliente'] ?>"><button type="button" class="btn btn-block btn-success">Ver Detalles</button></a>
                   </td>
                 </tr>
-
-                <tr>
-                  <td>2</td>
-                  <td>12-12-2020</td>
-                  <td>Mi casa</td>
-                  <td>S/100.00</td>
-                  <td>Papo</td>
-                  <td>
-                    <a href="index.php?p=empleadodetallesPedidos"><button type="button" class="btn btn-block btn-success">Ver Detalles</button></a>
-                  </td>
-                </tr>
-
+                <?php endforeach ?>
               </tbody>
             </table>
           </div>

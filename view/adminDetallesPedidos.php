@@ -54,7 +54,7 @@ $i = 1;
                     <div class="col-sm-4 invoice-col">
                     
                       <address>
-                        <strong>Farmavida</strong><br>
+                        <strong>Farmavida </strong><br>
                         <?= $farmacia[0]['ubicacion'] ?><br>
                         Huánuco Peru<br>
                         <?= $farmacia[0]['telefono'] ?><br>

@@ -1,5 +1,13 @@
 <!-- Header -->
 <?php
+
+use app\controller\ClienteController;
+use app\controller\PedidoController;
+
+$pcontroller=new PedidoController;
+$pedidos=$pcontroller->detallesaAtender($_GET['id_cliente'],$_GET['id_pedido']);
+$ccontroller=new ClienteController;
+$cliente=$ccontroller->traerCliente2($_GET['id_cliente']);
 include "layouts/headerEmpleado.php";
 ?>
 <!--/. Header -->
@@ -34,30 +42,30 @@ include "layouts/headerEmpleado.php";
               <table class="table">
                 <thead>
                   <tr>
+                
                     <th>#</th>
                     <th>Productos</th>
-                    <th>Descripcón</th>
-                    <th>Subtotal</th>
+                    <th>cantidad</th>
+                    <th>precio</th>
+                    
+                  
                   </tr>
+                <?php foreach($pedidos as $ped):?>
+                  <tr>
+                    <td>1</td>
+                    <td><?= $ped['nombre']?></td>
+                    <td><?= $ped['cantidad']?></td>
+                    <td><?= $ped['precio']?></td>
+                   
+                  </tr>
+                  <?php endforeach; ?>
                 </thead>
              
 
               <table class="table mt-3">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Total</th>
-                    <th>Tipo</th>
-                    <th>Lugar de Entrega</th>
-                  </tr>
-                </thead>
+              
                 <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>S/. 200.00</td>
-                    <td>Pagado</td>
-                    <td>Jr. tal nuemero tal</td>
-                  </tr>
+              
                 </tbody>
               </table>
             </div>
@@ -81,16 +89,16 @@ include "layouts/headerEmpleado.php";
                 <tbody>
                   <tr>
                     <th scope="row">Nombre</th>
-                    <td>Tal persona</td>
+                    <td><?=$cliente[0]['nombre']?></td>
                   </tr>
                   <tr>
                     <th scope="row">Apellidos:</th>
-                    <td>Tal apellido</td>
+                    <td><?=$cliente[0]['apellido']?></td>
                   </tr>
 
                   <tr>
                     <th scope="row">Teléfono:</th>
-                    <td>Tal teléfono</td>
+                    <td><?=$cliente[0]['telefono']?></td>
                   </tr>
 
                 </tbody>

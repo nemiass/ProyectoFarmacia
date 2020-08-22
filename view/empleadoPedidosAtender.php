@@ -1,6 +1,20 @@
 <!-- Header -->
 <?php
+
+use app\controller\EmpleadoController;
+use app\controller\PedidoController;
+
 include "layouts/headerEmpleado.php";
+$econtroller=new EmpleadoController;
+
+$dni_empleado=$_SESSION['dni'];
+$empleado=$econtroller->traerempleado($dni_empleado);
+$id_empleado=$empleado[0]['id_empleado'];
+$pcontroller=new PedidoController;
+$pcontroller->registrarEmpleado_pedido();
+$pedidos=$pcontroller->listarpedidosaAtender();
+//$id_empleado=$empleado['id_empleado'];
+$i=1;
 ?>
 <!--/. Header -->
 
@@ -14,6 +28,7 @@ include "layouts/headerEmpleado.php";
                 <div class="row">
                     <div class="col-9">
                         <h1>Pedidos a atender</h1>
+                     
                     </div>
                     <div class="col-3">
                         <button type="button" class="btn btn-block btn-success">Actualizas lista</button>
@@ -29,48 +44,45 @@ include "layouts/headerEmpleado.php";
                                     <th>Fecha Entrega</th>
                                     <th>Lugar de entrega</th>
                                     <th>Cliente</th>
-                                    <th>Moto</th>
-                                    <th>Tipo</th>
+                                    <th>subtotal</th>
+                                    <th>total</th>
+                                    <th></th>
                                     <th>&nbsp</th>
                                     <th>&nbsp</th>
                                 </tr>
                             </thead>
 
                             <tbody>
+                              
+                                <?php foreach($pedidos as $ped): ?>
+                                    <form action="" method="post">
                                 <tr>
-                                    <td>1</td>
-                                    <td>12-12-2020</td>
-                                    <td>Mi casa</td>
-                                    <td>Papo</td>
-                                    <td>S/100.00</td>
-                                    <td>Pagado</td>
+                                    <td><?=$i;$i++ ?></td>
+                                    <td><?= $ped['fecha_entrega']?></td>
+                                    <td><?= $ped['direccion']?></td>
+                                    <td><?= $ped['nombre']?></td>
+                                    <td>S/<?= $ped['monto']?></td>
+                                    <td>S/<?= ($ped['monto']+8)?></td>
+                                  
                                     <td>
-                                        <button type="button" class="btn btn-block btn-warning">Atender</button>
+                                    
+                                  <input type="hidden" name="id_empleado" value="<?=$empleado[0]['id_empleado']?>">   
+                                  <input type="hidden" name="id_pedido" value="<?=$ped['id_pedido']?>">     
+                                   <button type="submit"  value='enviar'  name="enviar" class="btn btn-block btn-warning">Atender</button>
+                                      
                                     </td>
 
                                     <td>
-                                        <a href="index.php?p=empleadoDetallesPedidos"><button type="button" class="btn btn-block btn-success">Ver Detalles</button></a>
+                                    
+                                        <a href="index.php?p=empleadoDetallesPedidos&id_pedido=<?=$ped['id_pedido'] ?>&id_cliente=<?=$ped['id_cliente'] ?>"><button type="button" class="btn btn-block btn-success">Ver Detalles</button></a>
                                     </td>
                                 </tr>
-
-                                <tr>
-                                    <td>1</td>
-                                    <td>12-12-2020</td>
-                                    <td>Mi casa</td>
-                                    <td>Papo</td>
-                                    <td>S/100.00</td>
-                                    <td>Cobrar</td>
-                                    <td>
-                                        <button type="button" class="btn btn-block btn-warning">Atender</button>
-                                    </td>
-
-                                    <td>
-                                        <a href="index.php?p=empleadoDetallesPedidos"><button type="button" class="btn btn-block btn-success">Ver Detalles</button></a>
-                                    </td>
-                                </tr>
-
+                                </form>
+                            <?php endforeach; ?>
+                          
                             </tbody>
                         </table>
+                    
                     </div>
                 </div>
             </div>

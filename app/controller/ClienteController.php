@@ -47,6 +47,16 @@ class ClienteController
         echo "error dni";
     }
 
+    public function traerCliente2($id)
+    {
+        $cliente = Cliente::ListarCliente($id);
+
+        if (!empty($cliente)) {
+            return $cliente;
+        }
+        echo "error dni";
+    }
+
     public function editardatos()
     {
     }

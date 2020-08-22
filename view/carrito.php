@@ -8,7 +8,7 @@ $ccontroller = new ClienteController;
 $pcontroller=new PedidoController;
 
 $cliente = $ccontroller->traerCliente($_SESSION['dni']);
-$id_cliente=$cliente[0]['id_cliente'];
+$id_cliente=$cliente['id_cliente'];
 
 //session_start();
 include "layouts/headerCliente.php";
@@ -26,8 +26,8 @@ include "layouts/headerCliente.php";
       <div class="card-body">
         <div class="row">
           <div class="col-10">
-            <h1>Productos del carrito</h1>
-          </div>
+            <h1></h1>
+                      </div>
           <!--<div class="col-2 mt-3">
                       <?php
                       /**if (isset($_SESSION["total"])) {
@@ -58,6 +58,7 @@ include "layouts/headerCliente.php";
                 <?php
                 //session_start();
                 $pedido=$pcontroller->registrarPedido($id_cliente);
+                var_dump($pedido);
                $id_pedido=$pedido[0]['id_pedido'];
                 if (!empty($_SESSION["Productos"])) :
                   foreach ($_SESSION["Productos"] as $p) :
@@ -66,10 +67,10 @@ include "layouts/headerCliente.php";
                     $precio = $p["precio"];
                     $cantidad = $p["cantidad"];
                     $subtotal = $p["subtotal"];
-                    //$pcontroller->registrarPedidoProducto($cantidad,$id,$id_pedido,$id);
+                    $pcontroller->registrarPedidoProducto($cantidad,$id,$id_pedido,$id);
                 ?>
              
-                    <tr id="<?= $id ?>A">
+                    <tr id="<?= $id ?>">
                       <td><?= $nombre ?></td>
                       <td>S/<?= number_format($precio, 2, ".", ",") ?></td>
                       <td><input class='text-center' id="<?= $id ?>" disabled style='width:17%;' type="text" value="<?= $cantidad ?>"></td>

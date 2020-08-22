@@ -56,7 +56,7 @@
                 <i class="fas  fa-calendar fa-lg mr-2"></i>
                 <p>
                   Pedidos para atender
-                  <span class="right badge badge-danger">2</span>
+               
                 </p>
               </a>
             </li>

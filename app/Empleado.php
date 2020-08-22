@@ -97,13 +97,13 @@ class Empleado
         }
     }
 
-    public  static function traerEmpleado($id): array
+    public  static function traerEmpleado($dni): array
     {
         try {
             $db = new db();
             $conn = $db->abrirConexion();
 
-            $sql = "SELECT * from empleado WHERE id_empleado=$id";
+            $sql = "SELECT * from empleado WHERE dni=$dni";
             $respuesta = $conn->prepare($sql);
             $respuesta->execute();
             $matriz = $respuesta->fetchAll();
