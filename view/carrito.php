@@ -6,6 +6,9 @@ use app\controller\PedidoController;
 
 $ccontroller = new ClienteController;
 $pcontroller=new PedidoController;
+if(!isset($_SESSION['dni'])){
+  header("location:http://localhost/proyectofarmacia/index.php?p=login");
+}
 $productoss=$_SESSION["Productos"];
 $cliente = $ccontroller->traerCliente($_SESSION['dni']);
 $id_cliente=$cliente['id_cliente'];
@@ -35,6 +38,7 @@ include "layouts/headerCliente.php";
                       } else {
                         echo "<div><b>Tola: </b>0</div>";
                       }**/
+                   
                       ?>
                 </div>-->
         </div>
@@ -51,7 +55,7 @@ include "layouts/headerCliente.php";
                   <th>Cantidad</th>
                   <th>Sub Total</th>
                   <th>&nbsp</th>
-                  <?= var_dump($productoss) ?>
+                  <?= var_dump($_SESSION['dni']) ?>
                 </tr>
               </thead>
 
@@ -61,7 +65,7 @@ include "layouts/headerCliente.php";
                 $pedido=$pcontroller->registrarPedido($id_cliente);
              
                $id_pedido=$pedido[0]['id_pedido'];
-                if (!empty($_SESSION["Productos"])) :
+                if (isset($_SESSION["Productos"])) :
                   foreach ($productoss as $p) :
                     $id = $p["id"];
                     $nombre = $p["nombre"];
