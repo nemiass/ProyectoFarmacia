@@ -1,6 +1,7 @@
 <!-- Header -->
 <?php
 
+
 use app\controller\ClienteController;
 use app\controller\PedidoController;
 
@@ -14,7 +15,6 @@ if (isset($_POST['enviar'])) {
     $pedido = $pcontroller->registrarPedido($id_cliente);
     $productoss = $_SESSION["Productos"];
     $id_pedido = $pedido[0]['id_pedido'];
-
     foreach ($productoss as $p) {
       $id = $p["id"];
       $nombre = $p["nombre"];
@@ -23,13 +23,17 @@ if (isset($_POST['enviar'])) {
       $subtotal = $p["subtotal"];
       $pcontroller->registrarPedidoProducto($cantidad, $id, $id_pedido, $id);
     }
+    $dato = "pedido registrado correctamente";
+    unset($_SESSION["Productos"]);
+    $_SESSION["cantidad"] = 0;
+    $_SESSION["total"] = 0;
   } else {
     $dato = "Registrese para poder realizar su pedido correctamente!!";
   }
 }
 
-
 include "layouts/headerCliente.php";
+
 ?>
 <!--/. Header -->
 
@@ -51,7 +55,7 @@ include "layouts/headerCliente.php";
                       } else {
                         echo "<div><b>Tola: </b>0</div>";
                       }**/
-                   
+
                       ?>
                 </div>-->
         </div>
@@ -64,7 +68,7 @@ include "layouts/headerCliente.php";
               <thead>
                 <tr>
                   <?php if (isset($dato)) : ?>
-                    <div class='alert alert-warning' role='alert'><?= $dato ?></div>
+                    <div class='alert alert-success' role='alert'><?= $dato ?></div>
                   <?php endif; ?>
                   <th>Producto</th>
                   <th>Precio</th>
