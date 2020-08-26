@@ -13,12 +13,12 @@ class Pedido
     private $direccion;
     private $id_cliente;
 
-    public function __construct($fecha, $fecha_entrega, $direccion,$id_cliente)
+    public function __construct($fecha, $fecha_entrega, $direccion, $id_cliente)
     {
         $this->fecha = $fecha;
         $this->fecha_entrega = $fecha_entrega;
-        $this->direccion=$direccion;
-        $this->id_cliente=$id_cliente;
+        $this->direccion = $direccion;
+        $this->id_cliente = $id_cliente;
     }
 
     public function registrarPedido(): array
@@ -42,8 +42,8 @@ class Pedido
         }
     }
 
-    
-    
+
+
 
     public function getCantidad(): array
     {
@@ -122,7 +122,7 @@ class Pedido
         }
     }
 
-    public static function detallesaAtender($id_cliente,$id_pedido): array
+    public static function detallesaAtender($id_cliente, $id_pedido): array
     {
         try {
             $db = new db();
@@ -175,7 +175,7 @@ class Pedido
     }
 
 
-    public static function subtotal($id,$id2): array
+    public static function subtotal($id, $id2): array
     {
         try {
             $db = new db();
@@ -210,21 +210,19 @@ class Pedido
     }
 
     public static function actualizarEstado($id_pedido)
-    { try {
-        $db = new db();
-        $conn = $db->abrirConexion();
+    {
+        try {
+            $db = new db();
+            $conn = $db->abrirConexion();
 
-        $sql = "UPDATE pedido
+            $sql = "UPDATE pedido
         SET estado = 'entregado'
         WHERE id_pedido=$id_pedido ";
-        $respuesta = $conn->prepare($sql);
-        $respuesta->execute();
-        $db->cerrarConexion();
-      
-    } catch (\PDOException $e) {
-        echo $e->getMessage();
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute();
+            $db->cerrarConexion();
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
     }
-
-    }
-
 }
