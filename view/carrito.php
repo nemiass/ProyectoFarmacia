@@ -6,7 +6,7 @@ use app\controller\PedidoController;
 
 $ccontroller = new ClienteController;
 $pcontroller=new PedidoController;
-
+$productoss=$_SESSION["Productos"];
 $cliente = $ccontroller->traerCliente($_SESSION['dni']);
 $id_cliente=$cliente['id_cliente'];
 
@@ -51,6 +51,7 @@ include "layouts/headerCliente.php";
                   <th>Cantidad</th>
                   <th>Sub Total</th>
                   <th>&nbsp</th>
+                  <?= var_dump($productoss) ?>
                 </tr>
               </thead>
 
@@ -61,7 +62,7 @@ include "layouts/headerCliente.php";
              
                $id_pedido=$pedido[0]['id_pedido'];
                 if (!empty($_SESSION["Productos"])) :
-                  foreach ($_SESSION["Productos"] as $p) :
+                  foreach ($productoss as $p) :
                     $id = $p["id"];
                     $nombre = $p["nombre"];
                     $precio = $p["precio"];
@@ -76,7 +77,7 @@ include "layouts/headerCliente.php";
                       <td><input class='text-center' id="<?= $id ?>" disabled style='width:17%;' type="text" value="<?= $cantidad ?>"></td>
                       <td>S/<?= number_format($subtotal, 2, ".", ",") ?></td>
                       <td>
-                        <button value="eliminar" type="button" class="btn btn-block btn-danger" name="eliminar" onclick="eliminar(<?= $id ?>, this.value)">Eliminar</button>
+                        <a href="index.php?p=carrito"><button value="eliminar" type="button" class="btn btn-block btn-danger" name="eliminar" onclick="eliminar(<?= $id ?>, this.value)">Eliminar</button></a>
                       </td>
                     </tr>
                   <?php
