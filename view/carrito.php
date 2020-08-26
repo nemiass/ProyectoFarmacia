@@ -4,24 +4,36 @@
 
 use app\controller\ClienteController;
 use app\controller\PedidoController;
+use app\Producto;
+
+$ccontroller = new ClienteController;
+$pcontroller = new PedidoController;
 
 if (isset($_POST['enviar'])) {
   if (isset($_SESSION["estado"])) {
-    $ccontroller = new ClienteController;
-    $pcontroller = new PedidoController;
+    $id_dep = $_POST["dep"];
+    $id_prov = $_POST["prov"];
+    $id_dist = $_POST["dist"];
 
     $cliente = $ccontroller->traerCliente($_SESSION['dni']);
     $id_cliente = $cliente['id_cliente'];
-    $pedido = $pcontroller->registrarPedido($id_cliente);
+
+    $dep = $pcontroller->traerDepartamento($id_dep)["nombre"];
+    $prov = $pcontroller->traerProvincia($id_prov)["nombre"];
+    $dist = $pcontroller->traerProvincia($id_dist)["nombre"];
+
+    $pedido = $pcontroller->registrarPedido($id_cliente, $dep, $prov, $dist);
     $productoss = $_SESSION["Productos"];
     $id_pedido = $pedido[0]['id_pedido'];
-    foreach ($productoss as $p) {
-      $id = $p["id"];
-      $nombre = $p["nombre"];
-      $precio = $p["precio"];
-      $cantidad = $p["cantidad"];
-      $subtotal = $p["subtotal"];
-      $pcontroller->registrarPedidoProducto($cantidad, $id, $id_pedido, $id);
+    if (!empty($productoss)) {
+      foreach ($productoss as $p) {
+        $id = $p["id"];
+        $nombre = $p["nombre"];
+        $precio = $p["precio"];
+        $cantidad = $p["cantidad"];
+        $subtotal = $p["subtotal"];
+        $pcontroller->registrarPedidoProducto($cantidad, $id, $id_pedido, $id);
+      }
     }
     $dato = "pedido registrado correctamente";
     unset($_SESSION["Productos"]);
@@ -48,48 +60,33 @@ include "layouts/headerCliente.php";
           <div class="col-10">
             <h1></h1>
           </div>
-          <!--<div class="col-2 mt-3">
-                      <?php
-                      /**if (isset($_SESSION["total"])) {
-                        echo "<div><b>Tola: </b>" . $_SESSION["total"] . "</div>";
-                      } else {
-                        echo "<div><b>Tola: </b>0</div>";
-                      }**/
-
-                      ?>
-                </div>-->
         </div>
-
 
         <div class="row">
           <div class="col-12">
-
             <table class="table table-striped" id="lista-pedidos">
-              <thead>
-                <tr>
-                  <?php if (isset($dato)) : ?>
-                    <div class='alert alert-success' role='alert'><?= $dato ?></div>
-                  <?php endif; ?>
-                  <th>Producto</th>
-                  <th>Precio</th>
-                  <th>Cantidad</th>
-                  <th>Sub Total</th>
-                  <th>&nbsp</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                <?php
-                if (!empty($_SESSION["Productos"])) :
-                  $productoss = $_SESSION["Productos"];
-                  foreach ($productoss as $p) :
-                    $id = $p["id"];
-                    $nombre = $p["nombre"];
-                    $precio = $p["precio"];
-                    $cantidad = $p["cantidad"];
-                    $subtotal = $p["subtotal"];
-
-                ?>
+              <?php if (!empty($_SESSION["Productos"])) : ?>
+                <thead>
+                  <tr>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Sub Total</th>
+                    <th>&nbsp</th>
+                  </tr>
+                </thead>
+              <?php endif; ?>
+              <?php
+              if (!empty($_SESSION["Productos"])) :
+                $productoss = $_SESSION["Productos"];
+                foreach ($productoss as $p) :
+                  $id = $p["id"];
+                  $nombre = $p["nombre"];
+                  $precio = $p["precio"];
+                  $cantidad = $p["cantidad"];
+                  $subtotal = $p["subtotal"];
+              ?>
+                  <tbody>
                     <tr id="<?= $id ?>A">
                       <td><?= $nombre ?></td>
                       <td>S/<?= number_format($precio, 2, ".", ",") ?></td>
@@ -100,18 +97,50 @@ include "layouts/headerCliente.php";
                       </td>
                     </tr>
                   <?php
-                  endforeach;
-                else : ?>
+                endforeach;
+              else : ?>
                   <div class='alert alert-warning' role='alert'>Tu carrito está vacío!</div>
                 <?php endif; ?>
-
-              </tbody>
+                <?php if (isset($dato)) : ?>
+                  <div class='alert alert-success' role='alert'><?= $dato ?></div>
+                <?php endif; ?>
+                  </tbody>
             </table>
 
           </div>
         </div>
+        <?php
+        $departamentos = $pcontroller->traerDepartamentos();
+        ?>
+        <div>
+          <h2 class="text-center">Formulario de pedido</h2>
+        </div>
+
         <form role="form" method="POST">
-          <label for="exampleInputEmail1">direccion de entrega</label>
+          <div class="row">
+            <div class="col-4">
+              <select name="dep" id="dep" class="form-control mb-1">
+                <option value="">Seleccione Departamento</option>
+
+                <?php foreach ($departamentos as $p) : ?>
+                  <option value=<?= $p['id_departamento'] ?>><?= $p['nombre'] ?></option>
+                <?php endforeach; ?>
+
+              </select>
+            </div>
+            <div class="col-4">
+              <select name="prov" id="prov" class="form-control mb-1">
+                <option value="">Seleccione Provincia</option>
+              </select>
+            </div>
+            <div class="col-4">
+              <select name="dist" id="dist" class="form-control mb-1">
+                <option value="">Seleccione distrito</option>
+              </select>
+            </div>
+          </div>
+
+          <label for="exampleInputEmail1">Direccion de entrega</label>
           <input type="texto" class="form-control" id="exampleInputEmail1" name="direccion">
           <label for="exampleInputEmail1">Fecha de entrega </label>
           <input type="date" placeholder="dd-mm-yyyy" class="form-control" id="exampleInputEmail1" name="fecha">
@@ -119,7 +148,6 @@ include "layouts/headerCliente.php";
           <button type="submit" class="btn btn-block btn-primary btn-lg" name="enviar">Realizar Pedido</button>
           <div class="row">
           </div>
-
       </div>
       </form>
       <!-- /.card-body -->

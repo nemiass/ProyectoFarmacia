@@ -11,14 +11,20 @@ class Pedido
     private $fecha_entrega;
     private $fechaEntrega;
     private $direccion;
+    private $dep;
+    private $prov;
+    private $dist;
     private $id_cliente;
 
-    public function __construct($fecha, $fecha_entrega, $direccion, $id_cliente)
+    public function __construct($fecha, $fecha_entrega, $direccion, $id_cliente, $dep, $prov, $dist)
     {
         $this->fecha = $fecha;
         $this->fecha_entrega = $fecha_entrega;
         $this->direccion = $direccion;
         $this->id_cliente = $id_cliente;
+        $this->dep = $dep;
+        $this->prov = $prov;
+        $this->dist = $dist;
     }
 
     public function registrarPedido(): array
@@ -27,8 +33,9 @@ class Pedido
             $db = new db();
             $conn = $db->abrirConexion();
 
-            $sql = "INSERT INTO  pedido(fecha,fecha_entrega, direccion,estado,id_cliente)
-            VALUES('$this->fecha_entrega ','$this->fecha','$this->direccion', 'pendiente',$this->id_cliente)";
+            $sql = "INSERT INTO pedido(fecha,fecha_entrega,departamento, provincia, distrito, direccion,estado,id_cliente)
+            VALUES('$this->fecha_entrega','$this->fecha','$this->dep','$this->prov','$this->dist','$this->direccion', 'pendiente',$this->id_cliente)";
+
             $respuesta = $conn->prepare($sql);
             $respuesta->execute();
             $sql = "SELECT * FROM pedido ORDER by id_pedido DESC LIMIT 1";
@@ -221,6 +228,104 @@ class Pedido
             $respuesta = $conn->prepare($sql);
             $respuesta->execute();
             $db->cerrarConexion();
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public static function getDepartamentos(): array
+    {
+        try {
+            $db = new db();
+            $conn = $db->abrirConexion();
+            $sql = "SELECT * from departamentos";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute();
+            $dep = $respuesta->fetchAll();
+            $db->cerrarConexion();
+            return $dep;
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public static function getProvincias(): array
+    {
+        $id = $_GET["id"];
+        try {
+            $db = new db();
+            $conn = $db->abrirConexion();
+            $sql = "SELECT * from provincias where id_departamento = :id";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute([":id" => $id]);
+            $prov = $respuesta->fetchAll();
+            $db->cerrarConexion();
+            return $prov;
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public static function getDistritos(): array
+    {
+        $id = $_GET["id"];
+        try {
+            $db = new db();
+            $conn = $db->abrirConexion();
+            $sql = "SELECT * from distritos where id_provincia = :id";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute([":id" => $id]);
+            $prov = $respuesta->fetchAll();
+            $db->cerrarConexion();
+            return $prov;
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public static function getDepartamento($id)
+    {
+        try {
+            $db = new db();
+            $conn = $db->abrirConexion();
+            $sql = "SELECT nombre from departamentos where id_departamento = :id";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute([":id" => $id]);
+            $prov = $respuesta->fetch();
+            $db->cerrarConexion();
+            return $prov;
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public static function getProvincia($id)
+    {
+        try {
+            $db = new db();
+            $conn = $db->abrirConexion();
+            $sql = "SELECT nombre from provincias where id_provincia = :id";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute([":id" => $id]);
+            $prov = $respuesta->fetch();
+            $db->cerrarConexion();
+            return $prov;
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public static function getDistrito($id)
+    {
+        try {
+            $db = new db();
+            $conn = $db->abrirConexion();
+            $sql = "SELECT nombre from distritos where id_distrito = :id";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute([":id" => $id]);
+            $prov = $respuesta->fetch();
+            $db->cerrarConexion();
+            return $prov;
         } catch (\PDOException $e) {
             echo $e->getMessage();
         }

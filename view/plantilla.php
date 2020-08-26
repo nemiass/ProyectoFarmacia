@@ -95,8 +95,8 @@ if (isset($_SESSION["estado"])) {
 <!-- AdminLTE for demo purposes -->
 <script src="public/dist/js/demo.js"></script>
 <!-- Scripts propios -->
-</body>
-
 <script src="public/jspropio/micarrito.js"></script>
+<script src="public/jspropio/pedido.js"></script>
+</body>
 
 </html>

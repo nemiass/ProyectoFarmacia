@@ -97,4 +97,4 @@ $ccontroller->Registrar();
       <!-- /.form-box -->
     </div>
   </div>
-  <!--<script src="public/jspropio/apiReniec.js"></script>-->
+  <script src="public/jspropio/apiReniec.js"></script>

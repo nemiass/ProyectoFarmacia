@@ -8,14 +8,14 @@ use app\Pedido_producto;
 
 class PedidoController
 {
-    function registrarPedido($id_cliente)
+    function registrarPedido($id_cliente, $dep, $prov, $dist)
     {
         if (isset($_POST['enviar'])) {
             $fecha = $_POST['fecha'];
             $fecha_entrega = date("Y-m-d");
             $direccion = $_POST['direccion'];
             $id_cliente = $id_cliente;
-            $pedido = new Pedido($fecha, $fecha_entrega, $direccion, $id_cliente);
+            $pedido = new Pedido($fecha, $fecha_entrega, $direccion, $id_cliente, $dep, $prov,$dist);
             $ped = $pedido->registrarPedido();
             return $ped;
         }
@@ -73,5 +73,29 @@ class PedidoController
     {
         $pedido = Pedido::pedidos_atendido($id_empleado);
         return $pedido;
+    }
+
+    function traerDepartamentos()
+    {
+        $dep = Pedido::getDepartamentos();
+        return $dep;
+    }
+
+    function traerDepartamento($id)
+    {
+        $dep = Pedido::getDepartamento($id);
+        return $dep;
+    }
+
+    function traerProvincia($id)
+    {
+        $prov = Pedido::getProvincia($id);
+        return $prov;
+    }
+
+    function traerDistrito($id)
+    {
+        $dist = Pedido::getDistrito($id);
+        return $dist;
     }
 }
