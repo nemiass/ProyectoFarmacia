@@ -24,13 +24,13 @@ include "layouts/headerCliente.php";
             $precio = $producto["precio"];
             $img = $producto["img"];
         ?>
-            <div class="col-3 mt-2 mb-3">
+            <div class="col-3 mt-2">
               <a href="index.php?p=producto&id=<?= $id ?>">
-                <img src="<?= $img ?>" style="width:99%; height:70%;" alt="Imagen de producto">
+                <img src="<?= $img ?>" style='width:99%; height:60%;' alt="Imagen de producto">
               </a>
-              <div style="height:30%;">
-                <p class="text-center mb-0 "><b><?= $nombre ?></b></p>
-                <p class="mb-0"> <b>Precio:</b> S/<?= number_format($precio, 2, ".", ",") ?></p>
+              <div style="height:25%;">
+                <p class="text-center mb-0 mt-0 "><b><?= $nombre ?></b></p>
+                <p class="mb-0 mt-0"> <b>Precio:</b> S/<?= number_format($precio, 2, ".", ",") ?></p>
                 <div class="mb-1">
                   <button type="button" class="btn btn btn-warning" style="width:39%;" onclick="disminuir(<?= $id ?>)">-</button>
                   <?php if (isset($_SESSION["Productos"][$id])) : ?>
