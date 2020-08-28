@@ -19,14 +19,10 @@ include "layouts/headerAdmin.php";
         <div class="col-9 mt-3">
           <h2>Empleado</h2>
         </div>
-
-        <div class="col-3 mt-3">
-          <button type="button" class="btn btn-block btn-danger">Dar de baja</button>
-        </div>
       </div>
       <div class="row">
 
-        <div class="col-md-6">
+        <div class="col-md-12">
           <div class="card card-secondary">
             <div class="card-header">
               <h3 class="card-title">Empleado</h3>
@@ -38,40 +34,30 @@ include "layouts/headerAdmin.php";
             </div>
             <div class="card-body">
 
-              <table class="table">
+              <table class="table table-borderless table-success">
                 <tbody>
-                <?php
-                $i=1;
-              $empleadocontroller = new EmpleadoController;
-              $pedidocontroller=new PedidoController();
-             $cliente=new ClienteController;
-             
-              $empleado = $empleadocontroller->traerempleado($_GET['dni']);
-              $pedidos=$pedidocontroller->listarPedidosAtendidosempleado($_GET['id_empleado']);
-              
-              ?>
-              
+                  <?php
+                  $i = 1;
+                  $empleadocontroller = new EmpleadoController;
+                  $pedidocontroller = new PedidoController();
+                  $cliente = new ClienteController;
+
+                  $empleado = $empleadocontroller->traerempleado($_GET['dni']);
+                  $pedidos = $pedidocontroller->listarPedidosAtendidosempleado($_GET['id_empleado']);
+
+                  ?>
+
                   <tr>
                     <th scope="row">Nombre:</th>
                     <td><?= $empleado[0]['nombre'] ?></td>
-                  
-                  </tr>
-
-                  <tr>
                     <th scope="row">Apellido:</th>
                     <td><?= $empleado[0]['apellido'] ?></td>
-                  </tr>
-
-                  <tr>
                     <th scope="row">Teléfono:</th>
                     <td><?= $empleado[0]['telefono'] ?></td>
-                  </tr>
-
-                  <tr>
                     <th scope="row">Dni:</th>
                     <td><?= $empleado[0]['dni'] ?></td>
                   </tr>
-            
+
                 </tbody>
               </table>
             </div>
@@ -115,8 +101,8 @@ include "layouts/headerAdmin.php";
                   </div>
                 </div>
               </div>
-              <table class="table mt-4">
-                <thead>
+              <table class="table mt-4 table-borderless table-success table-hover table-striped">
+                <thead class="thead thead-dark">
                   <tr>
                     <th>#</th>
                     <th>Fecha</th>
@@ -128,24 +114,25 @@ include "layouts/headerAdmin.php";
                 </thead>
                 <tbody>
                   <?php
-            foreach($pedidos as $ped):
+                  foreach ($pedidos as $ped) :
                   ?>
-                  <tr>
-                    <td><?=$i; $i++; ?></td>
-                    <td><?=$ped['fecha'] ?></td>
-                    <td><?=$ped['direccion'] ?></td>
-                    <td><?=$ped['cliente'] ?></td>
-                    <td>S/. <?=$ped['total'] ?></td>
-                    <td>
-                      <a href="index.php?p=adminDetallesPedidosEmpleado&id_pedido=<?= $ped['5']?>&id_cliente=<?=$ped['0'] ?>">
-                        <button type="button" class="btn btn-block btn-success">Mostrar</button>
-                      </a>
-                    </td>
-                  </tr>
+                    <tr>
+                      <td><?= $i;
+                          $i++; ?></td>
+                      <td><?= $ped['fecha'] ?></td>
+                      <td><?= $ped['direccion'] ?></td>
+                      <td><?= $ped['cliente'] ?></td>
+                      <td>S/. <?= $ped['total'] ?></td>
+                      <td>
+                        <a href="index.php?p=adminDetallesPedidosEmpleado&id_pedido=<?= $ped['5'] ?>&id_cliente=<?= $ped['0'] ?>">
+                          <button type="button" class="btn btn-block btn-success">Mostrar</button>
+                        </a>
+                      </td>
+                    </tr>
 
                   <?php
-           endforeach;
-           ?>
+                  endforeach;
+                  ?>
                 </tbody>
               </table>
 

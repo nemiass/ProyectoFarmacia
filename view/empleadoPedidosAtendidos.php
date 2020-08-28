@@ -3,10 +3,10 @@
 
 use app\controller\PedidoController;
 
-$pcontroller=new PedidoController;
-$dni=$_SESSION['dni'];
-$pedidos=$pcontroller->PedidosAtendidos($dni);
-$i=1;
+$pcontroller = new PedidoController;
+$dni = $_SESSION['dni'];
+$pedidos = $pcontroller->PedidosAtendidos($dni);
+$i = 1;
 include "layouts/headerEmpleado.php";
 ?>
 <!--/. Header -->
@@ -35,8 +35,8 @@ include "layouts/headerEmpleado.php";
         </div>
         <div class="row">
           <div class="col-12">
-            <table class="table table-striped">
-              <thead>
+            <table class="table table-striped table-active table-hover table-borderless">
+              <thead class="thead thead-dark">
                 <tr>
                   <th>#</th>
                   <th>FechaEntregada</th>
@@ -48,19 +48,20 @@ include "layouts/headerEmpleado.php";
               </thead>
 
               <tbody>
-            
-                <?php foreach($pedidos as $ped): ?>
-                <tr>
-                
-                  <td><?=$i;$i++?></td>
-                  <td><?=$ped['fecha_entrega']?></td>
-                  <td><?=$ped['direccion']?></td>
-                  <td>S/<?=$ped['subtotal']?></td>
-                  <td><?=$ped['nombre']?></td>
-                  <td>
-                    <a href="index.php?p=empleadoDetallesPedidos&id_pedido=<?=$ped['id_pedido'] ?>&id_cliente=<?=$ped['id_cliente'] ?>"><button type="button" class="btn btn-block btn-success">Ver Detalles</button></a>
-                  </td>
-                </tr>
+
+                <?php foreach ($pedidos as $ped) : ?>
+                  <tr>
+
+                    <td><?= $i;
+                        $i++ ?></td>
+                    <td><?= $ped['fecha_entrega'] ?></td>
+                    <td><?= $ped['direccion'] ?></td>
+                    <td>S/<?= $ped['subtotal'] ?></td>
+                    <td><?= $ped['nombre'] ?></td>
+                    <td>
+                      <a href="index.php?p=empleadoDetallesPedidos&id_pedido=<?= $ped['id_pedido'] ?>&id_cliente=<?= $ped['id_cliente'] ?>"><button type="button" class="btn btn-block btn-success">Ver Detalles</button></a>
+                    </td>
+                  </tr>
                 <?php endforeach ?>
               </tbody>
             </table>

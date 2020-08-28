@@ -43,8 +43,8 @@ include "layouts/headerAdmin.php";
         <?php if ($producto) : ?>
           <div class="row">
             <div class="col-12">
-              <table class="table table-striped">
-                <thead>
+              <table  class="table mt-4 table-borderless table-striped table-success table-hover">
+                <thead class="thead thead-dark">
                   <tr>
                     <th>#</th>
                     <th>img</th>

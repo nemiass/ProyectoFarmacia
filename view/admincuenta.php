@@ -40,7 +40,7 @@ $farmacia=$farmaciacontroller->datosFarmacia();
 
             <div class="card-body" style="display: block;">
 
-              <table class="table">
+              <table class="table table-borderless">
                 <tbody>
                   <tr>
                     <td>Nombre:</td>
@@ -84,7 +84,7 @@ $farmacia=$farmaciacontroller->datosFarmacia();
 
             <div class="card-body" style="display: block;">
 
-              <table class="table">
+              <table class="table table-borderless">
                 <tbody>
                   <tr>
                     <th scope="row">Nombre:</th>
@@ -137,7 +137,7 @@ $farmacia=$farmaciacontroller->datosFarmacia();
 
             <div class="card-body" style="display: block;">
 
-              <table class="table">
+              <table class="table table-borderless">
                 <tbody>
                   <tr>
                     <td>User:</td>

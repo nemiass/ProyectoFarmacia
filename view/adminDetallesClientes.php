@@ -17,7 +17,7 @@ include "layouts/headerAdmin.php";
       </div>
       <div class="row">
 
-        <div class="col-md-6">
+        <div class="col-md-12">
           <div class="card card-secondary">
             <div class="card-header">
               <h3 class="card-title">Cliente</h3>
@@ -40,24 +40,15 @@ include "layouts/headerAdmin.php";
               $id_cliente = $_GET['id_cliente'];
               ?>
 
-              <table class="table">
+              <table class="table table-borderless table-success">
                 <tbody>
                   <tr>
                     <th scope="row">Nombre:</th>
                     <td><?= $cliente[0]["nombre"] ?></td>
-                  </tr>
-
-                  <tr>
                     <th scope="row">Apellido:</th>
                     <td><?= $cliente[0]["apellido"] ?></td>
-                  </tr>
-
-                  <tr>
                     <th scope="row">Teléfono:</th>
                     <td><?= $cliente[0]["telefono"] ?></td>
-                  </tr>
-
-                  <tr>
                     <th scope="row">Dni:</th>
                     <td><?= $cliente[0]["dni"] ?></td>
                   </tr>
@@ -107,9 +98,9 @@ include "layouts/headerAdmin.php";
                 </div>
               </div>
 
-              <table class="table mt-4">
+              <table class="table mt-4 table-borderless table-success table-hover table-striped mt-4">
 
-                <thead>
+                <thead class="thead thead-dark">
                   <tr>
                     <th>#</th>
                     <th>Fecha</th>

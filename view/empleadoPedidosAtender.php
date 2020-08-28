@@ -48,7 +48,7 @@ $i = 1;
                                     <th>Cliente</th>
                                     <th>subtotal</th>
                                     <th>total</th>
-                                    <th></th>
+                                    <th>&nbsp</th>
                                     <th>&nbsp</th>
                                     <th>&nbsp</th>
                                 </tr>

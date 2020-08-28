@@ -33,8 +33,8 @@ include "layouts/headerAdmin.php";
         </div>
         <div class="row">
           <div class="col-12">
-            <table class="table table-striped">
-              <thead>
+            <table class="table mt-4 table-borderless table-success table-hover table-striped">
+              <thead class="thead thead-dark">
                 <tr>
                   <th>#</th>
                   <th>Nombre</th>
