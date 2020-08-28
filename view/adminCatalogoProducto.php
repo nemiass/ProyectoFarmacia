@@ -16,7 +16,7 @@ include "layouts/headerAdmin.php";
       <div class="card-body">
         <div class="row">
           <div class="col-9">
-            <h1>Catálogo  <?= $_GET['nombre']?></h1>
+            <h1>Catálogo <?= $_GET['nombre'] ?></h1>
           </div>
 
           <div class="col-3">
@@ -33,61 +33,59 @@ include "layouts/headerAdmin.php";
           </div>
 
         </div>
-   
-                <?php
-              $catalogocontroller=new CatalogoController;
-              $producto=$catalogocontroller->listarCatalogosxproducto($_GET['id']);
-             
-             $i=1;
-               ?>
-               <?php if($producto):?>
-                <div class="row">
-          <div class="col-12">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>img</th>
-                  <th>Nombre</th>
-                  <th>Descripción</th>
-                  <th>Precio</th>
-                  <th>&nbsp</th>
-                  <th>&nbsp</th>
-                </tr>
-              </thead>
 
-              <tbody>
-                <?php foreach($producto as $pro): ?>
-                <tr>
-                  <td><?= $i; $i++?></td>
-                  <td>  <div class="col-12" style="width: 60px; height:60px;">
-                        <img src="<?= $pro['img'] ?>" class="product-image" alt="Product Image" style="width:100%; height:100%;">
-                      </div></td>
-                  <td><?=$pro['nombre']?></td>
-                  <td><?=$pro['caracteristicas']?></td>
-                  <td><?=$pro['precio']?></td>
-                  <td>
-                    <a href="#"><button type="button" class="btn btn-block btn-success">Editar</button></a>
-                  </td>
+        <?php
+        $catalogocontroller = new CatalogoController;
+        $producto = $catalogocontroller->listarCatalogosxproducto($_GET['id']);
 
-                  <td>
-                    <a href="#"><button type="button" class="btn btn-block btn-danger">Eliminar</button></a>
-                  </td>
-                  </tbody>
-                <?php endforeach; ?>
-                  <?php else: ?>
+        $i = 1;
+        ?>
+        <?php if ($producto) : ?>
+          <div class="row">
+            <div class="col-12">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>img</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Precio</th>
+                    <th>&nbsp</th>
+                    <th>&nbsp</th>
+                  </tr>
+                </thead>
 
-                    <h1>no hay productos en este catalogo</h1>
+                <tbody>
+                  <?php foreach ($producto as $pro) : ?>
+                    <tr>
+                      <td><?= $i;
+                          $i++ ?></td>
+                      <td>
+                        <div class="col-12" style="width: 60px; height:60px;">
+                          <img src="<?= $pro['img'] ?>" class="product-image" alt="Product Image" style="width:100%; height:100%;">
+                        </div>
+                      </td>
+                      <td><?= $pro['nombre'] ?></td>
+                      <td><?= $pro['caracteristicas'] ?></td>
+                      <td><?= $pro['precio'] ?></td>
+                      <td>
+                        <a href="#"><button type="button" class="btn btn-block btn-success">Editar</button></a>
+                      </td>
 
-               <?php endif;?>
+                      <td>
+                        <a href="#"><button type="button" class="btn btn-block btn-danger">Eliminar</button></a>
+                      </td>
+                </tbody>
+              <?php endforeach; ?>
+            <?php else : ?>
 
-               
-          
-               
-             
-            </table>
+              <h1>no hay productos en este catalogo</h1>
+
+            <?php endif; ?>
+              </table>
+            </div>
           </div>
-        </div>
       </div>
       <!-- /.card-body -->
     </div>

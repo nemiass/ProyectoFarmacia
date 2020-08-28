@@ -8,8 +8,8 @@ use app\Usuario;
 
 function Registrar()
 {
-    $admin = new Administrador("Admin", "admin", "12345678", "12345678");
-    $admin->registrarAdministrador();
+    //$admin = new Administrador("Admin", "admin", "12345678", "12345678");
+    //$admin->registrarAdministrador();
     $password = password_hash("admin", PASSWORD_BCRYPT);
     $user = new Usuario("admin", $password);
     $user->setDni("12345678");

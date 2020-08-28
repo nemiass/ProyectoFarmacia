@@ -33,37 +33,35 @@ include "layouts/headerAdmin.php";
                             </thead>
 
                             <tbody>
-                            <?php
+                                <?php
 
-                               
-                            use app\controller\CatalogoController;
 
-                               $admincontroller = new CatalogoController();
-                               $catalogo = $admincontroller->listarCatalogos();
-                               
+                                use app\controller\CatalogoController;
 
-                               $i = 1;
-                               
+                                $admincontroller = new CatalogoController;
+                                $catalogo = $admincontroller->listarCatalogos();
+                                $i = 1;
                                 ?>
-                                <?php foreach( $catalogo as $cat):  ?>
-                                <tr>
-                                    <td><?= $i; $i++?></td>
-                                    <td><?= $cat['nombre'] ?></td>
-                                    <td><?= $cat['descripcion'] ?></td>
-                                    <td>
-                                        <a href="index.php?p=editarCatalogo&nombre=<?= $cat['nombre'] ?>&descripcion=<?= $cat['descripcion'] ?>&id=<?= $cat['id_catalogo'] ?>"><button type="button" class="btn btn-block btn-success">Editar</button></a>
-                                    </td>
+                                <?php foreach ($catalogo as $cat) :  ?>
+                                    <tr>
+                                        <td><?= $i;
+                                            $i++ ?></td>
+                                        <td><?= $cat['nombre'] ?></td>
+                                        <td><?= $cat['descripcion'] ?></td>
+                                        <td>
+                                            <a href="index.php?p=editarCatalogo&nombre=<?= $cat['nombre'] ?>&descripcion=<?= $cat['descripcion'] ?>&id=<?= $cat['id_catalogo'] ?>"><button type="button" class="btn btn-block btn-success">Editar</button></a>
+                                        </td>
 
-                                    <td>
-                                        <a href="index.php?p=eliminarProducto"><button type="button" class="btn btn-block btn-danger">Eliminar</button></a>
-                                    </td>
+                                        <td>
+                                            <a href="index.php?p=eliminarProducto"><button type="button" class="btn btn-block btn-danger">Eliminar</button></a>
+                                        </td>
 
-                                    <td>
-                                        <a href="index.php?p=adminCatalogoProducto&id=<?= $cat['id_catalogo'] ?>&nombre=<?= $cat['nombre'] ?>"><button type="button" class="btn btn-block btn-warning">Ver productos</button></a>
-                                    </td>
-                                </tr>
+                                        <td>
+                                            <a href="index.php?p=adminCatalogoProducto&id=<?= $cat['id_catalogo'] ?>&nombre=<?= $cat['nombre'] ?>"><button type="button" class="btn btn-block btn-warning">Ver productos</button></a>
+                                        </td>
+                                    </tr>
 
-                                <?php  endforeach;  ?>
+                                <?php endforeach;  ?>
 
                             </tbody>
                         </table>

@@ -72,7 +72,7 @@ $ccontroller->Registrar();
           </div>
 
           <div class="input-group mb-3">
-            <input name="contraseña" type="password" class="form-control" placeholder="contraseña">
+            <input name="pasword" type="password" class="form-control" placeholder="contraseña">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-lock"></span>
@@ -81,7 +81,7 @@ $ccontroller->Registrar();
           </div>
 
           <div class="input-group mb-3">
-            <input name="contraseña2" type="password" class="form-control" placeholder="confirmar contraseña">
+            <input name="pasword2" type="password" class="form-control" placeholder="confirmar contraseña">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-lock"></span>

@@ -8,14 +8,14 @@ use app\Pedido_producto;
 
 class PedidoController
 {
-    function registrarPedido($id_cliente, $dep, $prov, $dist)
+    function registrarPedido($id_cliente, $dep, $prov, $dist, $monto)
     {
         if (isset($_POST['enviar'])) {
             $fecha = $_POST['fecha'];
             $fecha_entrega = date("Y-m-d");
             $direccion = $_POST['direccion'];
             $id_cliente = $id_cliente;
-            $pedido = new Pedido($fecha, $fecha_entrega, $direccion, $id_cliente, $dep, $prov,$dist);
+            $pedido = new Pedido($fecha, $fecha_entrega, $direccion, $id_cliente, $dep, $prov, $dist, $monto);
             $ped = $pedido->registrarPedido();
             return $ped;
         }
@@ -97,5 +97,63 @@ class PedidoController
     {
         $dist = Pedido::getDistrito($id);
         return $dist;
+    }
+
+    public static function validar()
+    {
+        // valida si los datos el pedido estan rellenados
+        $datos = array(
+            "dep" => $_POST["dep"],
+            "prov" => $_POST["prov"],
+            "dist" => $_POST["dist"],
+            "dir" => $_POST["direccion"],
+            "fec" => $_POST["fecha"]
+        );
+
+        foreach ($datos as $d) {
+            if ($d == "") {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public function pedidoxCliente($id_cliente)
+    {
+        //pedidos pendientes del cliente
+        $pedidos = Pedido::getPedidoxCliente($id_cliente);
+        return $pedidos;
+    }
+
+    public function pedidoEntregado($id_cliente)
+    {
+        //pedidos entregados del cliente
+        $pedidos = Pedido::getPedidoEntregado($id_cliente);
+        return $pedidos;
+    }
+
+    public function cancelarPedido($id_pedido)
+    {
+        //metodo que jecuta el empleado apra cancelar un pedido
+        if (isset($_POST["send"])) {
+            if ($_POST["msg"] != "") {
+                $msg = $_POST["msg"];
+                if (Pedido::cancelarPedido($id_pedido, $msg)) {
+                    return "Pedido cancelado exitosamente";
+                }
+                return "error al cancelar pedido";
+            }
+        }
+    }
+
+    public function anularPedido()
+    {
+        // metodo que ejecuta el ciente para anular su pedido
+        if (isset($_GET["idp"])) {
+            $id_pedido = $_GET["idp"];
+            if (Pedido::anularPedido($id_pedido)) {
+                header("location: index.php?p=misPedidos");
+            }
+        }
     }
 }

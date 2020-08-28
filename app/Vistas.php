@@ -46,7 +46,7 @@ class Vistas
         $lista_e = array(
             "empleadoPedidosAtender", "empleadoPedidosAtendidos",
             "empleadoDetallesPedidos", "empleadoCuenta", "imprimir",
-            "logout"
+            "logout", "empleadoCancelar"
         );
 
         if (in_array($pagina, $lista_e)) {
@@ -63,7 +63,7 @@ class Vistas
     {
         $lista_c = array(
             "productos", "registrarse", "misPedidos", "login", "micuenta",
-            "producto", "imprimir", "historialPedidos", "carrito", "detallesPedidos",
+            "producto", "imprimir", "historialPedidos", "carrito", "detallesPedidos","vistaporCatalogo","clienteDetallesPedidos",
             "imprimir", "logout"
         );
 
@@ -80,7 +80,8 @@ class Vistas
     public function traerVistaGeneral($pagina)
     {
         $lista_c = array(
-            "productos", "registrarse", "login", "producto", "carrito"
+            "productos", "registrarse", "login", "producto", "carrito",
+            "vistaporCatalogo"
         );
 
         if (in_array($pagina, $lista_c)) {

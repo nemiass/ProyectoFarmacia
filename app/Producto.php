@@ -52,7 +52,7 @@ class Producto
 
 
 
-    public  static function actualizarProductos($id,$nombre,$precio,$caracteristicas,$img): int
+    public  static function actualizarProductos($id, $nombre, $precio, $caracteristicas, $img): int
     {
         try {
             $db = new db();
@@ -71,7 +71,7 @@ class Producto
         }
     }
 
-    public  static function actualizarProductosSinImg($id,$nombre,$precio,$caracteristicas): int
+    public  static function actualizarProductosSinImg($id, $nombre, $precio, $caracteristicas): int
     {
         try {
             $db = new db();
@@ -121,6 +121,31 @@ class Producto
             $sql = "SELECT * FROM producto WHERE id_producto=?";
             $respuesta = $conn->prepare($sql);
             $respuesta->execute([$id]);
+            $producto = $respuesta->fetchAll();
+            $db->cerrarConexion();
+            return $producto;
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public static function getProductosxPedido($id_pedido)
+    {
+        try {
+            $db = new db();
+            $conn = $db->abrirConexion();
+
+            $sql = "SELECT p.nombre, p.precio, pp.cantidad, 
+            SUM(pp.cantidad*p.precio) as subtotal, pe.mensaje
+            FROM pedido as pe JOIN pedido_producto as pp 
+            ON pe.id_pedido = pp.id_pedido JOIN producto as p 
+            ON p.id_producto = pp.id_producto 
+            WHERE pe.id_pedido = :idp GROUP BY p.id_producto";
+
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute([
+                ":idp" => $id_pedido
+            ]);
             $producto = $respuesta->fetchAll();
             $db->cerrarConexion();
             return $producto;
