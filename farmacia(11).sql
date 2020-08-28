@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-08-2020 a las 03:31:23
--- Versión del servidor: 10.3.16-MariaDB
--- Versión de PHP: 7.3.7
+-- Tiempo de generación: 28-08-2020 a las 06:54:03
+-- Versión del servidor: 10.4.13-MariaDB
+-- Versión de PHP: 7.4.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -87,16 +86,48 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`id_cliente`, `nombre`, `apellido`, `dni`, `telefono`) VALUES
-(1, 'cristina', 'dasdasdas', '12345678', '666666666'),
-(4, 'nemias', 'ponce', '73546902', '12345678'),
-(5, 'nemias', 'nemias', 'nemias', 'nemias'),
-(6, 'nemias', 'nemias', '45698', '123456'),
-(7, 'cristina', 'rivera', '22222222', '12345678'),
-(8, 'hola', 'hola', '789564', '12345678'),
-(9, 'go', 'goes', '44444444', '456892'),
-(11, 'nemias', 'nemias', '12345689', '12345678'),
-(12, 'flor', 'himena', '88956325', '88888569'),
-(16, 'sharon', 'sharon', '88888888', '123564');
+(24, 'Jaime nehemias', 'Ponce Villaverde', '73546902', '12345678'),
+(25, 'princesa', 'diana', '78562358', '12365489');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `departamentos`
+--
+
+CREATE TABLE `departamentos` (
+  `id_departamento` int(11) NOT NULL,
+  `nombre` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `departamentos`
+--
+
+INSERT INTO `departamentos` (`id_departamento`, `nombre`) VALUES
+(1, 'Huanuco');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `distritos`
+--
+
+CREATE TABLE `distritos` (
+  `id_distrito` int(11) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `id_provincia` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `distritos`
+--
+
+INSERT INTO `distritos` (`id_distrito`, `nombre`, `id_provincia`) VALUES
+(1, 'Huanuco', 1),
+(2, 'Amarilis', 1),
+(3, 'Pillco Marca', 1),
+(4, 'Santa Maria Del Valle', 1);
 
 -- --------------------------------------------------------
 
@@ -119,7 +150,9 @@ CREATE TABLE `empleado` (
 INSERT INTO `empleado` (`id_empleado`, `nombre`, `apellido`, `dni`, `telefono`) VALUES
 (1, 'jordy', 'gomez', '14785236', '91245678'),
 (10, 'asdf', 'asdf', '12345678', '123456'),
-(11, 'jose', 'alcedo', '66666665', '912456789');
+(11, 'jose', 'alcedo', '66666665', '912456789'),
+(12, 'aaaa', 'aaaa', '789658', '123658'),
+(13, 'cristina', 'cristina', '77896563', '11235489');
 
 -- --------------------------------------------------------
 
@@ -138,11 +171,8 @@ CREATE TABLE `empleado_pedido` (
 --
 
 INSERT INTO `empleado_pedido` (`id_emp_pedido`, `id_empleado`, `id_pedido`) VALUES
-(1, 1, 1),
-(9, 11, 133),
-(10, 11, 131),
-(11, 11, 4),
-(12, 11, 135);
+(18, 13, 182),
+(19, 13, 184);
 
 -- --------------------------------------------------------
 
@@ -190,8 +220,13 @@ CREATE TABLE `pedido` (
   `id_pedido` int(11) NOT NULL,
   `fecha` date DEFAULT NULL,
   `fecha_entrega` date DEFAULT NULL,
+  `departamento` varchar(100) NOT NULL,
+  `provincia` varchar(250) NOT NULL,
+  `distrito` varchar(250) NOT NULL,
   `direccion` varchar(30) DEFAULT NULL,
   `estado` varchar(10) DEFAULT NULL,
+  `monto` double NOT NULL,
+  `mensaje` varchar(250) DEFAULT NULL,
   `id_cliente` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -199,15 +234,11 @@ CREATE TABLE `pedido` (
 -- Volcado de datos para la tabla `pedido`
 --
 
-INSERT INTO `pedido` (`id_pedido`, `fecha`, `fecha_entrega`, `direccion`, `estado`, `id_cliente`) VALUES
-(1, '2020-08-06', '2020-08-20', 'fasfasf', 'entregado', 1),
-(4, '2020-08-15', '2020-08-16', 'alomilla roblez', 'entregado', 1),
-(130, '2020-08-20', '2020-08-25', 'sharon2', 'pendiente', 16),
-(131, '2020-08-20', '2020-08-30', 'arcanas', 'entregado', 16),
-(132, '2020-08-20', '2020-08-29', 'sharon 2', 'pendiente', 16),
-(133, '2020-08-20', '0000-00-00', 'arcanas', 'entregado', 16),
-(134, '2020-08-20', '2020-09-11', 'jr aviacion', 'pendiente', 16),
-(135, '2020-08-20', '2020-08-30', 'yaaa', 'entregado', 16);
+INSERT INTO `pedido` (`id_pedido`, `fecha`, `fecha_entrega`, `departamento`, `provincia`, `distrito`, `direccion`, `estado`, `monto`, `mensaje`, `id_cliente`) VALUES
+(182, '2020-08-28', '2020-09-04', 'Huanuco', 'Huanuco', 'Leoncio Prado', 'jr mi casa', 'entregado', 239, NULL, 24),
+(184, '2020-08-28', '2020-08-21', 'Huanuco', 'Huanuco', 'Amarilis', 'jr mi casa ', 'entregado', 15, NULL, 24),
+(185, '2020-08-28', '2020-09-05', 'Huanuco', 'Huanuco', 'Huanuco', 'jr damaso tal', 'pendiente', 125, NULL, 24),
+(186, '2020-08-28', '2020-08-28', 'Huanuco', 'Huanuco', 'Pillco Marca', 'jr pillco', 'pendiente', 862, NULL, 24);
 
 -- --------------------------------------------------------
 
@@ -228,18 +259,14 @@ CREATE TABLE `pedido_producto` (
 --
 
 INSERT INTO `pedido_producto` (`id_ped_prod`, `cantidad`, `id_prod`, `id_pedido`, `id_producto`) VALUES
-(1, 20, 1, 1, 1),
-(4, 2, 1, 4, 1),
-(68, 1, 1, 130, 1),
-(69, 1, 18, 131, 18),
-(70, 2, 19, 131, 19),
-(71, 2, 2, 132, 2),
-(72, 1, 4, 132, 4),
-(73, 1, 18, 133, 18),
-(74, 1, 19, 133, 19),
-(75, 2, 18, 134, 18),
-(76, 1, 2, 135, 2),
-(77, 1, 3, 135, 3);
+(147, 1, 19, 182, 19),
+(148, 1, 18, 182, 18),
+(150, 1, 2, 184, 2),
+(151, 1, 1, 185, 1),
+(152, 1, 19, 186, 19),
+(153, 1, 18, 186, 18),
+(154, 1, 17, 186, 17),
+(155, 1, 5, 186, 5);
 
 -- --------------------------------------------------------
 
@@ -273,6 +300,28 @@ INSERT INTO `producto` (`id_producto`, `nombre`, `precio`, `caracteristicas`, `i
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `provincias`
+--
+
+CREATE TABLE `provincias` (
+  `id_provincia` int(11) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `id_departamento` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `provincias`
+--
+
+INSERT INTO `provincias` (`id_provincia`, `nombre`, `id_departamento`) VALUES
+(1, 'Huanuco', 1),
+(2, 'Leoncio Prado', 1),
+(3, 'Dos de Mayo', 1),
+(4, 'Ambo', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuarios`
 --
 
@@ -293,8 +342,10 @@ INSERT INTO `usuarios` (`id_usuario`, `usuario`, `contrasenia`, `tipo`, `dni`) V
 (33, 'empleado', '$2y$10$JSFSPRS48fAqiLgrVOBfF.d3Xc26tnnQgatx7LF6RVrjbrr0cYZya', 'empleado', '66666665'),
 (36, 'cora', '$2y$10$ogZ2Zsib7rQzv5aDCyfi9utLiRux.eQOVFvGbB5luugY7teKylTIy', 'empleado', '45689'),
 (39, 'sharon', '$2y$10$PVVXBz4Sx8zjfp849n/L7uuBliV9kTBoTXuLCdEuM4zUmadfAauGa', 'cliente', '88888888'),
-(44, 'youtube', '$2y$10$ywPqB9T8JZjixIaEAIlKpeZWlGluiIJ3TQ4NQ17WXIHeD2E9Leb1y', 'administrador', '12345678'),
-(45, 'admin', 'admin', 'administrador', '12345678');
+(52, 'nemiass', '$2y$10$ZDA97Ix1octwLqd68LQfhesLZby87iQlhNyHLCb3nJq3V1/9BDbmq', 'cliente', '73546902'),
+(54, 'diana', '$2y$10$khhOuKEC8OtIheq5Rs13HukYSDgZ4AWiybAPYxZPnSOyhSEiB62HW', 'cliente', '78562358'),
+(55, 'admin', '$2y$10$xzbLy6qnu/DmaEJhsboMhuCWTjRwG8z1iNs5W.fQIGYIwY8yrUhIS', 'administrador', '12345678'),
+(56, 'cris', '$2y$10$D0m7g98VNjUtOpkKL.oeU.L61wQCtgX8mWzDrQb/cYlyS7pvmHHMm', 'empleado', '77896563');
 
 --
 -- Índices para tablas volcadas
@@ -317,6 +368,18 @@ ALTER TABLE `catalogo`
 --
 ALTER TABLE `cliente`
   ADD PRIMARY KEY (`id_cliente`);
+
+--
+-- Indices de la tabla `departamentos`
+--
+ALTER TABLE `departamentos`
+  ADD PRIMARY KEY (`id_departamento`);
+
+--
+-- Indices de la tabla `distritos`
+--
+ALTER TABLE `distritos`
+  ADD PRIMARY KEY (`id_distrito`);
 
 --
 -- Indices de la tabla `empleado`
@@ -369,6 +432,12 @@ ALTER TABLE `producto`
   ADD KEY `id_catalogo` (`id_catalogo`);
 
 --
+-- Indices de la tabla `provincias`
+--
+ALTER TABLE `provincias`
+  ADD PRIMARY KEY (`id_provincia`);
+
+--
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
@@ -394,19 +463,31 @@ ALTER TABLE `catalogo`
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
+--
+-- AUTO_INCREMENT de la tabla `departamentos`
+--
+ALTER TABLE `departamentos`
+  MODIFY `id_departamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `distritos`
+--
+ALTER TABLE `distritos`
+  MODIFY `id_distrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `empleado`
 --
 ALTER TABLE `empleado`
-  MODIFY `id_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `empleado_pedido`
 --
 ALTER TABLE `empleado_pedido`
-  MODIFY `id_emp_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_emp_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `factura`
@@ -424,13 +505,13 @@ ALTER TABLE `farmacia`
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=136;
+  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=188;
 
 --
 -- AUTO_INCREMENT de la tabla `pedido_producto`
 --
 ALTER TABLE `pedido_producto`
-  MODIFY `id_ped_prod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `id_ped_prod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=159;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
@@ -439,10 +520,16 @@ ALTER TABLE `producto`
   MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
+-- AUTO_INCREMENT de la tabla `provincias`
+--
+ALTER TABLE `provincias`
+  MODIFY `id_provincia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- Restricciones para tablas volcadas
