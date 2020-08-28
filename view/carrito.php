@@ -68,7 +68,7 @@ include "layouts/headerCliente.php";
 
             <div class="row">
               <div class="col-12">
-                <table class="table table-striped" id="lista-pedidos">
+                <table class="table table-borderless table-striped table-hover table-danger" id="lista-pedidos">
                   <caption>Mi carrito</caption>
                   <thead class="thead-dark">
                     <tr>
@@ -164,8 +164,10 @@ include "layouts/headerCliente.php";
               <label for="exampleInputEmail1">Fecha de entrega </label>
               <input type="date" placeholder="dd-mm-yyyy" class="form-control" id="exampleInputEmail1" name="fecha">
               <br><br>
-              <button type="submit" class="btn btn-block btn-primary btn-lg" name="enviar">Realizar Pedido</button>
               <div class="row">
+                <div class="col-md-4 offset-md-4">
+                  <button type="submit" class="btn btn-block btn-primary btn-lg" name="enviar">Realizar Pedido</button>
+                </div>
               </div>
             </form>
             <!-- /.card-body -->

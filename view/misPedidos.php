@@ -28,7 +28,7 @@ include "layouts/headerCliente.php";
             </div>
             <div class="row">
               <div class="col-12">
-                <table class="table table-striped table-primary table-borderless">
+                <table class="table table-striped table-primary table-borderless table-hover">
                   <caption>Pedidos actuales</caption>
                   <thead class="thead thead-dark">
                     <tr>
