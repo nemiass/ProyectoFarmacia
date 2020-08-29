@@ -81,16 +81,48 @@ class PedidoController
         return $dep;
     }
 
+    public function addDepartamento()
+    {
+        if (isset($_POST["send"])) {
+            if ($_POST["nomd"] != "") {
+                $nombre = $_POST["nomd"];
+                Pedido::addDepartamento($nombre);
+                header("location: index.php?p=adminFarmacia");
+            }
+        }
+    }
+
     function traerDepartamento($id)
     {
         $dep = Pedido::getDepartamento($id);
         return $dep;
     }
 
+    public function deleteDepartamento()
+    {
+        if (isset($_GET["idp"])) {
+            $id_dep = $_GET["idp"];
+            if (Pedido::deleteDepartamento($id_dep)) {
+                header("location: index.php?p=adminFarmacia");
+            }
+            return false;
+        }
+    }
+
     function traerProvincia($id)
     {
         $prov = Pedido::getProvincia($id);
         return $prov;
+    }
+
+    public function getAllProvincias()
+    {
+
+        $provincias = Pedido::getAllProvincias();
+        if (!empty($provincias)) {
+            return $provincias;
+        }
+        return "vacio";
     }
 
     function traerDistrito($id)

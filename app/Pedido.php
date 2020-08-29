@@ -248,6 +248,83 @@ class Pedido
         }
     }
 
+    public static function addDepartamento($nombre)
+    {
+        try {
+            $db = new db();
+            $conn = $db->abrirConexion();
+            $sql = "INSERT INTO departamentos(nombre) VALUES(:n)";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute([":n" => $nombre]);
+            $db->cerrarConexion();
+            return $respuesta->rowCount();
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public static function deleteDepartamento($id_departamento)
+    {
+        try {
+            $db = new db();
+            $conn = $db->abrirConexion();
+            $sql = "DELETE from departamentos WHERE id_departamento=:id";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute([":id" => $id_departamento]);
+            $db->cerrarConexion();
+            return $respuesta->rowCount();
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public static function deleteDistrito($id_distrito)
+    {
+        try {
+            $db = new db();
+            $conn = $db->abrirConexion();
+            $sql = "DELETE from distritos WHERE id_distrito=:id";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute([":id" => $id_distrito]);
+            $db->cerrarConexion();
+            return $respuesta->rowCount();
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+    public static function deleteProvincia($id_provincia)
+    {
+        try {
+            $db = new db();
+            $conn = $db->abrirConexion();
+            $sql = "DELETE from provincias WHERE id_provincia=:id";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute([":id" => $id_provincia]);
+            $db->cerrarConexion();
+            return $respuesta->rowCount();
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public static function addProvincia($nombre, $id_departamento)
+    {
+        try {
+            $db = new db();
+            $conn = $db->abrirConexion();
+            $sql = "INSERT INTO provincias(nombre, id_departamento) VALUES(:n, :idd)";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute([
+                ":n" => $nombre,
+                ":idd" => $id_departamento
+            ]);
+            $db->cerrarConexion();
+            return $respuesta->rowCount();
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
     public static function getProvincias(): array
     {
         // provincias, metodo que ejecuta el controller ajax
@@ -258,6 +335,22 @@ class Pedido
             $sql = "SELECT * from provincias where id_departamento = :id";
             $respuesta = $conn->prepare($sql);
             $respuesta->execute([":id" => $id]);
+            $prov = $respuesta->fetchAll();
+            $db->cerrarConexion();
+            return $prov;
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public static function getAllProvincias(): array
+    {
+        try {
+            $db = new db();
+            $conn = $db->abrirConexion();
+            $sql = "SELECT * from provincias";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute();
             $prov = $respuesta->fetchAll();
             $db->cerrarConexion();
             return $prov;
@@ -279,6 +372,24 @@ class Pedido
             $prov = $respuesta->fetchAll();
             $db->cerrarConexion();
             return $prov;
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public static function addDistrito($nombre, $id_provincia)
+    {
+        try {
+            $db = new db();
+            $conn = $db->abrirConexion();
+            $sql = "INSERT INTO distritos(nombre, id_provincia) VALUES(:n, :idp)";
+            $respuesta = $conn->prepare($sql);
+            $respuesta->execute([
+                ":n" => $nombre,
+                ":idp" => $id_provincia
+            ]);
+            $db->cerrarConexion();
+            return $respuesta->rowCount();
         } catch (\PDOException $e) {
             echo $e->getMessage();
         }

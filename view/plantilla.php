@@ -31,7 +31,6 @@
 </head>
 
 <!-- Contenidos -->
-
 <?php
 
 use app\controller\VistasController;
@@ -57,10 +56,7 @@ if (isset($_SESSION["estado"])) {
     $vcontroller->solicitarVista();
 }
 ?>
-
-
 <!-- /Contenidos -->
-
 <!-- jQuery -->
 <script src="public/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -97,7 +93,6 @@ if (isset($_SESSION["estado"])) {
 <script src="public/dist/js/demo.js"></script>
 <!-- Scripts propios -->
 <script src="public/jspropio/micarrito.js"></script>
-<script src="public/jspropio/pedido.js"></script>
 </body>
 
 </html>

@@ -188,3 +188,4 @@ include "layouts/headerCliente.php";
 include "layouts/footer.php";
 ?>
 <!--/. Footer -->
+<script src="public/jspropio/pedido.js"></script>

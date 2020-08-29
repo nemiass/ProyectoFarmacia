@@ -28,7 +28,8 @@ class Vistas
             "adminCatalogo", "adminCatalogoProducto", "adminClientes",
             "admincuenta", "adminDetallesClientes", "adminDetallesEmpleados",
             "adminDetallesPedidos", "adminEmpleados", "adminPedidosAtendidos",
-            "adminProductos", "imprimir", "logout", "agregarEmpleado","adminDetallesPedidosGeneral","adminDetallesPedidosEmpleado","eliminarEmpleado","eliminarCatalogo","eliminarProducto","editarCatalogo","agregarProducto","editarProducto","agregarCatalogo"
+            "adminProductos", "imprimir", "logout", "agregarEmpleado","adminDetallesPedidosGeneral","adminDetallesPedidosEmpleado","eliminarEmpleado","eliminarCatalogo","eliminarProducto","editarCatalogo","agregarProducto","editarProducto","agregarCatalogo",
+            "adminFarmacia"
         );
 
         if (in_array($pagina, $lista_a)) {
