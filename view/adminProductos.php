@@ -37,8 +37,8 @@ include "layouts/headerAdmin.php";
         </div>
         <div class="row">
           <div class="col-12">
-            <table class="table table-striped">
-              <thead>
+            <table class="table mt-4 table-borderless table-striped table-success table-hover">
+              <thead class="thead thead-dark">
                 <tr>
                   <th>#</th>
                   <th>Producto</th>
@@ -80,25 +80,25 @@ include "layouts/headerAdmin.php";
                     </td>
 
                     <td>
-                      <a href="index.php?p=eliminarProducto"><button type="submit" class="btn btn-block btn-danger" >
-                        Eliminar
-                      </button></a>
+                      <a href="index.php?p=eliminarProducto"><button type="submit" class="btn btn-block btn-danger">
+                          Eliminar
+                        </button></a>
 
-                  
+
                   </tr>
 
 
                 <?php endforeach; ?>
               </tbody>
               <?php
-if (isset($_GET['id'])) {
-  echo $_GET['id'];
-}
-?>
+              if (isset($_GET['id'])) {
+                echo $_GET['id'];
+              }
+              ?>
             </table>
           </div>
         </div>
-     
+
       </div>
       <!-- /.card-body -->
     </div>

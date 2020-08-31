@@ -99,7 +99,8 @@ class Usuario
             return $errores = "usuario ya esxite";
         }
         foreach ($datos as $dato) {
-            if (!(preg_match('/^[a-zA-Z0-9]+$/', $dato))) {
+            $dato = trim($dato);
+            if (!(preg_match('/^[a-zA-Z0-9, ]+$/', $dato))) {
                 return $errores = "rellenes los espacios correctamente";
             }
         }
@@ -111,7 +112,8 @@ class Usuario
         return $errores = "0";
     }
 
-    public static function eliminarUsuario($dni){
+    public static function eliminarUsuario($dni)
+    {
         try {
             $db = new db();
             $conn = $db->abrirConexion();
@@ -120,7 +122,6 @@ class Usuario
             $respuesta = $conn->prepare($sql);
             $respuesta->execute();
             $db->cerrarConexion();
-           
         } catch (\PDOException $e) {
             echo $e->getMessage();
         }

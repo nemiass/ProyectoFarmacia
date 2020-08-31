@@ -52,6 +52,15 @@
             </li>
 
             <li class="nav-item">
+              <a href="index.php?p=adminFarmacia" class="nav-link">
+                <i class="fa fa-map fa-lg mr-2"></i>
+                <p>
+                  Mi Farmacia
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
               <a href="index.php?p=adminEmpleados" class="nav-link">
                 <i class="fas fa-users fa-lg mr-2"></i>
                 <p>

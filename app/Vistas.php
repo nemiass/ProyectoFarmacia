@@ -28,7 +28,8 @@ class Vistas
             "adminCatalogo", "adminCatalogoProducto", "adminClientes",
             "admincuenta", "adminDetallesClientes", "adminDetallesEmpleados",
             "adminDetallesPedidos", "adminEmpleados", "adminPedidosAtendidos",
-            "adminProductos", "imprimir", "logout", "agregarEmpleado","adminDetallesPedidosGeneral","adminDetallesPedidosEmpleado","eliminarEmpleado","eliminarCatalogo","eliminarProducto","editarCatalogo","agregarProducto","editarProducto","agregarCatalogo"
+            "adminProductos", "imprimir", "logout", "agregarEmpleado","adminDetallesPedidosGeneral","adminDetallesPedidosEmpleado","eliminarEmpleado","eliminarCatalogo","eliminarProducto","editarCatalogo","agregarProducto","editarProducto","agregarCatalogo",
+            "adminFarmacia"
         );
 
         if (in_array($pagina, $lista_a)) {
@@ -46,7 +47,7 @@ class Vistas
         $lista_e = array(
             "empleadoPedidosAtender", "empleadoPedidosAtendidos",
             "empleadoDetallesPedidos", "empleadoCuenta", "imprimir",
-            "logout"
+            "logout", "empleadoCancelar"
         );
 
         if (in_array($pagina, $lista_e)) {
@@ -63,7 +64,7 @@ class Vistas
     {
         $lista_c = array(
             "productos", "registrarse", "misPedidos", "login", "micuenta",
-            "producto", "imprimir", "historialPedidos", "carrito", "detallesPedidos",
+            "producto", "imprimir", "historialPedidos", "carrito", "detallesPedidos","vistaporCatalogo","clienteDetallesPedidos",
             "imprimir", "logout"
         );
 
@@ -80,7 +81,8 @@ class Vistas
     public function traerVistaGeneral($pagina)
     {
         $lista_c = array(
-            "productos", "registrarse", "login", "producto", "carrito"
+            "productos", "registrarse", "login", "producto", "carrito",
+            "vistaporCatalogo"
         );
 
         if (in_array($pagina, $lista_c)) {

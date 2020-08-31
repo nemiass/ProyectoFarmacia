@@ -9,9 +9,9 @@ use app\controller\AdminController;
 use app\controller\FarmaciaController;
 
 $admincontroller = new AdminController;
- $farmaciacontroller=new  FarmaciaController;
+$farmaciacontroller = new  FarmaciaController;
 $admin = $admincontroller->getAdmin($_SESSION['dni']);
-$farmacia=$farmaciacontroller->datosFarmacia();
+$farmacia = $farmaciacontroller->datosFarmacia();
 
 ?>
 <!--/. Header -->
@@ -40,7 +40,7 @@ $farmacia=$farmaciacontroller->datosFarmacia();
 
             <div class="card-body" style="display: block;">
 
-              <table class="table">
+              <table class="table table-borderless">
                 <tbody>
                   <tr>
                     <td>Nombre:</td>
@@ -84,26 +84,26 @@ $farmacia=$farmaciacontroller->datosFarmacia();
 
             <div class="card-body" style="display: block;">
 
-              <table class="table">
+              <table class="table table-borderless">
                 <tbody>
                   <tr>
                     <th scope="row">Nombre:</th>
-                    <td><?=$farmacia[0]['1'] ?></td>
+                    <td><?= $farmacia[0]['1'] ?></td>
                   </tr>
 
                   <tr>
                     <th scope="row">Direccion</th>
-                    <td><?=$farmacia[0]['2'] ?></td>
+                    <td><?= $farmacia[0]['2'] ?></td>
                   </tr>
 
                   <tr>
                     <th scope="row">Telefono</th>
-                    <td><?=$farmacia[0]['3'] ?></td>
+                    <td><?= $farmacia[0]['3'] ?></td>
                   </tr>
 
                   <tr>
                     <th scope="row">Correo</th>
-                    <td><?=$farmacia[0]['4'] ?></td>
+                    <td><?= $farmacia[0]['4'] ?></td>
                   </tr>
 
                   <tr>
@@ -137,7 +137,7 @@ $farmacia=$farmaciacontroller->datosFarmacia();
 
             <div class="card-body" style="display: block;">
 
-              <table class="table">
+              <table class="table table-borderless">
                 <tbody>
                   <tr>
                     <td>User:</td>

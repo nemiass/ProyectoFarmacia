@@ -27,10 +27,10 @@
     <link rel="stylesheet" href="public/plugins/summernote/summernote-bs4.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/journal/bootstrap.min.css">
 </head>
 
 <!-- Contenidos -->
-
 <?php
 
 use app\controller\VistasController;
@@ -56,10 +56,7 @@ if (isset($_SESSION["estado"])) {
     $vcontroller->solicitarVista();
 }
 ?>
-
-
 <!-- /Contenidos -->
-
 <!-- jQuery -->
 <script src="public/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -95,8 +92,7 @@ if (isset($_SESSION["estado"])) {
 <!-- AdminLTE for demo purposes -->
 <script src="public/dist/js/demo.js"></script>
 <!-- Scripts propios -->
-</body>
-
 <script src="public/jspropio/micarrito.js"></script>
+</body>
 
 </html>

@@ -18,6 +18,7 @@ class LoginController
             if ($e == "0") {
                 $usrdb = Usuario::traerUser($l["usr"]);
                 $_SESSION["estado"] = true;
+                $_SESSION["id"] = $usrdb[0]["id_usuario"];
                 $_SESSION["dni"] = $usrdb[0]["dni"];
                 $_SESSION["rol"] = $usrdb[0]["tipo"];
                 $_SESSION["user"] = $l["usr"];

@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-08-2020 a las 03:31:23
--- Versión del servidor: 10.3.16-MariaDB
--- Versión de PHP: 7.3.7
+-- Tiempo de generación: 29-08-2020 a las 18:23:08
+-- Versión del servidor: 10.4.13-MariaDB
+-- Versión de PHP: 7.4.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -87,16 +86,49 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`id_cliente`, `nombre`, `apellido`, `dni`, `telefono`) VALUES
-(1, 'cristina', 'dasdasdas', '12345678', '666666666'),
-(4, 'nemias', 'ponce', '73546902', '12345678'),
-(5, 'nemias', 'nemias', 'nemias', 'nemias'),
-(6, 'nemias', 'nemias', '45698', '123456'),
-(7, 'cristina', 'rivera', '22222222', '12345678'),
-(8, 'hola', 'hola', '789564', '12345678'),
-(9, 'go', 'goes', '44444444', '456892'),
-(11, 'nemias', 'nemias', '12345689', '12345678'),
-(12, 'flor', 'himena', '88956325', '88888569'),
-(16, 'sharon', 'sharon', '88888888', '123564');
+(24, 'Jaime nehemias', 'Ponce Villaverde', '73546902', '12345678'),
+(25, 'princesa', 'diana', '78562358', '12365489'),
+(26, 'Andy cesar', 'Perez Gomez', '73586925', '12356845');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `departamentos`
+--
+
+CREATE TABLE `departamentos` (
+  `id_departamento` int(11) NOT NULL,
+  `nombre` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `departamentos`
+--
+
+INSERT INTO `departamentos` (`id_departamento`, `nombre`) VALUES
+(1, 'Huanuco'),
+(7, 'Callao'),
+(8, 'Tacna');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `distritos`
+--
+
+CREATE TABLE `distritos` (
+  `id_distrito` int(11) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `id_provincia` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `distritos`
+--
+
+INSERT INTO `distritos` (`id_distrito`, `nombre`, `id_provincia`) VALUES
+(11, 'amarilis', 1),
+(17, 'huanuco', 1);
 
 -- --------------------------------------------------------
 
@@ -112,15 +144,6 @@ CREATE TABLE `empleado` (
   `telefono` varchar(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Volcado de datos para la tabla `empleado`
---
-
-INSERT INTO `empleado` (`id_empleado`, `nombre`, `apellido`, `dni`, `telefono`) VALUES
-(1, 'jordy', 'gomez', '14785236', '91245678'),
-(10, 'asdf', 'asdf', '12345678', '123456'),
-(11, 'jose', 'alcedo', '66666665', '912456789');
-
 -- --------------------------------------------------------
 
 --
@@ -132,17 +155,6 @@ CREATE TABLE `empleado_pedido` (
   `id_empleado` int(11) DEFAULT NULL,
   `id_pedido` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `empleado_pedido`
---
-
-INSERT INTO `empleado_pedido` (`id_emp_pedido`, `id_empleado`, `id_pedido`) VALUES
-(1, 1, 1),
-(9, 11, 133),
-(10, 11, 131),
-(11, 11, 4),
-(12, 11, 135);
 
 -- --------------------------------------------------------
 
@@ -190,8 +202,13 @@ CREATE TABLE `pedido` (
   `id_pedido` int(11) NOT NULL,
   `fecha` date DEFAULT NULL,
   `fecha_entrega` date DEFAULT NULL,
+  `departamento` varchar(100) NOT NULL,
+  `provincia` varchar(250) NOT NULL,
+  `distrito` varchar(250) NOT NULL,
   `direccion` varchar(30) DEFAULT NULL,
   `estado` varchar(10) DEFAULT NULL,
+  `monto` double NOT NULL,
+  `mensaje` varchar(250) DEFAULT NULL,
   `id_cliente` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -199,15 +216,13 @@ CREATE TABLE `pedido` (
 -- Volcado de datos para la tabla `pedido`
 --
 
-INSERT INTO `pedido` (`id_pedido`, `fecha`, `fecha_entrega`, `direccion`, `estado`, `id_cliente`) VALUES
-(1, '2020-08-06', '2020-08-20', 'fasfasf', 'entregado', 1),
-(4, '2020-08-15', '2020-08-16', 'alomilla roblez', 'entregado', 1),
-(130, '2020-08-20', '2020-08-25', 'sharon2', 'pendiente', 16),
-(131, '2020-08-20', '2020-08-30', 'arcanas', 'entregado', 16),
-(132, '2020-08-20', '2020-08-29', 'sharon 2', 'pendiente', 16),
-(133, '2020-08-20', '0000-00-00', 'arcanas', 'entregado', 16),
-(134, '2020-08-20', '2020-09-11', 'jr aviacion', 'pendiente', 16),
-(135, '2020-08-20', '2020-08-30', 'yaaa', 'entregado', 16);
+INSERT INTO `pedido` (`id_pedido`, `fecha`, `fecha_entrega`, `departamento`, `provincia`, `distrito`, `direccion`, `estado`, `monto`, `mensaje`, `id_cliente`) VALUES
+(182, '2020-08-28', '2020-09-04', 'Huanuco', 'Huanuco', 'Leoncio Prado', 'jr mi casa', 'entregado', 239, NULL, 24),
+(184, '2020-08-28', '2020-08-21', 'Huanuco', 'Huanuco', 'Amarilis', 'jr mi casa ', 'entregado', 15, NULL, 24),
+(190, '2020-08-28', '2020-08-29', 'Huanuco', 'Huanuco', 'Huanuco', 'jr arequipa', 'entregado', 140, NULL, 24),
+(191, '2020-08-28', '2020-08-29', 'Huanuco', 'Huanuco', 'Amarilis', 'jr casa de andy', 'entregado', 362, NULL, 26),
+(192, '2020-08-28', '2020-09-01', 'Huanuco', 'Huanuco', 'Pillco Marca', 'jr arequipa', 'entregado', 140, NULL, 24),
+(194, '2020-08-28', '2020-08-29', 'Huanuco', 'Huanuco', 'Amarilis', 'jr mi casa 2020', 'cancelado!', 290, 'se cancela porque quiero', 24);
 
 -- --------------------------------------------------------
 
@@ -228,18 +243,20 @@ CREATE TABLE `pedido_producto` (
 --
 
 INSERT INTO `pedido_producto` (`id_ped_prod`, `cantidad`, `id_prod`, `id_pedido`, `id_producto`) VALUES
-(1, 20, 1, 1, 1),
-(4, 2, 1, 4, 1),
-(68, 1, 1, 130, 1),
-(69, 1, 18, 131, 18),
-(70, 2, 19, 131, 19),
-(71, 2, 2, 132, 2),
-(72, 1, 4, 132, 4),
-(73, 1, 18, 133, 18),
-(74, 1, 19, 133, 19),
-(75, 2, 18, 134, 18),
-(76, 1, 2, 135, 2),
-(77, 1, 3, 135, 3);
+(147, 1, 19, 182, 19),
+(148, 1, 18, 182, 18),
+(150, 1, 2, 184, 2),
+(172, 1, 1, 190, 1),
+(173, 1, 2, 190, 2),
+(174, 1, 17, 191, 17),
+(175, 1, 18, 191, 18),
+(176, 1, 19, 191, 19),
+(177, 1, 1, 192, 1),
+(178, 1, 2, 192, 2),
+(182, 1, 4, 194, 4),
+(183, 1, 3, 194, 3),
+(184, 3, 2, 194, 2),
+(185, 1, 1, 194, 1);
 
 -- --------------------------------------------------------
 
@@ -273,6 +290,29 @@ INSERT INTO `producto` (`id_producto`, `nombre`, `precio`, `caracteristicas`, `i
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `provincias`
+--
+
+CREATE TABLE `provincias` (
+  `id_provincia` int(11) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `id_departamento` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `provincias`
+--
+
+INSERT INTO `provincias` (`id_provincia`, `nombre`, `id_departamento`) VALUES
+(1, 'Huanuco', 1),
+(2, 'Leoncio Prado', 1),
+(3, 'Dos de Mayo', 1),
+(24, '1111', 7),
+(25, '111', 8);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuarios`
 --
 
@@ -290,11 +330,12 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id_usuario`, `usuario`, `contrasenia`, `tipo`, `dni`) VALUES
 (29, 'nemias', '$2y$10$0FBvpQSmY5S1/ocILAok5ujIWXeIWtjmAKjT7OQTRkmkDRtjzPgc6', 'cliente', '12345689'),
-(33, 'empleado', '$2y$10$JSFSPRS48fAqiLgrVOBfF.d3Xc26tnnQgatx7LF6RVrjbrr0cYZya', 'empleado', '66666665'),
 (36, 'cora', '$2y$10$ogZ2Zsib7rQzv5aDCyfi9utLiRux.eQOVFvGbB5luugY7teKylTIy', 'empleado', '45689'),
 (39, 'sharon', '$2y$10$PVVXBz4Sx8zjfp849n/L7uuBliV9kTBoTXuLCdEuM4zUmadfAauGa', 'cliente', '88888888'),
-(44, 'youtube', '$2y$10$ywPqB9T8JZjixIaEAIlKpeZWlGluiIJ3TQ4NQ17WXIHeD2E9Leb1y', 'administrador', '12345678'),
-(45, 'admin', 'admin', 'administrador', '12345678');
+(52, 'nemiass', '$2y$10$ZDA97Ix1octwLqd68LQfhesLZby87iQlhNyHLCb3nJq3V1/9BDbmq', 'cliente', '73546902'),
+(54, 'diana', '$2y$10$khhOuKEC8OtIheq5Rs13HukYSDgZ4AWiybAPYxZPnSOyhSEiB62HW', 'cliente', '78562358'),
+(57, 'andy', '$2y$10$/OYodiR0ncNt1ceoDXGyguHZb3hXgSYJVi8UYdVyZ9p6AOG4kmb1e', 'cliente', '73586925'),
+(58, 'admin', '$2y$10$uwiGvw7bb3xMOyyagJIjgOT5Ni99xTRcWRFJwNYlalQ3jOyXCIHf2', 'administrador', '12345678');
 
 --
 -- Índices para tablas volcadas
@@ -317,6 +358,19 @@ ALTER TABLE `catalogo`
 --
 ALTER TABLE `cliente`
   ADD PRIMARY KEY (`id_cliente`);
+
+--
+-- Indices de la tabla `departamentos`
+--
+ALTER TABLE `departamentos`
+  ADD PRIMARY KEY (`id_departamento`);
+
+--
+-- Indices de la tabla `distritos`
+--
+ALTER TABLE `distritos`
+  ADD PRIMARY KEY (`id_distrito`),
+  ADD KEY `fk_dist_prov` (`id_provincia`);
 
 --
 -- Indices de la tabla `empleado`
@@ -369,6 +423,13 @@ ALTER TABLE `producto`
   ADD KEY `id_catalogo` (`id_catalogo`);
 
 --
+-- Indices de la tabla `provincias`
+--
+ALTER TABLE `provincias`
+  ADD PRIMARY KEY (`id_provincia`),
+  ADD KEY `fk_prov_dep` (`id_departamento`);
+
+--
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
@@ -394,19 +455,31 @@ ALTER TABLE `catalogo`
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
+--
+-- AUTO_INCREMENT de la tabla `departamentos`
+--
+ALTER TABLE `departamentos`
+  MODIFY `id_departamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT de la tabla `distritos`
+--
+ALTER TABLE `distritos`
+  MODIFY `id_distrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `empleado`
 --
 ALTER TABLE `empleado`
-  MODIFY `id_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `empleado_pedido`
 --
 ALTER TABLE `empleado_pedido`
-  MODIFY `id_emp_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_emp_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `factura`
@@ -424,13 +497,13 @@ ALTER TABLE `farmacia`
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=136;
+  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=195;
 
 --
 -- AUTO_INCREMENT de la tabla `pedido_producto`
 --
 ALTER TABLE `pedido_producto`
-  MODIFY `id_ped_prod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `id_ped_prod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=186;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
@@ -439,14 +512,26 @@ ALTER TABLE `producto`
   MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
+-- AUTO_INCREMENT de la tabla `provincias`
+--
+ALTER TABLE `provincias`
+  MODIFY `id_provincia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
+--
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `distritos`
+--
+ALTER TABLE `distritos`
+  ADD CONSTRAINT `fk_dist_prov` FOREIGN KEY (`id_provincia`) REFERENCES `provincias` (`id_provincia`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `empleado_pedido`
@@ -485,6 +570,12 @@ ALTER TABLE `pedido_producto`
 --
 ALTER TABLE `producto`
   ADD CONSTRAINT `producto_ibfk_1` FOREIGN KEY (`id_catalogo`) REFERENCES `catalogo` (`id_catalogo`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `provincias`
+--
+ALTER TABLE `provincias`
+  ADD CONSTRAINT `fk_prov_dep` FOREIGN KEY (`id_departamento`) REFERENCES `departamentos` (`id_departamento`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

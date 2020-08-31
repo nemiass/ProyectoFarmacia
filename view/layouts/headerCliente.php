@@ -108,7 +108,7 @@
                 </ul>
               </li>
             <?php endif; ?>
-            
+
             <li class="nav-header">
               CATEGORÍAS
             </li>
@@ -122,9 +122,10 @@
             if ($ccontroller) :
               foreach ($catalogos as $catalogo) :
                 $ncatalogo = $catalogo["nombre"];
+                $id = $catalogo["id_catalogo"];
             ?>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="index.php?p=vistaporCatalogo&c=<?= $id ?>" class="nav-link">
                     <i class="fa fa-tags nav-icon"></i>
                     <p>
                       <?= $ncatalogo ?>
@@ -136,7 +137,6 @@
           </ul>
         </nav>
         <!-- /.sidebar-menu -->
-
       </div>
       <!-- /.sidebar -->
     </aside>

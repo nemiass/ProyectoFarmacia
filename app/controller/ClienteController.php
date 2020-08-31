@@ -16,8 +16,8 @@ class ClienteController
                 "ape" => $_POST["apellido"],
                 "tel" => $_POST["telefono"],
                 "usr" => $_POST["usuario"],
-                "pass" => $_POST["contraseña"],
-                "pass2" => $_POST["contraseña2"],
+                "pass" => $_POST["pasword"],
+                "pass2" => $_POST["pasword2"]
             );
 
             $errores = Usuario::Validar($c);
@@ -69,9 +69,9 @@ class ClienteController
     {
     }
 
-    public function listarproductosxCliente(int $id,$id2)
+    public function listarproductosxCliente(int $id, $id2)
     {
-        $productos = Cliente::ListarProductosxCliente($id,$id2);
+        $productos = Cliente::ListarProductosxCliente($id, $id2);
         return $productos;
     }
 }
