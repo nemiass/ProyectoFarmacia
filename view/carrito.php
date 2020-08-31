@@ -56,7 +56,7 @@ include "layouts/headerCliente.php";
   <!-- Main content -->
   <section class="content">
 
-    <div class="row">
+    <div class="row" style="padding-top:10px;">
       <div class="col-12">
         <div class="card card-solid">
           <div class="card-body">
@@ -123,7 +123,7 @@ include "layouts/headerCliente.php";
     <div class="row">
       <div class="col-12">
         <div class="card card-solid">
-          <div class="card-body">
+          <div class="card-body" style="background-color:#96a3bb;">
 
             <?php
             $departamentos = $pcontroller->traerDepartamentos();

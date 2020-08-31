@@ -37,7 +37,6 @@ class Cliente
             ]);
 
             $db->cerrarConexion();
-           
         } catch (\PDOException $e) {
             echo $e->getMessage();
         }
@@ -139,7 +138,7 @@ class Cliente
         }
     }
 
-    public static function ListarProductosxCliente($id,$id2): array
+    public static function ListarProductosxCliente($id, $id2): array
     {
         try {
             $db = new db();
